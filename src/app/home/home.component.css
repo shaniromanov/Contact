@@ -1,0 +1,19 @@
+img{
+    transform: translate(50%, 1%);
+    width:26%;
+}
+h2{
+    color: black;
+    text-shadow: 2px 2px 7px purple;
+    transform: translate(-10%, 60%);
+
+}
+div{
+    width: 500px;
+    max-width: 100%;
+    min-height: 480px;
+    transform: translate(160%, -120%);
+    font-size: 30px;
+    font-family: sans-serif;
+    color: black;
+}

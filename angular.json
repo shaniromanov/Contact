@@ -119,6 +119,10 @@
           }
         }
       }
-    }},
-  "defaultProject": "ContactList"
+    }
+  },
+  "defaultProject": "ContactList",
+  "cli": {
+    "analytics": "f7da7c42-dd92-46db-bd18-c0adb39c26c3"
+  }
 }
