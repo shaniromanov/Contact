@@ -1,0 +1,57 @@
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box !important;
+    font-family: sans-serif;
+}
+
+.cont {
+    max-width: 1100px;
+    margin: 0 auto;
+}
+
+.header {
+    width: 100% auto;
+    background: black;
+    opacity: .9;
+}
+
+.navbar {
+    width: 100%;
+    display: flex !important;
+    justify-content: space-between !important;
+}
+
+
+.logo h1 {
+    padding: .5em;
+    color:purple;
+}
+
+ul {
+    display: flex;
+    list-style: none;
+}
+
+ul li a {
+    text-decoration: none;
+    padding: 1.7em;
+    display: inline-block;
+    transition: all .5s;
+    position: relative;
+    border-right: 1.5px solid purple;
+    color:purple;
+font-weight: bold;
+}
+
+ul li a:hover::before {
+    transform: scaleX(1);
+}
+
+ul li a:hover {
+    background: rgb(214, 120, 214);
+}
+
+
+
