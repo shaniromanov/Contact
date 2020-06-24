@@ -1,6 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { MeansOfContact } from '../DTO/means-of-contact';
-import { Adress } from '../DTO/adress';
 
 @Component({
   selector: 'user-login',
