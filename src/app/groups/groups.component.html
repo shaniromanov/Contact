@@ -11,11 +11,11 @@
     <h4>Group Name:</h4>
     </td>
     <td>
-        <input type="groupName" placeholder="Group Name"/>
+        <input type="groupName" placeholder="{{group.groupName}}"/>
 
     </td>
     <td>
-        <button (click)="updateGroup()">Update</button>
+        <button (click)="routeToUpdateGroup(group.groupName)">Update</button>
     </td>
     <td>
         <button (click)="deleteGroup()">Delete</button>
@@ -29,5 +29,5 @@
 <br/>
 
 <div>
-    <button class=btn2>Add new group</button>
+    <button class=btn2 (click)="routeToAddGroup()">Add new group</button>
 </div>

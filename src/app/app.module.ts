@@ -16,6 +16,8 @@ import { AddMeanOfContactComponent } from './add-mean-of-contact/add-mean-of-con
 import { ReactiveFormsModule } from '@angular/forms';
 
 import { GroupsComponent } from './groups/groups.component';
+import { UpdateGroupsComponent } from './update-groups/update-groups.component';
+import { AddGroupsComponent } from './add-groups/add-groups.component';
 
 
 @NgModule({
@@ -27,8 +29,14 @@ import { GroupsComponent } from './groups/groups.component';
     ContactsListComponent,
     ContactUpdateComponent,
     AddContactComponent,
+<<<<<<< HEAD
     AddMeanOfContactComponent,
     GroupsComponent
+=======
+    GroupsComponent,
+    UpdateGroupsComponent,
+    AddGroupsComponent
+>>>>>>> 4a020a5d551c188520cac0db4045d17c135c2a59
   ],
   imports: [
     BrowserModule,
