@@ -12,10 +12,10 @@ export class GroupsComponent implements OnInit {
   constructor(private router: Router) { }
 
   ngOnInit(): void {
-    this.groups.push(new Group("family"))
-    this.groups.push(new Group("work"))
-    this.groups.push(new Group("freinds"))
-
+    this.groups.push(new Group("Family"))
+    this.groups.push(new Group("Work"))
+    this.groups.push(new Group("Freinds"))
+    this.groups.push(new Group("Emergency"))
   }
   routeToUpdateGroup(_groupName:string){
     this.router.navigate(['/groups/' + _groupName ]);
