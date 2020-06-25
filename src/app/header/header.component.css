@@ -3,7 +3,6 @@
     margin: 0;
     padding: 0;
     box-sizing: border-box !important;
-    font-family: sans-serif;
 }
 
 .cont {
@@ -15,6 +14,7 @@
     width: 100% auto;
     background: black;
     opacity: .9;
+    height: 100%;
 }
 
 .navbar {
@@ -26,13 +26,13 @@
 
 .logo h1 {
     padding: .5em;
-    color:purple;
+    color:rgb(179, 42, 179);
 }
 
 ul {
     display: flex;
     list-style: none;
-}
+position: static;}
 
 ul li a {
     text-decoration: none;
@@ -41,8 +41,9 @@ ul li a {
     transition: all .5s;
     position: relative;
     border-right: 1.5px solid purple;
-    color:purple;
+    color:rgb(179, 42, 179);
 font-weight: bold;
+font-size: medium;
 }
 
 ul li a:hover::before {

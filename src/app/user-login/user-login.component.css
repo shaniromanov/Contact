@@ -1,19 +1,16 @@
-@import url('https://fonts.googleapis.com/css2?family=Teko:wght@500&display=swap');
 *{
     box-sizing: border-box;
 }
 body{
-    font-family: sans-serif;
     background: #86235a;
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
     height: 100vh;
-    margin: -10px 0 50px;
+    margin: 10px 0 50px;
 }
 h1{
-    font-weight: bold;
     letter-spacing: 0.8px;
     margin: 0;
 }
@@ -27,7 +24,7 @@ h1{
     width: 768px;
     max-width: 100%;
     min-height: 480px;
-    transform: translate(50%, 5%);
+    transform: translate(5%, 5%);
 
 }
 .form-container form{
@@ -60,7 +57,6 @@ button{
     background: #23bebe;
     color: #fff;
     font-size: 12px;
-    font-weight: bold;
     padding: 12px 45px;
     letter-spacing: 1px;
     text-transform: uppercase;

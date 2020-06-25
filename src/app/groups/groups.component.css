@@ -1,0 +1,71 @@
+thead{
+    width: 100% auto;
+    background: white;
+
+    padding: .5em;
+    color:purple;
+    font-size: medium;
+    font-weight: bold;
+    
+  
+}
+table{
+  width: 70%;
+  transform: translate(20%, 10%);
+
+ 
+}
+div{
+    transform: translate(70%, 300%);
+
+}
+h1{
+    color: black;
+    text-shadow: 2px 2px 7px purple;
+
+}
+
+.btn2{
+    border-radius: 20px;
+    border: 1px solid #f3f3f3;
+    background: purple;
+    color: #fff;
+    font-size: 12px;
+    padding: 12px 45px;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    transition: transform 80ms ease-in;
+}
+button:active{
+    transform: scale(0.95);
+}
+button:focus{
+    outline: none;
+}
+button.ghost{
+    background: transparent;
+    border-color: #fff;
+}
+button:active{
+    transform: scale(0.95);
+}
+button:focus{
+    outline: none;
+}
+button.ghost{
+    background: transparent;
+    border-color: #fff;
+}
+
+th, td {
+    padding: 8px;
+    text-align: left;
+ 
+  }
+  table, th, td {
+    border-left: none;
+    border-right: none;
+  }
+tr:nth-child(even) {background-color: #DFA0C6;}
+
+

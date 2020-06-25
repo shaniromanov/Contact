@@ -1,0 +1,33 @@
+
+<table>
+    <thead>
+        <tr>
+            <td><h1>Groups</h1></td>
+        </tr>
+    </thead>
+    <tbody>
+<tr  *ngFor="let group of groups">
+    <td>
+    <h4>Group Name:</h4>
+    </td>
+    <td>
+        <input type="groupName" placeholder="Group Name"/>
+
+    </td>
+    <td>
+        <button (click)="updateGroup()">Update</button>
+    </td>
+    <td>
+        <button (click)="deleteGroup()">Delete</button>
+    </td>
+</tr>
+    </tbody>
+</table>
+<br/><br/>
+<br/>
+<br/>
+<br/>
+
+<div>
+    <button class=btn2>Add new group</button>
+</div>
