@@ -29,14 +29,10 @@ import { AddGroupsComponent } from './add-groups/add-groups.component';
     ContactsListComponent,
     ContactUpdateComponent,
     AddContactComponent,
-<<<<<<< HEAD
     AddMeanOfContactComponent,
-    GroupsComponent
-=======
     GroupsComponent,
     UpdateGroupsComponent,
     AddGroupsComponent
->>>>>>> 4a020a5d551c188520cac0db4045d17c135c2a59
   ],
   imports: [
     BrowserModule,
