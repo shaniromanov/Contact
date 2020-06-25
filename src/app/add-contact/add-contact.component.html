@@ -1,28 +1,51 @@
 
 <form [formGroup]="form" (ngSubmit)="onSubmit(form, $event)">
+    <input id="FirstName" formControlName="FirstName" placeholder="First Name"> 
+    <br/> <br/>
+    <input id="LastName" formControlName="LastName" placeholder="Last Name"> 
+    <br/> <br/>
+    <input id="Adress" formControlName="Adress" placeholder="Adress"> 
+    <br/> <br/>
     <div formArrayName="MeansContact">
     <div *ngFor='let contact of MeansContact.controls;index as i'>
         <!-- <app-add-mean-of-contact (onFormGroupChange)="setParentControl($event)"   [parentForm]= "form"
         [currentIndex]="i"></app-add-mean-of-contact> -->
         <div [formGroupName]="i">
-        <select type="text"  id="typeOfContact" formControlName="typeOfContact" form="meanContact">
+        <select type="text"  id="typeOfContact" formControlName="typeOfContact" form="i">
             <option hidden>Select mean of contract </option>
             <option  *ngFor="let key of keys();">{{key}}</option>
             </select> 
-            <br/>
-            <br/>
+            <br/> <br/>
+           
         
         <input id="value" formControlName="value" placeholder="Enter a value"> 
-        <br/>
-        <br/>
-   
+        <br/> <br/>
+       
+       
         </div>
-<!-- <input id="value" [formControlName]="i+'val'" placeholder="Enter a value">  -->
-<br/>
-<br/>
-    </div>
-</div>
-    <button type='submit' >Submit</button>
-</form>
-<button (click)="AddToForm()">Add</button>
 
+    </div>
+    <button (click)="AddToForm()">Add Mean Of Contact</button>
+    <br/> <br/>
+</div>
+   
+   
+
+    <div formArrayName="Groups">
+        <div *ngFor='let grp of Groups.controls;index as i'>
+      
+            <select type="text"  id="group" formControlName="group" form="form">
+                <option hidden>Select group </option>
+                <option  *ngFor="let group of groupList;">{{group}}</option>
+                </select> 
+                <br/> <br/>
+            
+            </div>
+        </div>
+         
+            <button (click)="AddGroupToForm()">Add another group</button>
+            <br/> <br/>
+            <button type='submit' >Submit</button>
+</form>
+
+ 
