@@ -11,8 +11,12 @@ import { CommService } from './Services/comm.service';
 import { LocalCommService } from './Services/local-comm.service';
 import { ContactUpdateComponent } from './contact-update/contact-update.component';
 import { AddContactComponent } from './add-contact/add-contact.component';
+<<<<<<< HEAD
 import { AddMeanOfContactComponent } from './add-mean-of-contact/add-mean-of-contact.component';
 import { ReactiveFormsModule } from '@angular/forms';
+=======
+import { GroupsComponent } from './groups/groups.component';
+>>>>>>> cc3c0c6a561c22a1d6f1998ebc7d75c26c359cd2
 
 @NgModule({
   declarations: [
@@ -23,7 +27,11 @@ import { ReactiveFormsModule } from '@angular/forms';
     ContactsListComponent,
     ContactUpdateComponent,
     AddContactComponent,
+<<<<<<< HEAD
     AddMeanOfContactComponent
+=======
+    GroupsComponent
+>>>>>>> cc3c0c6a561c22a1d6f1998ebc7d75c26c359cd2
   ],
   imports: [
     BrowserModule,

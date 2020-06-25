@@ -5,6 +5,7 @@ import { HomeComponent } from './home/home.component';
 import { ContactsListComponent } from './contacts-list/contacts-list.component';
 import { ContactUpdateComponent } from './contact-update/contact-update.component';
 import { AddContactComponent } from './add-contact/add-contact.component';
+import { GroupsComponent } from './groups/groups.component';
 
 
 const routes: Routes = [
@@ -13,6 +14,7 @@ const routes: Routes = [
   { path: 'contacts/:id', component: ContactUpdateComponent},
   { path: 'add-contact', component: AddContactComponent},
   {path:'',component:HomeComponent},
+  {path:'groups',component:GroupsComponent},
 
 ];
 
