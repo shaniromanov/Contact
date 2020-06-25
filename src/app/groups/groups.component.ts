@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Group } from '../DTO/group';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-groups',
@@ -8,7 +9,7 @@ import { Group } from '../DTO/group';
 })
 export class GroupsComponent implements OnInit {
   groups=new Array<Group>()
-  constructor() { }
+  constructor(private router: Router) { }
 
   ngOnInit(): void {
     this.groups.push(new Group("family"))
@@ -16,10 +17,13 @@ export class GroupsComponent implements OnInit {
     this.groups.push(new Group("freinds"))
 
   }
-  updateGroup(){
-    
+  routeToUpdateGroup(_groupName:string){
+    this.router.navigate(['/groups/' + _groupName ]);
   }
   deleteGroup(){
+  }
+  routeToAddGroup(){
+    this.router.navigate(['/add-groups/']);
 
   }
 }

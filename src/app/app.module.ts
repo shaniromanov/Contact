@@ -12,6 +12,8 @@ import { LocalCommService } from './Services/local-comm.service';
 import { ContactUpdateComponent } from './contact-update/contact-update.component';
 import { AddContactComponent } from './add-contact/add-contact.component';
 import { GroupsComponent } from './groups/groups.component';
+import { UpdateGroupsComponent } from './update-groups/update-groups.component';
+import { AddGroupsComponent } from './add-groups/add-groups.component';
 
 @NgModule({
   declarations: [
@@ -22,7 +24,9 @@ import { GroupsComponent } from './groups/groups.component';
     ContactsListComponent,
     ContactUpdateComponent,
     AddContactComponent,
-    GroupsComponent
+    GroupsComponent,
+    UpdateGroupsComponent,
+    AddGroupsComponent
   ],
   imports: [
     BrowserModule,
