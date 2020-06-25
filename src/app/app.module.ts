@@ -9,6 +9,8 @@ import { HomeComponent } from './home/home.component';
 import { ContactsListComponent } from './contacts-list/contacts-list.component';
 import { CommService } from './Services/comm.service';
 import { LocalCommService } from './Services/local-comm.service';
+import { ContactUpdateComponent } from './contact-update/contact-update.component';
+import { AddContactComponent } from './add-contact/add-contact.component';
 
 @NgModule({
   declarations: [
@@ -16,7 +18,9 @@ import { LocalCommService } from './Services/local-comm.service';
     UserLoginComponent,
     HeaderComponent,
     HomeComponent,
-    ContactsListComponent
+    ContactsListComponent,
+    ContactUpdateComponent,
+    AddContactComponent
   ],
   imports: [
     BrowserModule,

@@ -5,6 +5,7 @@ import { PhoneNumber } from '../DTO/phone-number';
 import { Group } from '../DTO/group';
 import { MeansOfContact } from '../DTO/means-of-contact';
 import { Email } from '../DTO/email';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-contacts-list',
@@ -18,7 +19,7 @@ export class ContactsListComponent implements OnInit {
   {contact_id:1,img:"kkk",firstName:"Shani",lastName:"Romanov",meansOfContact:new Array<MeansOfContact>(),groups:new Array<Group>()},
   {contact_id:1,img:"kkk",firstName:"Shani",lastName:"Romanov",meansOfContact:new Array<MeansOfContact>(),groups:new Array<Group>()}]
 
-  constructor(private contactservice:ContactsService) { }
+  constructor(private contactservice:ContactsService,private router: Router) { }
 
   ngOnInit(): void {
     this.contacts[0].meansOfContact.push(new PhoneNumber("03-5794441"))
@@ -36,6 +37,13 @@ export class ContactsListComponent implements OnInit {
 
   }
 
+  deleteContact(contact_id:number){
 
-
+  }
+  routeToUpdateContact(contact_id:number){
+    this.router.navigate(['/contacts/' + contact_id ]);
+  }
+  routeToAddContact(){
+    this.router.navigate(['/add-contact/'  ]);
+  }
 }

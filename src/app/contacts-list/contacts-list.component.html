@@ -33,14 +33,14 @@
                 </ul>
               </div>
         </td>
-        <td><button >Update</button></td>
-        <td><button >Delete</button></td>
+        <td><button (click)="routeToUpdateContact(contact.contact_id)">Update</button></td>
+        <td><button (click)="deleteContact(contact.contact_id)" >Delete</button></td>
     </tr>
 </tbody>
 </table>
 <div>
     <br/>
     <br/>
-    <button class="add-btn">Add Contact</button>
+    <button class="add-btn" (click)="routeToAddContact()">Add Contact</button>
 </div>
 
