@@ -1,0 +1,46 @@
+<table  border="1">
+    <thead>
+    <tr>
+        <td></td>
+        <td>First Name</td>
+        <td>Last Name</td>
+        <td>Means Of Contact</td>
+        <td>Groups</td>
+        <td></td>
+        <td></td>
+    </tr>
+</thead>
+<tbody>
+    <tr *ngFor ="let contact of contacts">
+        <td>image</td>
+        <td>{{contact.firstName}}</td>
+        <td>{{contact.lastName}}</td>
+        <td>
+            <div class="dropdown">
+                <button class="btn btn-secondary dropdown-toggle" type="button" data-toggle="dropdown">
+                    <span class="caret"></span></button>
+                <ul class="dropdown-menu">
+                  <li *ngFor="let meanContract of contact.meansOfContact">{{meanContract.typeOfMeanContact}}: {{meanContract.value}}</li>
+                </ul>
+              </div>
+        </td>
+        <td>
+            <div class="dropdown">
+                <button class="btn btn-secondary dropdown-toggle" type="button" data-toggle="dropdown">
+                    <span class="caret"></span></button>
+                <ul class="dropdown-menu">
+                  <li *ngFor="let group of contact.groups">{{group.groupName}}</li>
+                </ul>
+              </div>
+        </td>
+        <td><button >Update</button></td>
+        <td><button >Delete</button></td>
+    </tr>
+</tbody>
+</table>
+<div>
+    <br/>
+    <br/>
+    <button class="add-btn">Add Contact</button>
+</div>
+

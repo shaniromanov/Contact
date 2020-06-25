@@ -3,6 +3,10 @@ import { Contact } from './contact'
 export class Group {
     groupName:string
     contacts:{[contact_id:number]:Contact}={}
+
+    constructor(name:string) {
+        this.groupName=name
+    }
     private contactExists = (contact_id:number):boolean =>this.contacts.hasOwnProperty(contact_id)
     addContact(contact:Contact){
 

@@ -1,9 +1,9 @@
 import { MeansOfContact } from './means-of-contact';
 
-export class MobileNumber extends MeansOfContact{
+export class UserName extends MeansOfContact{
     constructor(val:string) {
         super(val);
-        this.typeOfMeanContact="Mobile Phone"
+        this.typeOfMeanContact="Username"
 
     }
     validate(val:string) {

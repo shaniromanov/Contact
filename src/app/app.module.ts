@@ -6,19 +6,23 @@ import { AppComponent } from './app.component';
 import { UserLoginComponent } from './user-login/user-login.component';
 import { HeaderComponent } from './header/header.component';
 import { HomeComponent } from './home/home.component';
+import { ContactsListComponent } from './contacts-list/contacts-list.component';
+import { CommService } from './Services/comm.service';
+import { LocalCommService } from './Services/local-comm.service';
 
 @NgModule({
   declarations: [
     AppComponent,
     UserLoginComponent,
     HeaderComponent,
-    HomeComponent
+    HomeComponent,
+    ContactsListComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule
   ],
-  providers: [],
+  providers: [{provide:CommService,useClass:LocalCommService}],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

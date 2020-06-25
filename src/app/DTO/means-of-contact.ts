@@ -1,12 +1,12 @@
 export abstract class MeansOfContact {
     
    value:string
-   abstract validate()
+   typeOfMeanContact:string
+   abstract validate(val:string)
     /**
      *
      */
     constructor(value:string ) {
         this.value=value
-        
     }
 }

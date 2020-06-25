@@ -7,5 +7,5 @@ export class Contact {
     lastName:string
     meansOfContact:Array<MeansOfContact>
     groups:Array<Group>
-    image:string
+    img:string
 }

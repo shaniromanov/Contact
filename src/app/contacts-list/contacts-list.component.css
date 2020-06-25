@@ -1,0 +1,71 @@
+thead{
+    width: 100% auto;
+    background: white;
+
+    padding: .5em;
+    color:purple;
+    font-size: medium;
+    font-weight: bold;
+    
+  
+}
+table{
+    border-collapse: collapse;
+  width: 100%;
+ 
+}
+
+
+
+.add-btn{
+    margin: auto;
+    border-radius: 20px;
+    border: 1px solid #f3f3f3;
+    background: #23bebe;
+    color: #fff;
+    font-size: 12px;
+    font-weight: bold;
+    padding: 12px 45px;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    transition: transform 80ms ease-in;
+    background-color: purple;
+ 
+}
+button:active{
+    transform: scale(0.95);
+}
+button:focus{
+    outline: none;
+}
+button.ghost{
+    background: transparent;
+    border-color: #fff;
+}
+.btn-secondary{
+    width: 100%;
+}
+th, td {
+    padding: 8px;
+    text-align: left;
+ 
+  }
+  table, th, td {
+    border-left: none;
+    border-right: none;
+  }
+tr:nth-child(even) {background-color: #DFA0C6;}
+.dropdown-menu li {
+    width: auto;
+    min-width: 300px; 
+    color: black;
+    padding: 12px 16px;
+    text-decoration: none;
+    display: block;
+  }
+  .dropdown-menu li:hover {background-color: #f1f1f1}
+  .dropdown-menu{
+      width: auto;
+  }
+
+
