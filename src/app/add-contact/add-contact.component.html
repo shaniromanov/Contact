@@ -1,1 +1,28 @@
-<p>add-contact works!</p>
+
+<form [formGroup]="form" (ngSubmit)="onSubmit(form, $event)">
+    <div formArrayName="MeansContact">
+    <div *ngFor='let contact of MeansContact.controls;index as i'>
+        <!-- <app-add-mean-of-contact (onFormGroupChange)="setParentControl($event)"   [parentForm]= "form"
+        [currentIndex]="i"></app-add-mean-of-contact> -->
+        <div [formGroupName]="i">
+        <select type="text"  id="typeOfContact" formControlName="typeOfContact" form="meanContact">
+            <option hidden>Select mean of contract </option>
+            <option  *ngFor="let key of keys();">{{key}}</option>
+            </select> 
+            <br/>
+            <br/>
+        
+        <input id="value" formControlName="value" placeholder="Enter a value"> 
+        <br/>
+        <br/>
+   
+        </div>
+<!-- <input id="value" [formControlName]="i+'val'" placeholder="Enter a value">  -->
+<br/>
+<br/>
+    </div>
+</div>
+    <button type='submit' >Submit</button>
+</form>
+<button (click)="AddToForm()">Add</button>
+
