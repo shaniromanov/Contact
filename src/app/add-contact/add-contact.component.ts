@@ -16,6 +16,9 @@ export class AddContactComponent implements OnInit {
   subForm:FormGroup=null
   groupList:Array<String>
   url: string;
+  imageToShow:any;
+  myURL:any
+
  
   meansContact:{[meanType:string]:typeof  MeansOfContact}={"Email":Email,"Phone Number":PhoneNumber}
   get MeansContact(): FormArray {
@@ -68,6 +71,22 @@ export class AddContactComponent implements OnInit {
       })
 
   }
+  onURLinserted() {
+    
+}
+
+
+
+createImageFromBlob(image: Blob) {
+ let reader = new FileReader(); //you need file reader for read blob data to base64 image data.
+ reader.addEventListener("load", () => {
+    this.imageToShow = reader.result; // here is the result you got from reader
+ }, false);
+
+ if (image) {
+    reader.readAsDataURL(image);
+ }
+}
 //   public setParentControl(formGroup: FormGroup) {
 //         this.subForm=formGroup
 // }

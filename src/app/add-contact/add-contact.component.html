@@ -1,22 +1,37 @@
 
+<h1>Add Contact</h1>
+<br/> <br/>
 <form [formGroup]="form" (ngSubmit)="onSubmit()">
-    <input id="FirstName" formControlName="FirstName" placeholder="First Name"> 
+    <input type="text" id= "FirstName" formControlName="FirstName" placeholder="First Name"> 
     <br/> <br/>
-    <input id="LastName" formControlName="LastName" placeholder="Last Name"> 
+    <input type="text" id="LastName" formControlName="LastName" placeholder="Last Name"> 
     <br/> <br/>
-    <input id="Adress" formControlName="Adress" placeholder="Adress"> 
+    <input type="text" id="Adress" formControlName="Adress" placeholder="Adress"> 
     <br/> <br/><br/>
     <img [src]="url" height="200"> <br/>
     <label for="file">Choose Image</label>
-    <input type="file"
+    <div class="dropdown">
+        <button id="select-btn" class="btn btn-secondary dropdown-toggle" type="button" data-toggle="dropdown">
+            <span class="caret"></span>Select Image Source</button>
+        <ul class="dropdown-menu">
+            <li>From File :<input type="file"
+                id="file"
+                (change)="onSelectFile($event)"></li>     
+            <li>From Url :<input type="URL" name="myURL"  placeholder="insert image URL here" (change)="onURLinserted() "></li>  
+        </ul>
+      </div>
+   
+       
+    <!-- <input type="file"
            id="file"
-           (change)="onSelectFile($event)">
+           (change)="onSelectFile($event)"> -->
            <br/> <br/>
     <div formArrayName="MeansContact">
     <div *ngFor='let contact of MeansContact.controls;index as i'>
         <!-- <app-add-mean-of-contact (onFormGroupChange)="setParentControl($event)"   [parentForm]= "form"
         [currentIndex]="i"></app-add-mean-of-contact> -->
-        <div [formGroupName]="i">
+        <div id="mean" [formGroupName]="i">
+            <br/>
         <select type="text"  id="typeOfContact" formControlName="typeOfContact" form="i">
             <option hidden>Select mean of contract </option>
             <option  *ngFor="let key of keys();">{{key}}</option>
@@ -24,14 +39,14 @@
             <br/> <br/>
            
         
-        <input id="value" formControlName="value" placeholder="Enter a value"> 
+        <input type="text" id="value" formControlName="value" placeholder="Enter a value"> 
         <br/> <br/>
        
        
         </div>
-
+        <br/> <br/>
     </div>
-    <button (click)="AddToForm()">Add Mean Of Contact</button>
+    <button class="btn btn-dark"(click)="AddToForm()">Add Mean Of Contact</button>
     <br/> <br/>
 </div>
    
@@ -49,9 +64,9 @@
             </div>
         </div>
          
-            <button (click)="AddGroupToForm()">Add another group</button>
+            <button class="btn btn-dark" (click)="AddGroupToForm()">Add another group</button>
             <br/> <br/>
-            <button type='submit' >Submit</button>
+            <button class="add-btn"type='submit' >Submit</button>
 </form>
 
  
