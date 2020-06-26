@@ -1,11 +1,17 @@
 
-<form [formGroup]="form" (ngSubmit)="onSubmit(form, $event)">
+<form [formGroup]="form" (ngSubmit)="onSubmit()">
     <input id="FirstName" formControlName="FirstName" placeholder="First Name"> 
     <br/> <br/>
     <input id="LastName" formControlName="LastName" placeholder="Last Name"> 
     <br/> <br/>
     <input id="Adress" formControlName="Adress" placeholder="Adress"> 
-    <br/> <br/>
+    <br/> <br/><br/>
+    <img [src]="url" height="200"> <br/>
+    <label for="file">Choose Image</label>
+    <input type="file"
+           id="file"
+           (change)="onSelectFile($event)">
+           <br/> <br/>
     <div formArrayName="MeansContact">
     <div *ngFor='let contact of MeansContact.controls;index as i'>
         <!-- <app-add-mean-of-contact (onFormGroupChange)="setParentControl($event)"   [parentForm]= "form"

@@ -15,6 +15,7 @@ export class AddContactComponent implements OnInit {
   form:FormGroup
   subForm:FormGroup=null
   groupList:Array<String>
+  url: string;
  
   meansContact:{[meanType:string]:typeof  MeansOfContact}={"Email":Email,"Phone Number":PhoneNumber}
   get MeansContact(): FormArray {
@@ -23,8 +24,7 @@ export class AddContactComponent implements OnInit {
   get Groups(): FormArray {
     return this.form.get('Groups') as FormArray;
   }
-  onSubmit(empForm: any, event: Event){
-    event.preventDefault();
+  onSubmit(){
     console.log("onsubit==>>",this.form.value)
   }
   AddToForm(){
@@ -36,13 +36,27 @@ export class AddContactComponent implements OnInit {
       
       
   }
+
   AddGroupToForm(){
     var f:FormArray = this.form.get('Groups') as FormArray
       f.push(new FormControl())
   }
+
   keys() : Array<string> {
     return Object.keys(this.meansContact);
   }
+  
+  onSelectFile(event) { // called each time file input changes
+    if (event.target.files && event.target.files[0]) {
+      var reader = new FileReader();
+
+      reader.readAsDataURL(event.target.files[0]); // read file as data url
+
+      reader.onload = (event) => { // called once readAsDataURL is completed
+        this.url = event.target.result as string;
+      }
+    }
+}
   ngOnInit(): void {
     this.groupList=this.contactsService.groups.map(v=>v.groupName)
       this.form = new FormGroup({

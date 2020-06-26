@@ -11,7 +11,6 @@ import { CommService } from './Services/comm.service';
 import { LocalCommService } from './Services/local-comm.service';
 import { ContactUpdateComponent } from './contact-update/contact-update.component';
 import { AddContactComponent } from './add-contact/add-contact.component';
-
 import { AddMeanOfContactComponent } from './add-mean-of-contact/add-mean-of-contact.component';
 import { ReactiveFormsModule } from '@angular/forms';
 
