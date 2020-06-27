@@ -67,5 +67,8 @@ th, td {
     border-right: none;
   }
 tr:nth-child(even) {background-color: #DFA0C6;}
+input [type=text]:disabled {
+    background: white;
 
+}
 
