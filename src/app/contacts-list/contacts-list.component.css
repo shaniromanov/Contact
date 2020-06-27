@@ -49,6 +49,12 @@ th, td {
     text-align: left;
  
   }
+  h1{
+    color: black;
+    text-shadow: 2px 2px 7px purple;
+ 
+    padding: 10px;
+}
   table, th, td {
     border-left: none;
     border-right: none;
