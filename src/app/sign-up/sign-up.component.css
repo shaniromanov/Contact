@@ -22,6 +22,7 @@ button{
     border: 1px solid purple;
     background: white;
     color: purple;
+    font-weight: bold;
     font-size: 12px;
     padding: 12px 45px;
     letter-spacing: 1px;
