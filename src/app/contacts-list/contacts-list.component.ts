@@ -14,23 +14,12 @@ import { Router } from '@angular/router';
 })
 export class ContactsListComponent implements OnInit {
 
-  contacts:Array<Contact>=[{contact_id:1,img:"kkk",firstName:"Shani",lastName:"Romanov",meansOfContact:new Array<MeansOfContact>(),groups:new Array<Group>()},
-  {contact_id:1,img:"kkk",firstName:"Shani",lastName:"Romanov",meansOfContact:new Array<MeansOfContact>(),groups:new Array<Group>()},
-  {contact_id:1,img:"kkk",firstName:"Shani",lastName:"Romanov",meansOfContact:new Array<MeansOfContact>(),groups:new Array<Group>()},
-  {contact_id:1,img:"kkk",firstName:"Shani",lastName:"Romanov",meansOfContact:new Array<MeansOfContact>(),groups:new Array<Group>()}]
+  contacts:Array<Contact>
 
   constructor(private contactservice:ContactsService,private router: Router) { }
 
   ngOnInit(): void {
-    this.contacts[0].meansOfContact.push(new PhoneNumber("03-5794441"))
-    this.contacts[0].groups.push(new Group("jjj"))
-    this.contacts[0].meansOfContact.push(new Email("shaniromanov@gmail.com"))
-    this.contacts[0].groups.push(new Group("family"))
-
-    this.contacts[1].meansOfContact.push(new PhoneNumber("03-5794441"))
-    this.contacts[1].groups.push(new Group("jjj"))
-    this.contacts[1].meansOfContact.push(new Email("shaniromanov@gmail.com"))
-    this.contacts[1].groups.push(new Group("family"))
+    this.contacts=this.contactservice.getContacts()
   }
 
   getUserContacts(username:string){

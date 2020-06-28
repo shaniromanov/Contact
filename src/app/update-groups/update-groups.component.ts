@@ -10,6 +10,7 @@ export class UpdateGroupsComponent implements OnInit {
   constructor() { }
 
   ngOnInit(): void {
+    
   }
 
 }

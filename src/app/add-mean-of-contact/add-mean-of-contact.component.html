@@ -2,13 +2,14 @@
   
     <br/>
 <select type="text"  id="typeOfContact" formControlName="typeOfContact" form="currentFormGroup">
-    <option hidden>Select mean of contract </option>
+    <option hidden *ngIf="currentFormGroup.value.typeOfContact">{{currentFormGroup.value.typeOfContact}} </option>
+    <option hidden *ngIf="!currentFormGroup.value.typeOfContact">Select mean of contract </option>
     <option  *ngFor="let key of keys();">{{key}}</option>
     </select> 
     <br/> <br/>
    
 
-<input type="text" id="value" formControlName="value" placeholder="Enter a value"> 
+<input type="text"  formControlName="value" placeholder="Enter a value" form="currentFormGroup"> 
 <br/> <br/>
 
 <!-- <button (click)="Save()">Save</button> -->
