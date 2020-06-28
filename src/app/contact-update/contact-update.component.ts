@@ -1,4 +1,12 @@
 import { Component, OnInit } from '@angular/core';
+import { ContactsService } from '../Services/contacts.service';
+import { Contact } from '../DTO/contact';
+import { ActivatedRoute } from '@angular/router';
+import { MeansOfContact } from '../DTO/means-of-contact';
+import { Email } from '../DTO/email';
+import { PhoneNumber } from '../DTO/phone-number';
+import { FormArray, FormGroup, FormControl, Validators } from '@angular/forms';
+import { Adress } from '../DTO/adress';
 
 @Component({
   selector: 'app-contact-update',
@@ -7,9 +15,57 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ContactUpdateComponent implements OnInit {
 
-  constructor() { }
+  constructor(private contactsService:ContactsService, private route: ActivatedRoute) { }
+  currentContact:Contact
+  form:FormGroup
+  groupList:Array<String>
 
-  ngOnInit(): void {
+  
+  meansContact:{[meanType:string]:typeof  MeansOfContact}={"Email":Email,"Phone Number":PhoneNumber,"Adress":Adress}
+
+  get MeansContact(): FormArray {
+    return this.form.get('MeansContact') as FormArray;
   }
+  get Groups(): FormArray {
+    return this.form.get('Groups') as FormArray;
+  }
+  ngOnInit(): void {
+    this.currentContact=this.getUser(this.route.snapshot.paramMap.get('id'))
+    this.groupList=this.contactsService.groups.map(v=>v.groupName)
+
+    this.form = new FormGroup({
+      FirstName:new FormControl(this.currentContact.firstName),
+      LastName:new FormControl(this.currentContact.lastName),
+      Adress:new FormControl(this.currentContact.meansOfContact.filter(mean=>mean.typeOfMeanContact=="Adress")[0]),
+      MeansContact:new FormArray([]),
+      Groups:new FormArray([])
+    })
+
+    this.currentContact.meansOfContact.map(val=>this.MeansContact.push( new FormGroup({typeOfContact:new FormControl(val.typeOfMeanContact),value:new FormControl(val.value)})))
+    this.currentContact.groups.map(val=>this.Groups.push(new FormGroup({groupName:new FormControl(val.groupName)})))
+  }
+  getUser(id:string):Contact{
+   return this.contactsService.findContact(id)
+  }
+  keys() : Array<string> {
+    return Object.keys(this.meansContact);
+  }
+  AddToForm(){
+    var f:FormArray = this.form.get('MeansContact') as FormArray
+
+    f.push(new FormGroup({ typeOfContact:new FormControl(),
+      value:new FormControl('',[Validators.required]),
+     }))
+    
+    
+}
+
+AddGroupToForm(){
+  var f:FormArray = this.form.get('Groups') as FormArray
+    f.push(new FormControl())
+}
+onSubmit(){
+  console.log("onsubmit==>>",this.form.value)
+}
 
 }

@@ -1,1 +1,15 @@
-<p>add-groups works!</p>
+<div id="group" [formGroup]="currentFormGroup" >
+  
+    <br/>
+   
+<select type="text"  id="groupName" formontrolName="groupName" form="currentFormGroup" required>
+    <option hidden *ngIf="currentFormGroup.value">{{currentFormGroup.value.groupName}} </option>
+    <option hidden *ngIf="!currentFormGroup.value">Select Group </option>
+    <option  *ngFor="let group of groups;">{{group.groupName}}</option>
+    </select> 
+    <br/> <br/>
+   
+
+<!-- <button (click)="Save()">Save</button> -->
+
+</div>

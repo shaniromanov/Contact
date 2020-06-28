@@ -24,7 +24,7 @@ export class AddMeanOfContactComponent implements OnInit {
     return Object.keys(this.meansContact);
   }
   ngOnInit(): void {
-    console.log(this.currentFormGroup)
+    console.log("means form===>>>",this.currentFormGroup.value)
     // this.currentFormGroup = new FormGroup(
     //   {
     //     typeOfContact:new FormControl(),
