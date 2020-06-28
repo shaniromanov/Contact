@@ -1,12 +1,16 @@
-<form id="meanContact" [formGroup]="meanContactGroup" >
-<select type="text"  id="typeOfContact" formControlName="typeOfContact" form="meanContact">
+<div id="mean" [formGroup]="currentFormGroup" >
+  
+    <br/>
+<select type="text"  id="typeOfContact" formControlName="typeOfContact" form="currentFormGroup">
     <option hidden>Select mean of contract </option>
     <option  *ngFor="let key of keys();">{{key}}</option>
     </select> 
-    <br/>
-    <br/>
+    <br/> <br/>
+   
 
-<input id="value" formControlName="value" placeholder="Enter a value"> 
-<br/>
-<br/>
-</form>
+<input type="text" id="value" formControlName="value" placeholder="Enter a value"> 
+<br/> <br/>
+
+<!-- <button (click)="Save()">Save</button> -->
+
+</div>

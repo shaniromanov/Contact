@@ -12,10 +12,11 @@ import { FormGroup, FormControl, FormArray, Validators } from '@angular/forms';
 export class AddMeanOfContactComponent implements OnInit {
   meansContact:{[meanType:string]:typeof  MeansOfContact}={"Email":Email,"Phone Number":PhoneNumber}
   
-   @Input() parentForm: FormGroup;
-   @Input() currentIndex: number;
-  meanContactGroup: FormGroup;
-   @Output() onFormGroupChange: EventEmitter<FormGroup> = new EventEmitter<FormGroup>()
+  //  @Input() parentForm: FormGroup;
+   @Input() currentFormGroup: FormGroup;
+   @Input() currentIndex:number;
+  // meanContactGroup: FormGroup;
+  //  @Output() onFormGroupChange: EventEmitter<FormGroup> = new EventEmitter<FormGroup>()
   constructor() { 
   
   }
@@ -23,18 +24,22 @@ export class AddMeanOfContactComponent implements OnInit {
     return Object.keys(this.meansContact);
   }
   ngOnInit(): void {
-    this.meanContactGroup = new FormGroup(
-      {
-        typeOfContact:new FormControl(),
-        value:new FormControl('',[Validators.required]),
+    console.log(this.currentFormGroup)
+    // this.currentFormGroup = new FormGroup(
+    //   {
+    //     typeOfContact:new FormControl(),
+    //     value:new FormControl('',[Validators.required]),
        
-      }
+    //   }
       
-    )
-    var f:FormArray = this.parentForm.get('MeansContact') as FormArray
-    f.push(this.meanContactGroup)
-    this.onFormGroupChange.emit(this.meanContactGroup);
+    // )
+    // var f:FormArray = this.parentForm.get('MeansContact') as FormArray
+    // f.push(this.meanContactGroup)
+    // this.onFormGroupChange.emit(this.meanContactGroup);
 
+  }
+  onSubmit(){
+    console.log("sub submit")
   }
 
 }

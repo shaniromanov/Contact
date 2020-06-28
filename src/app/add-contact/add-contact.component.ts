@@ -28,7 +28,7 @@ export class AddContactComponent implements OnInit {
     return this.form.get('Groups') as FormArray;
   }
   onSubmit(){
-    console.log("onsubit==>>",this.form.value)
+    console.log("onsubmit==>>",this.form.value)
   }
   AddToForm(){
       var f:FormArray = this.form.get('MeansContact') as FormArray

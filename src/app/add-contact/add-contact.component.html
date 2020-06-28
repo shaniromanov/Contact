@@ -21,32 +21,15 @@
         </ul>
       </div>
    
-       
-    <!-- <input type="file"
-           id="file"
-           (change)="onSelectFile($event)"> -->
            <br/> <br/>
     <div formArrayName="MeansContact">
     <div *ngFor='let contact of MeansContact.controls;index as i'>
-        <!-- <app-add-mean-of-contact (onFormGroupChange)="setParentControl($event)"   [parentForm]= "form"
-        [currentIndex]="i"></app-add-mean-of-contact> -->
-        <div id="mean" [formGroupName]="i">
-            <br/>
-        <select type="text"  id="typeOfContact" formControlName="typeOfContact" form="i">
-            <option hidden>Select mean of contract </option>
-            <option  *ngFor="let key of keys();">{{key}}</option>
-            </select> 
-            <br/> <br/>
-           
-        
-        <input type="text" id="value" formControlName="value" placeholder="Enter a value"> 
-        <br/> <br/>
-       
-       
-        </div>
+        <app-add-mean-of-contact 
+        [currentFormGroup]="contact" [currentIndex]="i"></app-add-mean-of-contact>
+   
         <br/> <br/>
     </div>
-    <button class="btn btn-dark"(click)="AddToForm()">Add Mean Of Contact</button>
+    <button type='button' class="btn btn-dark"(click)="AddToForm()">Add Mean Of Contact</button>
     <br/> <br/>
 </div>
    
@@ -64,7 +47,7 @@
             </div>
         </div>
          
-            <button class="btn btn-dark" (click)="AddGroupToForm()">Add another group</button>
+            <button type='button' class="btn btn-dark" (click)="AddGroupToForm()">Add another group</button>
             <br/> <br/>
             <button class="add-btn"type='submit' >Submit</button>
 </form>
