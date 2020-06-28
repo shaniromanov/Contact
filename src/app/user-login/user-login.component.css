@@ -11,8 +11,9 @@ body{
     margin: 10px 0 50px;
 }
 h1{
-    letter-spacing: 0.8px;
-    margin: 0;
+    color: black;
+    text-shadow: 2px 2px 7px purple;
+    margin: 0em;
 }
 
 .container{
@@ -27,7 +28,7 @@ h1{
     transform: translate(5%, 5%);
 
 }
-.form-container form{
+.form-container{
     background: #fff;
     display: flex;
     flex-direction: column;
@@ -37,44 +38,12 @@ h1{
     text-align: center;
     align-items: center;
 }
-.form-container input{
-    background: #eee;
+.form-container{
     border: none;
     padding: 12px 15px;
-    margin: 8px 0;
     width: 100%;
 }
-.form-containerSingUp input{
-    border: none;
-    padding: 10px 15px;
-    margin: 8px -60px;
-    width: 180%;
 
-}
-button{
-    border-radius: 20px;
-    border: 1px solid #f3f3f3;
-    background: #23bebe;
-    color: #fff;
-    font-size: 12px;
-    padding: 12px 45px;
-    letter-spacing: 1px;
-    text-transform: uppercase;
-    transition: transform 80ms ease-in;
-}
-button:active{
-    transform: scale(0.95);
-}
-button:focus{
-    outline: none;
-}
-button.ghost{
-    background: transparent;
-    border-color: #fff;
-}
-.si{
-    background-color: purple;
-}
 
 .form-container{
     position: absolute;
@@ -116,7 +85,6 @@ button.ghost{
     flex-direction: column;
     justify-content: center;
      align-items: center; 
-    padding: 0 40px;
     height: 100%;
     width: 50%;
     text-align: center;

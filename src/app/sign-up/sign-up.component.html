@@ -1,0 +1,11 @@
+<form [formGroup]="form" (ngSubmit)="onSubmit()">
+    <input type="text" id= "FirstName" formControlName="FirstName" placeholder="First Name">
+    <input type="text" id="LastName" formControlName="LastName" placeholder="Last Name">
+
+    <input type="text" id="UserName" formControlName="UserName" placeholder="UserName">
+    
+    <input type="text" id="Password" formControlName="Password" placeholder="Password">  
+    <input type="text" id="Email" formControlName="Email" placeholder="Email">
+    <br/>
+    <button>Sign Up</button>  
+</form>

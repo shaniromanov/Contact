@@ -17,9 +17,8 @@ export class GroupsComponent implements OnInit {
     this.groups.push(new Group("Freinds"))
     this.groups.push(new Group("Emergency"))
   }
-  routeToUpdateGroup(_groupName:string){
-    this.router.navigate(['/groups/' + _groupName ]);
-  }
+  
+
   deleteGroup(){
   }
   routeToAddGroup(){
