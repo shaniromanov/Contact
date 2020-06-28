@@ -6,7 +6,6 @@ import { ContactsListComponent } from './contacts-list/contacts-list.component';
 import { ContactUpdateComponent } from './contact-update/contact-update.component';
 import { AddContactComponent } from './add-contact/add-contact.component';
 import { GroupsComponent } from './groups/groups.component';
-import { UpdateGroupsComponent } from './update-groups/update-groups.component';
 import { AddGroupsComponent } from './add-groups/add-groups.component';
 
 
@@ -17,7 +16,6 @@ const routes: Routes = [
   { path: 'add-contact', component: AddContactComponent},
   {path:'',component:HomeComponent},
   {path:'groups',component:GroupsComponent},
-  {path:'groups/:groupName',component:UpdateGroupsComponent},
   {path:'add-groups',component:AddGroupsComponent},
 
 ];

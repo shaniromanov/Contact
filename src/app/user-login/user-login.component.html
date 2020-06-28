@@ -2,27 +2,18 @@
 <div class="container" id="container">
         
         <div class="form-container sign-in-container">
-            <form action="#">
-                <h1>Sign In</h1><br/><br/><br/>    
-                <input type="userName" placeholder="User Name"/>
-                <input type="password" placeholder="Password"/><br/>
-                <button class="si">Sign In</button>
-            </form>
+                <h1>Sign In</h1>
+         <app-sign-in></app-sign-in>
         </div>
         <div class="overlay-container">
             <div class="overlay">
         
-                <div class="overlay-panel overlay-right"><br/>
-                    <h1>Sign Up</h1><br/>
+                <div class="overlay-panel overlay-right">
+                    <h1>Sign Up</h1>
                     <div class="form-containerSingUp sign-in-container">
-                        <form action="#">
                             <h3>Create Account</h3>
-                            <input type="text" placeholder="Name"/>
-                            <input type="email" placeholder="Email"/>
-                            <input type="password" placeholder="Password"/>
-                        </form>
-                    </div><br/>
-                    <button class="ghost" id="signUp">Sign Up</button>
+                           <app-sign-up></app-sign-up>
+                    </div>
                 </div>
             </div>
         </div>
