@@ -14,14 +14,14 @@ input[type=text] {
   }
   form{
     margin: auto;
-    width: 60%;
+    width: 70%;
     padding: 10px;
   }
   h1{
     color: black;
     text-shadow: 2px 2px 7px purple;
     margin: auto;
-    width: 60%;
+    width: 70%;
     padding: 10px;
 
 }
@@ -40,15 +40,10 @@ input[type=text] {
  
 }
 .btn-dark{
-    color: purple;
+  color:rgb(197, 129, 197);
     background-color: black;
 }
-#mean{
-  
-    padding: 10px;
-    border-radius: 10px;
-    border: 2px solid purple;
-}
+
 .dropdown-menu li {
     width: auto;
     min-width: 300px; 
@@ -67,6 +62,9 @@ input[type=text] {
   label{
     color:purple;
     font-size: medium;
+    font-weight: bold;
+  }
+  h4{
     font-weight: bold;
   }
 

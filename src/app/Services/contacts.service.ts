@@ -11,10 +11,10 @@ import { Adress } from '../DTO/adress';
 })
 export class ContactsService {
 groups:Array<Group>=[new Group("Family"),new Group("Freind")]
-contacts:Array<Contact>=[{contact_id:1,img:"kkk",firstName:"Shani",lastName:"Romanov",meansOfContact:new Array<MeansOfContact>(),groups:new Array<Group>()},
-{contact_id:1,img:"kkk",firstName:"Shani",lastName:"Romanov",meansOfContact:new Array<MeansOfContact>(),groups:new Array<Group>()},
-{contact_id:1,img:"kkk",firstName:"Shani",lastName:"Romanov",meansOfContact:new Array<MeansOfContact>(),groups:new Array<Group>()},
-{contact_id:1,img:"kkk",firstName:"Shani",lastName:"Romanov",meansOfContact:new Array<MeansOfContact>(),groups:new Array<Group>()}]
+contacts:Array<Contact>=[{contact_id:1,img:"https://img.icons8.com/dusk/64/000000/old-man.png",firstName:"Shani",lastName:"Romanov",meansOfContact:new Array<MeansOfContact>(),groups:new Array<Group>()},
+{contact_id:1,img:"https://img.icons8.com/dusk/64/000000/old-man.png",firstName:"Shani",lastName:"Romanov",meansOfContact:new Array<MeansOfContact>(),groups:new Array<Group>()},
+{contact_id:1,img:"https://img.icons8.com/dusk/64/000000/old-man.png",firstName:"Shani",lastName:"Romanov",meansOfContact:new Array<MeansOfContact>(),groups:new Array<Group>()},
+{contact_id:1,img:"https://img.icons8.com/dusk/64/000000/old-man.png",firstName:"Shani",lastName:"Romanov",meansOfContact:new Array<MeansOfContact>(),groups:new Array<Group>()}]
   constructor() {
     this.contacts[0].meansOfContact.push(new PhoneNumber("03-5794441"))
     this.contacts[0].groups.push(new Group("Freinds"))

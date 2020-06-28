@@ -46,8 +46,7 @@ h1{
 #mean{
 
   padding: 10px;
-  border-radius: 10px;
-  border: 2px solid purple;
+ 
 }
 .dropdown-menu li {
   width: auto;
@@ -70,3 +69,6 @@ label{
   font-weight: bold;
 }
 
+h4{
+  font-weight: bold;
+}

@@ -1,4 +1,7 @@
-input[type=text] {
+h4{
+    font-weight: bold;
+  }
+  input[type=text] {
     width: 100%;
     border: 2px solid purple;
     border-radius: 4px;
@@ -40,7 +43,7 @@ input[type=text] {
  
 }
 .btn-dark{
-    color: purple;
+    color:rgb(197, 129, 197);
     background-color: black;
 }
 #mean{
@@ -65,9 +68,9 @@ input[type=text] {
       min-width: 200px;
   }
   label{
-    color:purple;
-    font-size: medium;
+    font-size: 19px;
     font-weight: bold;
+    
   }
 
   h4{

@@ -18,6 +18,7 @@ import { GroupsComponent } from './groups/groups.component';
 import { AddGroupsComponent } from './add-groups/add-groups.component';
 import { SignInComponent } from './sign-in/sign-in.component';
 import { SignUpComponent } from './sign-up/sign-up.component';
+import { ImageComponent } from './image/image.component';
 
 
 @NgModule({
@@ -33,7 +34,8 @@ import { SignUpComponent } from './sign-up/sign-up.component';
     GroupsComponent,
     AddGroupsComponent,
     SignInComponent,
-    SignUpComponent
+    SignUpComponent,
+    ImageComponent
   ],
   imports: [
     BrowserModule,

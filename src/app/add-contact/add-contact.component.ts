@@ -15,7 +15,7 @@ export class AddContactComponent implements OnInit {
   form:FormGroup
   subForm:FormGroup=null
   groupList:Array<String>
-  url: string;
+  // url: string;
   imageToShow:any;
   myURL:any
 
@@ -49,17 +49,17 @@ export class AddContactComponent implements OnInit {
     return Object.keys(this.meansContact);
   }
   
-  onSelectFile(event) { // called each time file input changes
-    if (event.target.files && event.target.files[0]) {
-      var reader = new FileReader();
+//   onSelectFile(event) { // called each time file input changes
+//     if (event.target.files && event.target.files[0]) {
+//       var reader = new FileReader();
 
-      reader.readAsDataURL(event.target.files[0]); // read file as data url
+//       reader.readAsDataURL(event.target.files[0]); // read file as data url
 
-      reader.onload = (event) => { // called once readAsDataURL is completed
-        this.url = event.target.result as string;
-      }
-    }
-}
+//       reader.onload = (event) => { // called once readAsDataURL is completed
+//         this.url = event.target.result as string;
+//       }
+//     }
+// }
   ngOnInit(): void {
     this.groupList=this.contactsService.groups.map(v=>v.groupName)
       this.form = new FormGroup({

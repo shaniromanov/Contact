@@ -11,8 +11,9 @@ thead{
 }
 table{
     border-collapse: collapse;
-  width: 100%;
- 
+    margin: auto;
+    width: 70%;
+    padding: 10px;
 }
 
 
@@ -52,7 +53,8 @@ th, td {
   h1{
     color: black;
     text-shadow: 2px 2px 7px purple;
- 
+    margin: auto;
+    width: 70%;
     padding: 10px;
 }
   table, th, td {
