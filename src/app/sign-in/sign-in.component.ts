@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl } from '@angular/forms';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-sign-in',
@@ -8,10 +9,13 @@ import { FormGroup, FormControl } from '@angular/forms';
 })
 export class SignInComponent implements OnInit {
   form:FormGroup
-  onSubmit(){
+  constructor(private router: Router) { }
+
+
+  signIn(){
+    this.router.navigate(['/contacts/']);
     console.log("onsubmit==>>",this.form.value)
   }
-  constructor() { }
 
   ngOnInit(): void {
     this.form = new FormGroup({
