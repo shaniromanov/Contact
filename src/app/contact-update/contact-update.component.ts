@@ -62,6 +62,15 @@ export class ContactUpdateComponent implements OnInit {
     
     
 }
+deleteMeanContact(index:string)
+{
+
+  this.MeansContact.removeAt(this.MeansContact.value[index])
+}
+deleteGroup(index:string)
+{
+  this.Groups.removeAt(this.Groups.value[index])
+}
 
 AddGroupToForm(){
   var f:FormArray = this.form.get('Groups') as FormArray

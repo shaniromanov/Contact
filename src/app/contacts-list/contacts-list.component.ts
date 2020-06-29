@@ -29,7 +29,7 @@ groups:Array<Group>=this.contactservice.groups
   deleteContact(contact_id:number){
 
   }
-  filterByGroup(groupName:string){
+  filterByNameGroup(event){
 
   }
   searchByName(){

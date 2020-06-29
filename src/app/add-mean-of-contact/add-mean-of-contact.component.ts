@@ -27,5 +27,6 @@ export class AddMeanOfContactComponent implements OnInit {
     console.log("means form===>>>",this.currentFormGroup.value)
     
   }
+  
 
 }
