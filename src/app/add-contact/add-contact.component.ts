@@ -13,10 +13,7 @@ import { Group } from '../DTO/group';
 })
 export class AddContactComponent implements OnInit {
   form:FormGroup
-  subForm:FormGroup=null
-  groupList:Array<String>
-  // url: string;
-  imageToShow:any;
+ 
   myURL:any
 
  
@@ -42,26 +39,15 @@ export class AddContactComponent implements OnInit {
 
   AddGroupToForm(){
     var f:FormArray = this.form.get('Groups') as FormArray
-      f.push(new FormControl())
+      f.push(new FormGroup({groupName:new FormControl()}))
   }
 
   keys() : Array<string> {
     return Object.keys(this.meansContact);
   }
   
-//   onSelectFile(event) { // called each time file input changes
-//     if (event.target.files && event.target.files[0]) {
-//       var reader = new FileReader();
 
-//       reader.readAsDataURL(event.target.files[0]); // read file as data url
-
-//       reader.onload = (event) => { // called once readAsDataURL is completed
-//         this.url = event.target.result as string;
-//       }
-//     }
-// }
   ngOnInit(): void {
-    this.groupList=this.contactsService.groups.map(v=>v.groupName)
       this.form = new FormGroup({
         FirstName:new FormControl(),
         LastName:new FormControl(),
@@ -76,20 +62,6 @@ export class AddContactComponent implements OnInit {
 }
 
 
-
-createImageFromBlob(image: Blob) {
- let reader = new FileReader(); //you need file reader for read blob data to base64 image data.
- reader.addEventListener("load", () => {
-    this.imageToShow = reader.result; // here is the result you got from reader
- }, false);
-
- if (image) {
-    reader.readAsDataURL(image);
- }
-}
-//   public setParentControl(formGroup: FormGroup) {
-//         this.subForm=formGroup
-// }
   constructor(private contactsService:ContactsService) { }
 
 

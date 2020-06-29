@@ -25,13 +25,13 @@
 <div formArrayName="Groups">
     <div *ngFor='let grp of Groups.controls;index as i'>
   
-        <add-groups
-        [currentFormGroup]="grp" [currentIndex]="i"></add-groups>
+        <add-groups [currentFormGroup]="grp" [currentIndex]="i"></add-groups>
         
         </div>
+        <button type='button' class="btn btn-dark" (click)="AddGroupToForm()">Add another group</button>
     </div>
          
-            <button type='button' class="btn btn-dark" (click)="AddGroupToForm()">Add another group</button>
+           
             <br/> <br/>
             <button class="add-btn"type='submit' >Submit</button>
 </form>

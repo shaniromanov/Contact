@@ -5,6 +5,11 @@ import { Group } from '../DTO/group';
   providedIn: 'root'
 })
 export class GroupService {
-  groups:Array<Group>=[new Group("Family"),new Group("Freind")]
-  constructor() { }
+  groups:Array<Group>=[]
+  constructor() { 
+    this.groups.push(new Group("Family"))
+    this.groups.push(new Group("Work"))
+    this.groups.push(new Group("Freinds"))
+    this.groups.push(new Group("Emergency"))
+  }
 }

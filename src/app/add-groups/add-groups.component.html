@@ -2,10 +2,10 @@
   
     <br/>
    
-<select type="text"  id="groupName" formontrolName="groupName" form="currentFormGroup" required>
-    <option hidden *ngIf="currentFormGroup.value">{{currentFormGroup.value.groupName}} </option>
-    <option hidden *ngIf="!currentFormGroup.value">Select Group </option>
-    <option  *ngFor="let group of groups;">{{group.groupName}}</option>
+<select type="text"  id="groupName" formControlName="groupName" form="currentFormGroup" >
+    <option hidden *ngIf="currentFormGroup.value.groupName">{{currentFormGroup.value.groupName}} </option>
+    <option hidden *ngIf="!currentFormGroup.value.groupName">Select Group </option>
+    <option  *ngFor="let group of groups;" >{{group.groupName}}</option>
     </select> 
     <br/> <br/>
    

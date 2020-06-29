@@ -1,4 +1,4 @@
-
+<form [formGroup]="form" (ngSubmit)="onSubmit()">
 <table>
     <thead>
         <tr>
@@ -6,13 +6,13 @@
         </tr>
     </thead>
     <tbody>
-<tr  *ngFor="let group of groups">
+<tr  *ngFor='let group of Groups.controls;index as i'>
     <td>
     <h4>Group Name:</h4>
     </td>
     <td>
-        <input type="groupName" disabled="disabled" placeholder="{{group.groupName}}"/>
-
+        <add-groups
+        [currentFormGroup]="group" [currentIndex]="i"></add-groups>
     </td>
     <td>
         <button>Update</button>
@@ -24,8 +24,13 @@
     </tbody>
 </table>
 <br/>
-
-
 <div>
-    <button class=btn2 (click)="routeToAddGroup()">Add new group</button>
+    <button type="button" class=btn2 (click)="AddGroup()">Add new group</button>
+</div><br/><br/>
+<div>
+    <button type="submit" class="btn2" >Save All Changes</button>
 </div>
+</form>
+
+
+

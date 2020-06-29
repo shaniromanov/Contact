@@ -62,7 +62,7 @@ export class ContactUpdateComponent implements OnInit {
 
 AddGroupToForm(){
   var f:FormArray = this.form.get('Groups') as FormArray
-    f.push(new FormControl())
+  f.push(new FormGroup({groupName:new FormControl('',[Validators.required])}))
 }
 onSubmit(){
   console.log("onsubmit==>>",this.form.value)

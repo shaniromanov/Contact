@@ -12,11 +12,10 @@ import { FormGroup, FormControl, FormArray, Validators } from '@angular/forms';
 export class AddMeanOfContactComponent implements OnInit {
   meansContact:{[meanType:string]:typeof  MeansOfContact}={"Email":Email,"Phone Number":PhoneNumber}
   
-  //  @Input() parentForm: FormGroup;
+
    @Input() currentFormGroup: FormGroup;
    @Input() currentIndex:number;
-  // meanContactGroup: FormGroup;
-  //  @Output() onFormGroupChange: EventEmitter<FormGroup> = new EventEmitter<FormGroup>()
+
   constructor() { 
   
   }
@@ -25,21 +24,7 @@ export class AddMeanOfContactComponent implements OnInit {
   }
   ngOnInit(): void {
     console.log("means form===>>>",this.currentFormGroup.value)
-    // this.currentFormGroup = new FormGroup(
-    //   {
-    //     typeOfContact:new FormControl(),
-    //     value:new FormControl('',[Validators.required]),
-       
-    //   }
-      
-    // )
-    // var f:FormArray = this.parentForm.get('MeansContact') as FormArray
-    // f.push(this.meanContactGroup)
-    // this.onFormGroupChange.emit(this.meanContactGroup);
-
-  }
-  onSubmit(){
-    console.log("sub submit")
+    
   }
 
 }
