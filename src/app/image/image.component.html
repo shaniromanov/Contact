@@ -1,5 +1,6 @@
+<div class="img-form">
 <img [src]="url" height="200"> <br/>
-    <label for="file">Choose Image</label>
+    <label for="file">Choose Image:</label>
     <div class="dropdown">
         <button  id="select-btn" class="btn btn-dark dropdown-toggle" type="button" data-toggle="dropdown">
             <span class="caret"></span>Select Image Source</button>
@@ -7,8 +8,8 @@
             <li>From File :<input type="file"
                 id="file"
                 (change)="onSelectFile($event)"></li>     
-            <li>From Url :<input type="URL" name="myURL"  placeholder="insert image URL here" (change)="onURLinserted() "></li>  
+            <li>From Url :<br/><input type="URL" name="myURL"  placeholder="insert image URL here" (change)="onURLinserted() "></li>  
         </ul>
       </div>
-   
+    </div>
            <br/> <br/>

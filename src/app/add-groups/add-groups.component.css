@@ -6,11 +6,11 @@ input[type=text] {
     color: black;
   }
   select{
-    width: 100%;
-    border: 2px solid purple;
-    border-radius: 4px;
-    background-color:rgb(197, 129, 197);
-    color: black;
+    background: #eee;
+    border: none;
+    width:70%;
+    padding: 10px 15px;
+    margin: 2px;
   }
   form{
     margin: auto;
