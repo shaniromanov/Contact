@@ -52,6 +52,9 @@ export class AddContactComponent implements OnInit {
         FirstName:new FormControl(),
         LastName:new FormControl(),
         Adress:new FormControl(),
+        Image:new FormControl(),
+        Website:new FormControl(),
+        Username:new FormControl(),
         MeansContact:new FormArray([]),
         Groups:new FormArray([])
       })

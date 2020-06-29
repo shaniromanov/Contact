@@ -36,7 +36,10 @@ export class ContactUpdateComponent implements OnInit {
     this.form = new FormGroup({
       FirstName:new FormControl(this.currentContact.firstName),
       LastName:new FormControl(this.currentContact.lastName),
+      Image:new FormControl(),
       Adress:new FormControl(this.currentContact.meansOfContact.filter(mean=>mean.typeOfMeanContact=="Adress")[0]),
+      Website:new FormControl(this.currentContact.meansOfContact.filter(mean=>mean.typeOfMeanContact=="Website")[0]),
+      Username:new FormControl(this.currentContact.meansOfContact.filter(mean=>mean.typeOfMeanContact=="Usernamr")[0]),
       MeansContact:new FormArray([]),
       Groups:new FormArray([])
     })

@@ -2,6 +2,12 @@
 
 <br/>
 <br/>
+<div class="search">
+    <input class="tHT4-2 placeholder" type="text" id="firstName" name="firstName"  placeholder="First Name">
+    <input class="tHT4-2 placeholder" type="text" id="lastName" name="lastName"  placeholder="Last Name">
+    <button (click)="searchByName()">Search</button>
+</div>
+<br/>
 <table  >
     <thead>
     <tr>
@@ -37,15 +43,17 @@
                 </ul>
               </div>
         </td>
+
         <td><button (click)="routeToUpdateContact(contact.contact_id)">Update</button></td>
         <td><button (click)="deleteContact(contact.contact_id)" >Delete</button></td>
     </tr>
 </tbody>
 </table>
     <br/>
-    <br/>
+   
     <div>
 
     <button class="btn2" (click)="routeToAddContact()">Add Contact</button>
 </div>
-
+<br/>
+<br/>

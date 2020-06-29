@@ -29,6 +29,12 @@ export class ContactsListComponent implements OnInit {
   deleteContact(contact_id:number){
 
   }
+  filterByGroup(group:Group){
+
+  }
+  searchByName(){
+    
+  }
   routeToUpdateContact(contact_id:number){
     this.router.navigate(['/contacts/' + contact_id ]);
   }

@@ -1,4 +1,4 @@
-<div class="img-form">
+<div class="img-form"  [formGroup]="currentFormGroup" >
 <img [src]="url" height="200"> <br/>
     <label for="file">Choose Image:</label>
     <div class="dropdown">
@@ -7,7 +7,7 @@
         <ul class="dropdown-menu">
             <li>From File :<input type="file"
                 id="file"
-                (change)="onSelectFile($event)"></li>     
+                (change)="onSelectFile($event)" formControlName="Image"></li>     
             <li>From Url :<br/><input type="URL" name="myURL"  placeholder="insert image URL here" (change)="onURLinserted() "></li>  
         </ul>
       </div>

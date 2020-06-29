@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
+import { FormGroup } from '@angular/forms';
 
 @Component({
   selector: 'app-image',
@@ -7,6 +8,7 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ImageComponent implements OnInit {
   url: string;
+  @Input() currentFormGroup:FormGroup
   constructor() { }
 
   ngOnInit(): void {
@@ -21,7 +23,7 @@ export class ImageComponent implements OnInit {
 
       reader.onload = (event) => { // called once readAsDataURL is completed
         this.url = event.target.result as string;
-        console.log("img url===>>>",this.url)
+
       }
     }
 }

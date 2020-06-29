@@ -71,5 +71,18 @@ tr:nth-child(even) {background-color: #DFA0C6;}
   .dropdown-menu{
       width: auto;
   }
+  input{
+    background: #eee;
+    border: none;
+    width:10%;
+    margin: 10px;
+    padding: 10px;
+  
+  }
+  .search{
+    margin: auto;
+    width: 70%;
+    padding: 10px;
+  }
 
 

@@ -7,8 +7,13 @@
     <input type="text" id="LastName" formControlName="LastName" placeholder="Last Name"> 
     <br/> <br/>
     <input type="text" id="Adress" formControlName="Adress" placeholder="Adress"> 
-    <br/> <br/><br/>
-    <app-image></app-image>
+    <br/> <br/>
+    <input type="text" id="Website" formControlName="Website" placeholder="Website"> 
+    <br/> <br/>
+    <input type="text" id="Username" formControlName="Username" placeholder="Username"> 
+    <br/> <br/>
+    
+    <app-image [currentFormGroup]="form"></app-image>
    <h4>Means Of Contact:</h4>
     <div formArrayName="MeansContact">
     <div *ngFor='let contact of MeansContact.controls;index as i'>

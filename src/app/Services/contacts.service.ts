@@ -5,6 +5,8 @@ import { Contact } from '../DTO/contact';
 import { PhoneNumber } from '../DTO/phone-number';
 import { Email } from '../DTO/email';
 import { Adress } from '../DTO/adress';
+import { Website } from '../DTO/website';
+import { UserName } from '../DTO/user-name';
 
 @Injectable({
   providedIn: 'root'
@@ -20,13 +22,15 @@ contacts:Array<Contact>=[{contact_id:1,img:"https://img.icons8.com/dusk/64/00000
     this.contacts[0].groups.push(new Group("Freinds"))
     this.contacts[0].meansOfContact.push(new Email("shaniromanov@gmail.com"))
     this.contacts[0].meansOfContact.push(new Adress("הרב בלוי 10"))
-    this.contacts[0].groups.push(new Group("family"))
+    this.contacts[0].meansOfContact.push(new Website("www.shani.co.il"))
+    this.contacts[0].meansOfContact.push(new UserName("shani"))
+    this.contacts[0].groups.push(new Group("Family"))
 
     this.contacts[1].meansOfContact.push(new PhoneNumber("03-5794441"))
     this.contacts[1].groups.push(new Group("Freinds"))
     this.contacts[1].meansOfContact.push(new Email("shaniromanov@gmail.com"))
     this.contacts[1].meansOfContact.push(new Adress("הרב בלוי 10"))
-    this.contacts[1].groups.push(new Group("family"))
+    this.contacts[1].groups.push(new Group("Family"))
    }
    getContacts():Array<Contact>{
 return this.contacts
