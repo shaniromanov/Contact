@@ -11,7 +11,7 @@ import { AddGroupsComponent } from './add-groups/add-groups.component';
 
 const routes: Routes = [
   {path:'login',component:UserLoginComponent},
-  {path:'contacts',component:ContactsListComponent},
+  {path:'contacts',component:ContactsListComponent },
   { path: 'contacts/:id', component: ContactUpdateComponent},
   { path: 'add-contact', component: AddContactComponent},
   {path:'',component:HomeComponent},

@@ -18,23 +18,20 @@ table{
 
 
 
-.add-btn{
-    margin: auto;
+.btn2{
     border-radius: 20px;
     border: 1px solid #f3f3f3;
-    color: white;
+    background: purple;
+    color: #fff;
     font-size: 12px;
-    font-weight: bold;
     padding: 12px 45px;
     letter-spacing: 1px;
     text-transform: uppercase;
     transition: transform 80ms ease-in;
-    background-color: purple;
- 
-}
-button:active{
-    transform: scale(0.95);
-}
+    transform: translate(580%, 60%);
+  
+  }
+
 button:focus{
     outline: none;
 }
