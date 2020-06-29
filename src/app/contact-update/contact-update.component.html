@@ -6,36 +6,22 @@
     <input type="text" id= "FirstName" formControlName="FirstName" > 
     <br/> <br/>
     <input type="text" id="LastName" formControlName="LastName" > 
-    <br/> <br/>
-    <input type="text" id="Adress" formControlName="Adress"  > 
+
     <br/> <br/><br/>
-    <!-- <img [src]="url" height="200"> <br/>
-    <label for="file">Choose Image</label>
-    <div class="dropdown">
-        <button id="select-btn" class="btn btn-secondary dropdown-toggle" type="button" data-toggle="dropdown">
-            <span class="caret"></span>Select Image Source</button>
-        <ul class="dropdown-menu">
-            <li>From File :<input type="file"
-                id="file"
-                (change)="onSelectFile($event)"></li>     
-            <li>From Url :<input type="URL" name="myURL"  placeholder="insert image URL here" (change)="onURLinserted() "></li>  
-        </ul>
-      </div>
-   
-           <br/> <br/> -->
- 
+    <app-image></app-image>
+    <h4>Means Of Contact:</h4>
     <div formArrayName="MeansContact">
        
     <div *ngFor='let contact of MeansContact.controls;index as i'>
         <app-add-mean-of-contact 
         [currentFormGroup]="contact" [currentIndex]="i"></app-add-mean-of-contact>
-        <br/> <br/>
+       
     </div>
     <button type='button' class="btn btn-dark"(click)="AddToForm()">Add Mean Of Contact</button>
     <br/> <br/>
 </div>
    
-
+<h4>Groups:</h4>
 <div formArrayName="Groups">
     <div *ngFor='let grp of Groups.controls;index as i'>
   

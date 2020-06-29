@@ -8,20 +8,8 @@
     <br/> <br/>
     <input type="text" id="Adress" formControlName="Adress" placeholder="Adress"> 
     <br/> <br/><br/>
-    <img [src]="url" height="200"> <br/>
-    <label for="file">Choose Image</label>
-    <div class="dropdown">
-        <button id="select-btn" class="btn btn-secondary dropdown-toggle" type="button" data-toggle="dropdown">
-            <span class="caret"></span>Select Image Source</button>
-        <ul class="dropdown-menu">
-            <li>From File :<input type="file"
-                id="file"
-                (change)="onSelectFile($event)"></li>     
-            <li>From Url :<input type="URL" name="myURL"  placeholder="insert image URL here" (change)="onURLinserted() "></li>  
-        </ul>
-      </div>
-   
-           <br/> <br/>
+    <app-image></app-image>
+   <h4>Means Of Contact:</h4>
     <div formArrayName="MeansContact">
     <div *ngFor='let contact of MeansContact.controls;index as i'>
         <app-add-mean-of-contact 
@@ -34,22 +22,18 @@
 </div>
    
    
-
+<h4>Groups:</h4>
     <div formArrayName="Groups">
         <div *ngFor='let grp of Groups.controls;index as i'>
-      
-            <select type="text"  id="group" formControlName="group" form="form">
-                <option hidden>Select group </option>
-                <option  *ngFor="let group of groupList;">{{group}}</option>
-                </select> 
-                <br/> <br/>
-            
+            <add-groups [currentFormGroup]="grp" [currentIndex]="i"></add-groups> 
             </div>
         </div>
          
             <button type='button' class="btn btn-dark" (click)="AddGroupToForm()">Add another group</button>
             <br/> <br/>
-            <button class="add-btn"type='submit' >Submit</button>
+            
 </form>
 
- 
+ <div>
+    <button class="add-btn"type='submit' >Submit</button>
+ </div>
