@@ -7,6 +7,13 @@
     <input class="tHT4-2 placeholder" type="text" id="lastName" name="lastName"  placeholder="Last Name">
     <button (click)="searchByName()">Search</button>
 </div>
+<div class="filter">
+    <h4>Filter by group: </h4>
+    <select type="text"  id="groupName" (change)="filterByNameGroup($event.target.value)" >
+        <option hidden >Select Group </option>
+        <option  *ngFor="let group of groups;" >{{group.groupName}}</option>
+        </select>
+</div>
 <br/>
 <table  >
     <thead>

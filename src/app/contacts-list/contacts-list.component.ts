@@ -13,7 +13,7 @@ import { Router } from '@angular/router';
   styleUrls: ['./contacts-list.component.css']
 })
 export class ContactsListComponent implements OnInit {
-
+groups:Array<Group>=this.contactservice.groups
   contacts:Array<Contact>
 
   constructor(private contactservice:ContactsService,private router: Router) { }
@@ -29,11 +29,11 @@ export class ContactsListComponent implements OnInit {
   deleteContact(contact_id:number){
 
   }
-  filterByGroup(group:Group){
+  filterByGroup(groupName:string){
 
   }
   searchByName(){
-    
+
   }
   routeToUpdateContact(contact_id:number){
     this.router.navigate(['/contacts/' + contact_id ]);

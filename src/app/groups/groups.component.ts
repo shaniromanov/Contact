@@ -38,4 +38,7 @@ export class GroupsComponent implements OnInit {
   f.push(new FormGroup({groupName:new FormControl('',[Validators.required])}))
 
   }
+  updateGroup(){
+    
+  }
 }

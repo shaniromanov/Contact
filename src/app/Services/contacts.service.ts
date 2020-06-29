@@ -12,7 +12,7 @@ import { UserName } from '../DTO/user-name';
   providedIn: 'root'
 })
 export class ContactsService {
-groups:Array<Group>=[new Group("Family"),new Group("Freind")]
+groups:Array<Group>=[]
 contacts:Array<Contact>=[{contact_id:1,img:"https://img.icons8.com/dusk/64/000000/old-man.png",firstName:"Shani",lastName:"Romanov",meansOfContact:new Array<MeansOfContact>(),groups:new Array<Group>()},
 {contact_id:1,img:"https://img.icons8.com/dusk/64/000000/old-man.png",firstName:"Shani",lastName:"Romanov",meansOfContact:new Array<MeansOfContact>(),groups:new Array<Group>()},
 {contact_id:1,img:"https://img.icons8.com/dusk/64/000000/old-man.png",firstName:"Shani",lastName:"Romanov",meansOfContact:new Array<MeansOfContact>(),groups:new Array<Group>()},
@@ -31,6 +31,11 @@ contacts:Array<Contact>=[{contact_id:1,img:"https://img.icons8.com/dusk/64/00000
     this.contacts[1].meansOfContact.push(new Email("shaniromanov@gmail.com"))
     this.contacts[1].meansOfContact.push(new Adress("הרב בלוי 10"))
     this.contacts[1].groups.push(new Group("Family"))
+
+    this.groups.push(new Group("Family"))
+    this.groups.push(new Group("Work"))
+    this.groups.push(new Group("Freinds"))
+    this.groups.push(new Group("Emergency"))
    }
    getContacts():Array<Contact>{
 return this.contacts
