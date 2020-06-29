@@ -13,10 +13,10 @@
                 </div>
                 <div class="menu">
                     <ul>
-                        <li><a routerLink='login'>Sign in / Sign up</a><br/></li>
-                        <li><a routerLink='contacts'>Contact List</a></li>
-                        <li><a routerLink='groups'>Groups</a></li>
-                        <li><a routerLink=''>Home</a></li>
+                        <li *ngIf="!headerService.visible"><a routerLink='login'>Sign in / Sign up</a><br/></li>
+                        <li *ngIf="headerService.visible"><a routerLink='contacts'>Contact List</a></li>
+                        <li *ngIf="headerService.visible"><a routerLink='groups'>Groups</a></li>
+                        <li ><a routerLink=''>Home</a></li>
                     </ul>
                 </div>
             </div>

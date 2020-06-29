@@ -7,6 +7,7 @@ import { Email } from '../DTO/email';
 import { PhoneNumber } from '../DTO/phone-number';
 import { FormArray, FormGroup, FormControl, Validators } from '@angular/forms';
 import { Adress } from '../DTO/adress';
+import { HeaderService } from '../Services/header.service';
 
 @Component({
   selector: 'app-contact-update',
@@ -15,7 +16,7 @@ import { Adress } from '../DTO/adress';
 })
 export class ContactUpdateComponent implements OnInit {
 
-  constructor(private contactsService:ContactsService, private route: ActivatedRoute) { }
+  constructor(private contactsService:ContactsService, private route: ActivatedRoute ,public headerService:HeaderService) { }
   currentContact:Contact
   form:FormGroup
   groupList:Array<String>
@@ -30,6 +31,7 @@ export class ContactUpdateComponent implements OnInit {
     return this.form.get('Groups') as FormArray;
   }
   ngOnInit(): void {
+    this.headerService.show();
     this.currentContact=this.getUser(this.route.snapshot.paramMap.get('id'))
     this.groupList=this.contactsService.groups.map(v=>v.groupName)
 

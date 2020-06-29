@@ -5,6 +5,7 @@ import { Email } from '../DTO/email';
 import { PhoneNumber } from '../DTO/phone-number';
 import { ContactsService } from '../Services/contacts.service';
 import { Group } from '../DTO/group';
+import { HeaderService } from '../Services/header.service';
 
 @Component({
   selector: 'app-add-contact',
@@ -48,6 +49,7 @@ export class AddContactComponent implements OnInit {
   
 
   ngOnInit(): void {
+    this.headerService.show();
       this.form = new FormGroup({
         FirstName:new FormControl(),
         LastName:new FormControl(),
@@ -65,7 +67,7 @@ export class AddContactComponent implements OnInit {
 }
 
 
-  constructor(private contactsService:ContactsService) { }
+  constructor(private contactsService:ContactsService,public headerService:HeaderService) { }
 
 
 }

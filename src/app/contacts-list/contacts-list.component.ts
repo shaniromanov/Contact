@@ -6,6 +6,7 @@ import { Group } from '../DTO/group';
 import { MeansOfContact } from '../DTO/means-of-contact';
 import { Email } from '../DTO/email';
 import { Router } from '@angular/router';
+import { HeaderService } from '../Services/header.service';
 
 @Component({
   selector: 'app-contacts-list',
@@ -16,9 +17,10 @@ export class ContactsListComponent implements OnInit {
 groups:Array<Group>=this.contactservice.groups
   contacts:Array<Contact>
 
-  constructor(private contactservice:ContactsService,private router: Router) { }
+  constructor(private contactservice:ContactsService,private router: Router ,public headerService:HeaderService) { }
 
   ngOnInit(): void {
+    this.headerService.show()
     this.contacts=this.contactservice.getContacts()
   }
 
