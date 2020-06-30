@@ -26,18 +26,19 @@ export class GroupsComponent implements OnInit {
     this.form = new FormGroup({
       Groups:new FormArray([])
     })
-    this.groups.map(val=>this.Groups.push(new FormGroup({groupName:new FormControl(val.groupName)})))
+    this.groups.map(val=>this.Groups.push(new FormControl(val.groupName)))
   }
   
   onSubmit(){
     console.log("groups form===>>>",this.form.value);
     
   }
-  deleteGroup(){
+  deleteGroup(index:string){
+    this.Groups.removeAt(this.Groups.value[index])
   }
   AddGroup(){
     var f:FormArray = this.form.get('Groups') as FormArray
-  f.push(new FormGroup({groupName:new FormControl('',[Validators.required])}))
+  f.push(new FormControl('',[Validators.required]))
 
   }
   updateGroup(){

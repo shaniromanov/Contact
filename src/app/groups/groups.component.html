@@ -6,19 +6,18 @@
         </tr>
     </thead>
     <tbody>
-<tr  *ngFor='let group of Groups.controls;index as i'>
+<tr formArrayName="Groups"  *ngFor='let group of Groups.controls;index as i'>
     <td>
     <h4>Group Name:</h4>
     </td>
     <td>
-        <add-groups
-        [currentFormGroup]="group" [currentIndex]="i"></add-groups>
+        <input type="text" id= "groupName" [formControlName]="i" placeholder="Add Group Name"> 
     </td>
     <td>
         <button type="button"(click)="updateGroup()">Update</button>
     </td>
     <td>
-        <button type="button" (click)="deleteGroup()">Delete</button>
+        <button type="button" (click)="deleteGroup(i)">Delete</button>
     </td>
 </tr>
     </tbody>

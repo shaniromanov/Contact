@@ -14,6 +14,7 @@
                 <div class="menu">
                     <ul>
                         <li *ngIf="!headerService.visible"><a routerLink='login'>Sign in / Sign up</a><br/></li>
+                        <li *ngIf="headerService.visible"><a routerLink='home'>Sign out</a><br/></li>
                         <li *ngIf="headerService.visible"><a routerLink='contacts'>Contact List</a></li>
                         <li *ngIf="headerService.visible"><a routerLink='groups'>Groups</a></li>
                         <li ><a routerLink=''>Home</a></li>
