@@ -10,6 +10,9 @@ import { LoginResponse } from '../DTO/Responses/login-response';
 import { LoginRequest } from '../DTO/Requests/login-request';
 import { LoginResponseOk } from '../DTO/Responses/login-response-ok';
 import { LoginResponseNotExists } from '../DTO/Responses/login-response-not-exists';
+import { RegisterUserResponse } from '../DTO/Responses/register-user-response';
+import { RegisterUserResponseUsernameExists } from '../DTO/Responses/register-user-response-username-exists';
+import { RegisterUserResponseOk } from '../DTO/Responses/register-user-response-ok';
 
 @Injectable({
   providedIn: 'root'
@@ -20,7 +23,7 @@ export class RepositoryService {
     , {"username":"margaliteSayada","password":"234567","email":"margalite95@gmail.com","contacts":[{"contact_id":3,"firstName":"shani","lastName": "romanov","meansOfContact":[new PhoneNumber("03-5794441"),new Email("shaniromanov@gmail.com "),new Adress("Harav Bloy 10 Bnei-Brak"),new Website("www.shani.co.il")],"groups":[new Group("OpenCourse"),new Group("Work")],"img":"https://img.icons8.com/dusk/64/000000/old-man.png"},{"contact_id":4,"firstName":"chavi","lastName": "berkovich","meansOfContact":[new PhoneNumber("03-5794441"),new Email("chavi@gmail.com"),new Adress("Yehuda Halevi 5")],"groups":[new Group("OpenCourse")],"img":"https://img.icons8.com/dusk/64/000000/old-man.png"}],"groups":[new Group("Family"),new Group("OpenCourse"),new Group("Freinds")]}
   ]
  getUser(request:LoginRequest):LoginResponse{
-  let retval
+  let retval:LoginResponse;
   const user= this.users.find(user=>user.username===request.username&& user.password===request.password)
   if(user){
    retval=new LoginResponseOk(user)
@@ -30,8 +33,16 @@ export class RepositoryService {
   }
   return retval
  }
- registerUser(){
-  
+ registerUser(request:User):RegisterUserResponse{
+  let retval:RegisterUserResponse;
+  if(this.users.find(user=>user.username===request.username)){
+    retval=new RegisterUserResponseUsernameExists()
+  }
+  else{
+    this.users.push(request);
+    retval=new RegisterUserResponseOk();
+  }
+  return retval
  }
 
   constructor() { }
