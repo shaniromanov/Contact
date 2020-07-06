@@ -33,9 +33,7 @@ export class AddContactComponent implements OnInit {
 
       f.push(new FormGroup({ typeOfContact:new FormControl(),
         value:new FormControl('',[Validators.required]),
-       }))
-      
-      
+       })) 
   }
 
   AddGroupToForm(){

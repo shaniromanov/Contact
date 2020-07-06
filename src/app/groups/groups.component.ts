@@ -35,6 +35,7 @@ export class GroupsComponent implements OnInit {
   }
   deleteGroup(index:string){
     this.Groups.removeAt(this.Groups.value[index])
+    //delete from repository
   }
   AddGroup(){
     var f:FormArray = this.form.get('Groups') as FormArray
