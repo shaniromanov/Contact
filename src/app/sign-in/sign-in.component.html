@@ -1,5 +1,6 @@
 <form [formGroup]="form" (ngSubmit)="signIn()"><br/><br/>
     <input type="text" id="UserName" formControlName="UserName" placeholder="UserName"><br/>  
     <input type="text" id="Password" formControlName="Password" placeholder="Password"><br/>    
-        <button>Sign In</button>
+    <button type="submit">Sign In</button>
 </form>
+<div class="invalid">{{LoginResult}}</div>

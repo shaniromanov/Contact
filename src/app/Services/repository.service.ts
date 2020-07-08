@@ -24,7 +24,7 @@ export class RepositoryService {
   ]
  getUser(request:LoginRequest):LoginResponse{
   let retval:LoginResponse;
-  const user= this.users.find(user=>user.username===request.username&& user.password===request.password)
+  const user= this.users.find(user=>user.username===request.UserName&& user.password===request.Password)
   if(user){
    retval=new LoginResponseOk(user)
   }
