@@ -29,3 +29,6 @@ button{
     text-transform: uppercase;
     transition: transform 80ms ease-in;
 }
+.invalid{
+    color: white;
+}

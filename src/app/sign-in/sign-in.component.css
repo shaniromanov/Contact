@@ -28,5 +28,5 @@ button{
     transition: transform 80ms ease-in;
 }
 .invalid{
-    color: red;
+    color: purple;
 }

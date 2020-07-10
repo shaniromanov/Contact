@@ -3,6 +3,8 @@ import { CommService } from './comm.service';
 import { LoginRequest } from '../DTO/Requests/login-request';
 import { LoginResponse } from '../DTO/Responses/login-response';
 import { Observable } from 'rxjs';
+import { User } from '../DTO/user';
+import { RegisterUserResponse } from '../DTO/Responses/register-user-response';
 
 @Injectable({
   providedIn: 'root'
@@ -14,14 +16,11 @@ export class UserService {
 
     return this.commService.getUser(request);
   }
-  // getnumOfTutorial() {
-  //   return this.http.get(`${baseUrl}/query/numOfTutorial`);
-  // }
+ 
 
-
-  // create(data) {
-  //   return this.http.post(baseUrl, data);
-  // }
+  create(request:User):Observable<RegisterUserResponse> {
+    return this.commService.registerUser(request)
+  }
 
   // update(id, data) {
   //   return this.http.put(`${baseUrl}/${id}`, data);
