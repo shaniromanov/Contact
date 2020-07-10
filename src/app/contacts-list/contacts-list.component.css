@@ -1,6 +1,6 @@
 thead{
     width: 100% auto;
-    background: white;
+    background-color: #DFA0C6;
 
     padding: .5em;
     color:purple;
@@ -12,7 +12,7 @@ thead{
 table{
     border-collapse: collapse;
     margin: auto;
-    width: 70%;
+    width: 85%;
     padding: 10px;
 }
 
@@ -81,12 +81,12 @@ tr:nth-child(even) {background-color: #DFA0C6;}
   }
   .search{
     margin: auto;
-    width: 70%;
+    width: 85%;
     padding: 10px;
   }
   .filter{
     margin: auto;
-    width: 70%;
+    width: 85%;
     padding: 10px;
   }
   select{

@@ -6,17 +6,29 @@
     <br/> <br/>
     <input type="text" id="lastName" formControlName="lastName" placeholder="Last Name"> 
     <br/> <br/>
-    <input type="text" id="adress" formControlName="adress" placeholder="Adress"> 
+    <div formGroupName="address">
+        <input type="hidden" id="typeOfMeanContact" formControlName="typeOfMeanContact"> 
+        <input type="text" id="value" formControlName="value" placeholder="Address"> 
+    </div>
+   
     <br/> <br/>
-    <input type="text" id="website" formControlName="website" placeholder="Website"> 
+    <div formGroupName="website">
+        <input type="hidden" id="typeOfMeanContact" formControlName="typeOfMeanContact"> 
+        <input type="text" id="value" formControlName="value" placeholder="Website"> 
+    </div>
+   
     <br/> <br/>
-    <input type="text" id="username" formControlName="username" placeholder="Username"> 
+    <div formGroupName="username">
+        <input type="hidden" id="typeOfMeanContact" formControlName="typeOfMeanContact"> 
+        <input type="text" id="value" formControlName="value" placeholder="Username"> 
+    </div> 
     <br/> <br/>
     
     <app-image [currentFormGroup]="form"></app-image>
    <h4>Means Of Contact:</h4>
     <div formArrayName="meansOfContact">
     <div *ngFor='let contact of meansOfContact.controls;index as i'>
+        <button type="button" (click)="deleteMeanContact(i)" class="delete fa fa-times" aria-hidden="true"></button>
         <app-add-mean-of-contact 
         [currentFormGroup]="contact" [currentIndex]="i"></app-add-mean-of-contact>
    
@@ -30,6 +42,7 @@
 <h4>Groups:</h4>
     <div formArrayName="groups">
         <div *ngFor='let grp of groups.controls;index as i'>
+            <button type="button" (click)="deleteGroup(i)" class="delete fa fa-times" aria-hidden="true"></button>
             <add-groups [currentFormGroup]="grp" [currentIndex]="i"></add-groups> 
             </div>
             <button type='button' class="btn btn-dark" (click)="AddGroupToForm()">Add another group</button>
