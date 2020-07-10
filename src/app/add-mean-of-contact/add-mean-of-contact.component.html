@@ -1,7 +1,7 @@
 <div id="mean" [formGroup]="currentFormGroup" >
   
     <br/>
-<select type="text"  id="typeOfContact" formControlName="typeOfContact" form="currentFormGroup">
+<select type="text"  id="typeOfContact" formControlName="typeOfMeanContact" form="currentFormGroup">
     <option hidden *ngIf="currentFormGroup.value.typeOfContact">{{currentFormGroup.value.typeOfContact}} </option>
     <option hidden *ngIf="!currentFormGroup.value.typeOfContact">Select mean of contract </option>
     <option  *ngFor="let key of keys();">{{key}}</option>

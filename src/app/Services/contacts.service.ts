@@ -7,40 +7,30 @@ import { Email } from '../DTO/email';
 import { Adress } from '../DTO/adress';
 import { Website } from '../DTO/website';
 import { UserName } from '../DTO/user-name';
+import { CommService } from './comm.service';
+import { AuthonticationService } from './authontication.service';
+import { Observable } from 'rxjs';
+import { AddContactResponse } from '../DTO/Responses/add-contact-response';
+import { ContactRequest } from '../DTO/Requests/contact-request';
 
 @Injectable({
   providedIn: 'root'
 })
 export class ContactsService {
-groups:Array<Group>=[]
-contacts:Array<Contact>=[{contact_id:1,img:"https://img.icons8.com/dusk/64/000000/old-man.png",firstName:"Shani",lastName:"Romanov",meansOfContact:new Array<MeansOfContact>(),groups:new Array<Group>()},
-{contact_id:1,img:"https://img.icons8.com/dusk/64/000000/old-man.png",firstName:"Margalit",lastName:"Sayada",meansOfContact:new Array<MeansOfContact>(),groups:new Array<Group>()},
-{contact_id:1,img:"https://img.icons8.com/dusk/64/000000/old-man.png",firstName:"Shani",lastName:"Romanov",meansOfContact:new Array<MeansOfContact>(),groups:new Array<Group>()},
-{contact_id:1,img:"https://img.icons8.com/dusk/64/000000/old-man.png",firstName:"Shani",lastName:"Romanov",meansOfContact:new Array<MeansOfContact>(),groups:new Array<Group>()}]
-  constructor() {
-    this.contacts[0].meansOfContact.push(new PhoneNumber("03-5794441"))
-    this.contacts[0].groups.push(new Group("Freinds"))
-    this.contacts[0].meansOfContact.push(new Email("shaniromanov@gmail.com"))
-    this.contacts[0].meansOfContact.push(new Adress("הרב בלוי 10"))
-    this.contacts[0].meansOfContact.push(new Website("www.shani.co.il"))
-    this.contacts[0].meansOfContact.push(new UserName("shani"))
-    this.contacts[0].groups.push(new Group("Family"))
+  
 
-    this.contacts[1].meansOfContact.push(new PhoneNumber("03-5782403"))
-    this.contacts[1].groups.push(new Group("Freinds"))
-    this.contacts[1].meansOfContact.push(new Email("margalite95@gmail.com"))
-    this.contacts[1].meansOfContact.push(new Adress("shevet yehuda 5"))
-    this.contacts[1].groups.push(new Group("Family"))
-
-    this.groups.push(new Group("Family"))
-    this.groups.push(new Group("Work"))
-    this.groups.push(new Group("Freinds"))
-    this.groups.push(new Group("Emergency"))
+contacts:Array<Contact>=[]
+  constructor(private commService:CommService, private authonticationService:AuthonticationService) {
+    this.contacts=this.authonticationService.getCurrentUser().contacts
    }
    getContacts():Array<Contact>{
-return this.contacts
+    return this.contacts
    }
    findContact(id:string):Contact{
     return this.contacts.find(contact=>contact.contact_id.toString()==id)
+   }
+   addContact(request:ContactRequest):Observable<AddContactResponse>{
+     console.log("contactService",request)
+    return this.commService.addContact(request)
    }
 }

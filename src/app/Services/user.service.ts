@@ -22,35 +22,5 @@ export class UserService {
     return this.commService.registerUser(request)
   }
 
-  // update(id, data) {
-  //   return this.http.put(`${baseUrl}/${id}`, data);
-  // }
-  // init(data) {
-  //   return this.http.post(`${baseUrl}/initUser`,data);
-  // }
-
-  // delete(id) {
-  //   return this.http.delete(`${baseUrl}/${id}`);
-  // }
-
-  // deleteAll() {
-  //   return this.http.delete(baseUrl);
-  // }
-
-  // findByUserName(name) {
-  //   return this.http.get(`${baseUrl}?username=${name}`);
-  // }
-
-  // findByParams(status, name, faculty)
-  // {
-  //   return this.http.get(`${baseUrl}?status=${status}&username=${name}&faculty=${faculty}`);
-  // }
-
-  // findByStatus(status) {
-  //   return this.http.get(`${baseUrl}?status=${status}`);
-  // }
-
-  // findByFaculty(faculty) {
-  //   return this.http.get(`${baseUrl}?faculty=${faculty}`);
-  // }
+ 
 }

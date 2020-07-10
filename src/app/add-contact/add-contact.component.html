@@ -2,21 +2,21 @@
 <h1>Add Contact</h1>
 <br/> <br/>
 <form [formGroup]="form" (ngSubmit)="onSubmit()">
-    <input type="text" id= "FirstName" formControlName="FirstName" placeholder="First Name"> 
+    <input type="text" id= "firstName" formControlName="firstName" placeholder="First Name"> 
     <br/> <br/>
-    <input type="text" id="LastName" formControlName="LastName" placeholder="Last Name"> 
+    <input type="text" id="lastName" formControlName="lastName" placeholder="Last Name"> 
     <br/> <br/>
-    <input type="text" id="Adress" formControlName="Adress" placeholder="Adress"> 
+    <input type="text" id="adress" formControlName="adress" placeholder="Adress"> 
     <br/> <br/>
-    <input type="text" id="Website" formControlName="Website" placeholder="Website"> 
+    <input type="text" id="website" formControlName="website" placeholder="Website"> 
     <br/> <br/>
-    <input type="text" id="Username" formControlName="Username" placeholder="Username"> 
+    <input type="text" id="username" formControlName="username" placeholder="Username"> 
     <br/> <br/>
     
     <app-image [currentFormGroup]="form"></app-image>
    <h4>Means Of Contact:</h4>
-    <div formArrayName="MeansContact">
-    <div *ngFor='let contact of MeansContact.controls;index as i'>
+    <div formArrayName="meansOfContact">
+    <div *ngFor='let contact of meansOfContact.controls;index as i'>
         <app-add-mean-of-contact 
         [currentFormGroup]="contact" [currentIndex]="i"></app-add-mean-of-contact>
    
@@ -28,18 +28,18 @@
    
    
 <h4>Groups:</h4>
-    <div formArrayName="Groups">
-        <div *ngFor='let grp of Groups.controls;index as i'>
+    <div formArrayName="groups">
+        <div *ngFor='let grp of groups.controls;index as i'>
             <add-groups [currentFormGroup]="grp" [currentIndex]="i"></add-groups> 
             </div>
             <button type='button' class="btn btn-dark" (click)="AddGroupToForm()">Add another group</button>
             <br/> <br/>
         </div>
-         
+        <div>
+            <button class=btn2 type='submit' >Submit</button>
+         </div>
          
             
 </form>
 
- <div>
-    <button class=btn2 type='submit' >Submit</button>
- </div>
+ 

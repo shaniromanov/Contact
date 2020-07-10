@@ -7,6 +7,7 @@ import { MeansOfContact } from '../DTO/means-of-contact';
 import { Email } from '../DTO/email';
 import { Router } from '@angular/router';
 import { HeaderService } from '../Services/header.service';
+import { GroupService } from '../Services/group.service';
 
 @Component({
   selector: 'app-contacts-list',
@@ -14,10 +15,11 @@ import { HeaderService } from '../Services/header.service';
   styleUrls: ['./contacts-list.component.css']
 })
 export class ContactsListComponent implements OnInit {
-groups:Array<Group>=this.contactservice.groups
+  //replace the search to Independent component
+groups:Array<Group>=this.groupService.groups
   contacts:Array<Contact>
-
-  constructor(private contactservice:ContactsService,private router: Router ,public headerService:HeaderService) { }
+  //delete groupService
+  constructor(private contactservice:ContactsService,private router: Router ,public headerService:HeaderService, private groupService:GroupService) { }
 
   ngOnInit(): void {
     this.headerService.show()
