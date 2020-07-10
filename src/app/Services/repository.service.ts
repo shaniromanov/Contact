@@ -19,6 +19,7 @@ import { AddContactResponseIdExists } from '../DTO/Responses/add-contact-respons
 import { AddContactResponseOk } from '../DTO/Responses/add-contact-response-ok';
 import { ContactRequest } from '../DTO/Requests/contact-request';
 
+
 @Injectable({
   providedIn: 'root'
 })
@@ -39,6 +40,16 @@ export class RepositoryService {
   }
   return retval
  }
+ getGroup(request:User):Array<Group>{
+  if(this.users.find(user=>user.UserName===request.UserName)){
+return request.groups
+}
+else{
+  console.log("You dont have any groups")
+}
+}
+
+
  registerUser(request:User):RegisterUserResponse{
   let retval:RegisterUserResponse;
   if(this.users.find(user=>user.UserName===request.UserName)){

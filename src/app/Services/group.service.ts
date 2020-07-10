@@ -1,6 +1,8 @@
 import { Injectable } from '@angular/core';
 import { Group } from '../DTO/group';
 import { User } from '../DTO/user';
+import { CommService } from './comm.service';
+import { AuthonticationService } from './authontication.service';
 
 @Injectable({
   providedIn: 'root'
@@ -8,16 +10,14 @@ import { User } from '../DTO/user';
 export class GroupService {
   currentUser:User
   groups:Array<Group>=[]
-  constructor() { 
-    this.groups.push(new Group("Family"))
-    this.groups.push(new Group("Work"))
-    this.groups.push(new Group("Freinds"))
-    this.groups.push(new Group("Emergency"))
-  }
-  ngOnInit(){
+  constructor(private commService:CommService, private authonticationService:AuthonticationService) { 
+    this.groups=this.authonticationService.getCurrentUser().groups
 
   }
-  getGroups(){
-    
+  ngOnInit(){
+  }
+  getGroups():Array<Group>{
+    return this.groups
+
   }
 }
