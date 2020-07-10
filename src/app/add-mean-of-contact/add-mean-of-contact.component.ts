@@ -4,6 +4,7 @@ import { Email } from '../DTO/email';
 import { PhoneNumber } from '../DTO/phone-number';
 import { FormGroup, FormControl, FormArray, Validators } from '@angular/forms';
 import { MobileNumber } from '../DTO/mobile-number';
+import { Website } from '../DTO/website';
 
 @Component({
   selector: 'app-add-mean-of-contact',
@@ -16,6 +17,7 @@ export class AddMeanOfContactComponent implements OnInit {
 
    @Input() currentFormGroup: FormGroup;
    @Input() currentIndex:number;
+   selected= new Set<string>();
 
   constructor() { 
   
@@ -24,7 +26,6 @@ export class AddMeanOfContactComponent implements OnInit {
     return Object.keys(this.meansContact);
   }
   ngOnInit(): void {
-    console.log("means form===>>>",this.currentFormGroup.value)
     
   }
   

@@ -9,6 +9,7 @@ import { HeaderService } from '../Services/header.service';
 import { ContactRequest } from '../DTO/Requests/contact-request';
 import { AuthonticationService } from '../Services/authontication.service';
 import { Router } from '@angular/router';
+import { Adress } from '../DTO/adress';
 
 @Component({
   selector: 'app-add-contact',
@@ -21,7 +22,7 @@ export class AddContactComponent implements OnInit {
   myURL:any
 
  
-  meansOfContactList:{[meanType:string]:typeof  MeansOfContact}={"Email":Email,"Phone Number":PhoneNumber}
+  meansOfContactList:{[meanType:string]:typeof  MeansOfContact}={"Address":Adress,"Phone Number":PhoneNumber}
   get meansOfContact(): FormArray {
     return this.form.get('meansOfContact') as FormArray;
   }
@@ -38,7 +39,7 @@ export class AddContactComponent implements OnInit {
       var f:FormArray = this.form.get('meansOfContact') as FormArray
 
       f.push(new FormGroup({ typeOfMeanContact:new FormControl(),
-        value:new FormControl('',[Validators.required]),
+        value:new FormControl('',[Validators.required])
        })) 
   }
 
@@ -46,6 +47,17 @@ export class AddContactComponent implements OnInit {
     var f:FormArray = this.form.get('groups') as FormArray
       f.push(new FormGroup({groupName:new FormControl()}))
   }
+
+  deleteMeanContact(index:string)
+{
+
+  this.meansOfContact.removeAt(this.meansOfContact.value[index])
+}
+deleteGroup(index:string)
+{
+  this.groups.removeAt(this.groups.value[index])
+}
+
 
   keys() : Array<string> {
     return Object.keys(this.meansOfContact);
@@ -57,10 +69,13 @@ export class AddContactComponent implements OnInit {
       this.form = new FormGroup({
         firstName:new FormControl(),
         lastName:new FormControl(),
-        adress:new FormControl(),
+        address:new FormGroup({ typeOfMeanContact:new FormControl("Address"),
+          value:new FormControl()}),
         image:new FormControl(),
-        website:new FormControl(),
-        username:new FormControl(),
+        website:new FormGroup({ typeOfMeanContact:new FormControl("Website"),
+        value:new FormControl()}),
+        username:new FormGroup({ typeOfMeanContact:new FormControl("UserName"),
+        value:new FormControl()}),
         meansOfContact:new FormArray([]),
         groups:new FormArray([])
       })
