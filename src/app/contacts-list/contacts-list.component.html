@@ -2,6 +2,7 @@
 
 <br/>
 <br/>
+
 <div class="search">
     <input class="tHT4-2 placeholder" type="text" id="firstName" name="firstName"  placeholder="First Name">
     <input class="tHT4-2 placeholder" type="text" id="lastName" name="lastName"  placeholder="Last Name">
@@ -31,7 +32,8 @@
     </tr>
 </thead>
 <tbody>
-    <tr *ngFor ="let contact of contacts">
+    <tr *ngFor ="let contact of contacts;index as i">
+
         <td><img src={{contact.img}}/></td>
         <td>{{contact.firstName}}</td>
         <td>{{contact.lastName}}</td>

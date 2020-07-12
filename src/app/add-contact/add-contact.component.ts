@@ -18,8 +18,6 @@ import { Adress } from '../DTO/adress';
 })
 export class AddContactComponent implements OnInit {
   form:FormGroup
- 
-  myURL:any
 
  
   meansOfContactList:{[meanType:string]:typeof  MeansOfContact}={"Address":Adress,"Phone Number":PhoneNumber}
@@ -30,7 +28,8 @@ export class AddContactComponent implements OnInit {
     return this.form.get('groups') as FormArray;
   }
   onSubmit(){
-  
+  console.log((this.form.get('img') as FormControl).value)
+  this.form.get('contact_id').setValue(this.contactsService.numberOfContacts()+1)
     this.contactsService.addContact({"UserName":this.authonticationService.getCurrentUser().UserName,"contact":this.form.value}).subscribe(response=>{
       this.router.navigate(['/contacts/']);
      this.form.value.address
@@ -68,11 +67,12 @@ deleteGroup(index:string)
   ngOnInit(): void {
     this.headerService.show();
       this.form = new FormGroup({
+        contact_id:new FormControl(),
         firstName:new FormControl(),
         lastName:new FormControl(),
         address:new FormGroup({ typeOfMeanContact:new FormControl("Address"),
           value:new FormControl()}),
-        image:new FormControl(),
+          img:new FormControl(),
         website:new FormGroup({ typeOfMeanContact:new FormControl("Website"),
         value:new FormControl()}),
         username:new FormGroup({ typeOfMeanContact:new FormControl("UserName"),

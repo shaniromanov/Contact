@@ -15,7 +15,14 @@ table{
     width: 85%;
     padding: 10px;
 }
+img{
+  display: inline-block;
+  width: 70px;
+  height: 70px;
+  border-radius: 50%;
 
+  object-fit: cover;
+}
 
 
 .btn2{

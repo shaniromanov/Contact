@@ -33,4 +33,7 @@ contacts:Array<Contact>=[]
      console.log("contactService",request)
     return this.commService.addContact(request)
    }
+   numberOfContacts():number{
+     return this.contacts.length
+   }
 }

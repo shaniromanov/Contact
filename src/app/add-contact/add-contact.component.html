@@ -2,6 +2,7 @@
 <h1>Add Contact</h1>
 <br/> <br/>
 <form [formGroup]="form" (ngSubmit)="onSubmit()">
+    <input type="hidden"  formControlName="contact_id"> 
     <input type="text" id= "firstName" formControlName="firstName" placeholder="First Name"> 
     <br/> <br/>
     <input type="text" id="lastName" formControlName="lastName" placeholder="Last Name"> 
