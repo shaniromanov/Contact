@@ -7,6 +7,8 @@ import { RegisterUserResponse } from '../DTO/Responses/register-user-response';
 import { Contact } from '../DTO/contact';
 import { AddContactResponse } from '../DTO/Responses/add-contact-response';
 import { ContactRequest } from '../DTO/Requests/contact-request';
+import { AddGroupResponse } from '../DTO/Responses/add-group-response';
+import { GroupRequest } from '../DTO/Requests/group-request';
 
 @Injectable()
 export abstract class CommService {
@@ -14,4 +16,5 @@ export abstract class CommService {
   abstract getUser(request: LoginRequest): Observable<LoginResponse>
   abstract registerUser(request: User): Observable<RegisterUserResponse>
   abstract addContact(request: ContactRequest): Observable<AddContactResponse>
+  abstract addGroup(request:GroupRequest):Observable<AddGroupResponse>
 }

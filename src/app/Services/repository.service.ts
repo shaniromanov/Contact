@@ -18,6 +18,11 @@ import { AddContactResponse } from '../DTO/Responses/add-contact-response';
 import { AddContactResponseIdExists } from '../DTO/Responses/add-contact-response-id-exists';
 import { AddContactResponseOk } from '../DTO/Responses/add-contact-response-ok';
 import { ContactRequest } from '../DTO/Requests/contact-request';
+import { GroupRequest } from '../DTO/Requests/group-request';
+import { AddGroupResponse } from '../DTO/Responses/add-group-response';
+import { AddGroupResponseGroupAlreadyExist } from '../DTO/Responses/add-group-response-group-already-exist';
+import { FormGroupName } from '@angular/forms';
+import { AddGroupResponseOK } from '../DTO/Responses/add-group-response-ok';
 
 
 @Injectable({
@@ -26,8 +31,14 @@ import { ContactRequest } from '../DTO/Requests/contact-request';
 export class RepositoryService {
 
   users:Array<User>= [
-    {"UserName":"shaniRomanov","Password":"123456","email":"shaniromanov@gmail.com","contacts":[{"contact_id":1,"firstName":"racheli","lastName": "cohen","website":new Website("www.rachel.co.il"),"username":new UserName("racheli"),"address":new Adress("shevet yehuda 5"),"meansOfContact":[new PhoneNumber("03-5794441"),new Email("rachli548@gmail.com "),new Adress("Bilu 5 Bnei-Brak")],"groups":[new Group("Family"),new Group("Work")],"img":"https://img.icons8.com/dusk/64/000000/old-man.png"},{"contact_id":2,"firstName":"margalite","lastName": "Sayada","website":new Website("www.margalite.co.il"),"username":new UserName("margalite"),"address":new Adress("shevet yehuda 5"),"meansOfContact":[new PhoneNumber("03-5794441"),new Email("margalite95@gmail.com")],"groups":[new Group("Freinds"),new Group("Work"),],"img":"https://img.icons8.com/dusk/64/000000/old-man.png"}],"groups":[new Group("Family"),new Group("Work"),new Group("Freinds"),new Group("Emergency")]}
-    , {"UserName":"margaliteSayada","Password":"234567","email":"margalite95@gmail.com","contacts":[{"contact_id":3,"firstName":"shani","lastName": "romanov","website":new Website("www.shani.co.il"),"username":new UserName("shanoRomanov"),"address":new Adress("Harav Bloy 10 Bnei-Brak"),"meansOfContact":[new PhoneNumber("03-5794441"),new Email("shaniromanov@gmail.com ")],"groups":[new Group("OpenCourse"),new Group("Work")],"img":"https://img.icons8.com/dusk/64/000000/old-man.png"},{"contact_id":4,"firstName":"chavi","lastName": "berkovich","website":new Website("www.chavi.co.il"),"username":new UserName("chavi"),"address":new Adress("shevet yehuda 5"),"meansOfContact":[new PhoneNumber("03-5794441"),new Email("chavi@gmail.com")],"groups":[new Group("OpenCourse")],"img":"https://img.icons8.com/dusk/64/000000/old-man.png"}],"groups":[new Group("Family"),new Group("OpenCourse"),new Group("Freinds")]}
+    {"UserName":"shaniRomanov","Password":"123456","email":"shaniromanov@gmail.com",
+    "contacts":[{"contact_id":1,"firstName":"racheli","lastName": "cohen","website":new Website("www.rachel.co.il"),"username":new UserName("racheli"),"address":new Adress("shevet yehuda 5"),"meansOfContact":[new PhoneNumber("03-5794441"),new Email("rachli548@gmail.com "),new Adress("Bilu 5 Bnei-Brak")],
+    "groups":[new Group("Family"),new Group("Work")],"img":"https://img.icons8.com/dusk/64/000000/old-man.png"},{"contact_id":2,"firstName":"margalite","lastName": "Sayada","website":new Website("www.margalite.co.il"),"username":new UserName("margalite"),"address":new Adress("shevet yehuda 5"),"meansOfContact":[new PhoneNumber("03-5794441"),new Email("margalite95@gmail.com")],"groups":[new Group("Freinds"),new Group("Work"),],"img":"https://img.icons8.com/dusk/64/000000/old-man.png"}],
+    "groups":[new Group("Family"),new Group("Work"),new Group("Freinds"),new Group("Emergency")]}
+    , {"UserName":"margaliteSayada","Password":"234567","email":"margalite95@gmail.com",
+    "contacts":[{"contact_id":3,"firstName":"shani","lastName": "romanov","website":new Website("www.shani.co.il"),"username":new UserName("shanoRomanov"),"address":new Adress("Harav Bloy 10 Bnei-Brak"),"meansOfContact":[new PhoneNumber("03-5794441"),new Email("shaniromanov@gmail.com ")],
+    "groups":[new Group("OpenCourse"),new Group("Work")],"img":"https://img.icons8.com/dusk/64/000000/old-man.png"},{"contact_id":4,"firstName":"chavi","lastName": "berkovich","website":new Website("www.chavi.co.il"),"username":new UserName("chavi"),"address":new Adress("shevet yehuda 5"),"meansOfContact":[new PhoneNumber("03-5794441"),new Email("chavi@gmail.com")],"groups":[new Group("OpenCourse")],"img":"https://img.icons8.com/dusk/64/000000/old-man.png"}],
+    "groups":[new Group("Family"),new Group("OpenCourse"),new Group("Freinds")]}
   ]
  getUser(request:LoginRequest):LoginResponse{
   let retval:LoginResponse;
@@ -62,7 +73,20 @@ else{
   }
   return retval
  }
-
+addGroup(request:GroupRequest):AddGroupResponse{
+  let retval:AddGroupResponse
+  const user=this.users.find(user=>user.UserName==request.UserName)
+  if(user.groups.find(group=>group.groupName==request.GroupName.groupName)){
+    retval=new AddGroupResponseGroupAlreadyExist()
+  }
+  else{
+    console.log("before")
+   user.groups.push(request.GroupName)
+    retval=new AddGroupResponseOK()
+    console.log(retval)
+  }
+  return retval
+}
  addContact(request: ContactRequest):AddContactResponse {
   let retval:AddContactResponse
   const user=this.users.find(user=>user.UserName==request.UserName)
