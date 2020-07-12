@@ -17,7 +17,6 @@ export class AddMeanOfContactComponent implements OnInit {
 
    @Input() currentFormGroup: FormGroup;
    @Input() currentIndex:number;
-   selected= new Set<string>();
 
   constructor() { 
   
@@ -28,6 +27,7 @@ export class AddMeanOfContactComponent implements OnInit {
   ngOnInit(): void {
     
   }
+  
   
 
 }

@@ -10,11 +10,13 @@
     <td>
     <h4>Group Name:</h4>
     </td>
-    <td>
-        <input type="text" id= "groupName" [formControlName]="i" placeholder="Add Group Name"> 
+    <td [formGroup]="group" >
+   
+        <input type="text" id= "groupName" formControlName="groupName" placeholder="Add Group Name"> 
+ 
     </td>
     <td>
-        <button type="button"(click)="updateGroup()">Update</button>
+        <button type="button"(click)="updateGroup(i)">Update</button>
     </td>
     <td>
         <button type="button" (click)="deleteGroup(i)">Delete</button>
@@ -24,7 +26,7 @@
 </table>
 <br/>
 <div>
-    <button type="button" class=btn2 (click)="AddGroup()">Add new group</button>
+    <button type="button" class=btn2 (click)="AddGroupToForm()">Add new group</button>
 </div><br/><br/>
 <div>
     <button type="submit" class="btn2" >Save All Changes</button>

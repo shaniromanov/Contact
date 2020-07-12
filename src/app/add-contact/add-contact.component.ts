@@ -30,9 +30,10 @@ export class AddContactComponent implements OnInit {
     return this.form.get('groups') as FormArray;
   }
   onSubmit(){
-
+  
     this.contactsService.addContact({"UserName":this.authonticationService.getCurrentUser().UserName,"contact":this.form.value}).subscribe(response=>{
       this.router.navigate(['/contacts/']);
+     this.form.value.address
     })
   }
   AddToForm(){
