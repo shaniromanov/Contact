@@ -10,6 +10,7 @@ import { ContactRequest } from '../DTO/Requests/contact-request';
 import { AuthonticationService } from '../Services/authontication.service';
 import { Router } from '@angular/router';
 import { Adress } from '../DTO/adress';
+import { Website } from '../DTO/website';
 
 @Component({
   selector: 'app-add-contact',
@@ -75,7 +76,7 @@ deleteGroup(index:string)
           value:new FormControl()}),
           img:new FormControl(),
         website:new FormGroup({ typeOfMeanContact:new FormControl("Website"),
-        value:new FormControl('',Validators.pattern('(https?://)?(www.)?([\\da-z.-]+)\\.([a-z.]{2,6})[/\\w .-]*/?'))}),
+        value:new FormControl('',new Website("").validate())}),
         username:new FormGroup({ typeOfMeanContact:new FormControl("UserName"),
         value:new FormControl()}),
         meansOfContact:new FormArray([]),

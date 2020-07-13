@@ -12,21 +12,32 @@ import { Website } from '../DTO/website';
   styleUrls: ['./add-mean-of-contact.component.css']
 })
 export class AddMeanOfContactComponent implements OnInit {
-  meansContact:{[meanType:string]:typeof  MeansOfContact}={"Email":Email,"Phone Number":PhoneNumber,"Mobile Number":MobileNumber}
+  meansContact:{[meanType:string]:MeansOfContact}={"Email":new Email(null),"Phone Number":new PhoneNumber(null),"Mobile Number":new MobileNumber(null)}
   
 
    @Input() currentFormGroup: FormGroup;
    @Input() currentIndex:number;
 
   constructor() { 
-  
+ 
   }
   keys() : Array<string> {
     return Object.keys(this.meansContact);
   }
   ngOnInit(): void {
-    
+   
   }
+  setValidators(event){
+    this.currentFormGroup.get('value').setValidators( this.meansContact[event.target.value].validate())
+   
+  }
+  setValue(event){
+    const typ=this.currentFormGroup.get('typeOfMeanContact').value
+    this.meansContact[typ].setValue(event.target.value)
+    this.currentFormGroup.setValue(this.meansContact[typ])
+    this.currentFormGroup.get('typeOfMeanContact').setValue(typ)
+  }
+ 
   
   
 
