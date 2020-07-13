@@ -9,12 +9,13 @@ import { AddContactResponse } from '../DTO/Responses/add-contact-response';
 import { ContactRequest } from '../DTO/Requests/contact-request';
 import { AddGroupResponse } from '../DTO/Responses/add-group-response';
 import { GroupRequest } from '../DTO/Requests/group-request';
+import { RegisterUserRequest } from '../DTO/Requests/register-user-request';
 
 @Injectable()
 export abstract class CommService {
   constructor() { }
   abstract getUser(request: LoginRequest): Observable<LoginResponse>
-  abstract registerUser(request: User): Observable<RegisterUserResponse>
+  abstract registerUser(request: RegisterUserRequest): Observable<RegisterUserResponse>
   abstract addContact(request: ContactRequest): Observable<AddContactResponse>
   abstract addGroup(request:GroupRequest):Observable<AddGroupResponse>
 }

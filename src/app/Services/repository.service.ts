@@ -23,6 +23,7 @@ import { AddGroupResponse } from '../DTO/Responses/add-group-response';
 import { AddGroupResponseGroupAlreadyExist } from '../DTO/Responses/add-group-response-group-already-exist';
 import { FormGroupName } from '@angular/forms';
 import { AddGroupResponseOK } from '../DTO/Responses/add-group-response-ok';
+import { RegisterUserRequest } from '../DTO/Requests/register-user-request';
 
 
 @Injectable({
@@ -61,15 +62,15 @@ else{
 }
 
 
- registerUser(request:User):RegisterUserResponse{
+ registerUser(request:RegisterUserRequest):RegisterUserResponse{
   let retval:RegisterUserResponse;
-  if(this.users.find(user=>user.UserName===request.UserName)){
+  if(this.users.find(user=>user.UserName===request.user.UserName)){
     retval=new RegisterUserResponseUsernameExists()
   }
   else{
-    this.users.push(request)
+    this.users.push(request.user)
     console.log(this.users)
-    retval=new RegisterUserResponseOk(request)
+    retval=new RegisterUserResponseOk(request.user)
   }
   return retval
  }

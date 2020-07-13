@@ -5,6 +5,7 @@ import { LoginResponse } from '../DTO/Responses/login-response';
 import { Observable } from 'rxjs';
 import { User } from '../DTO/user';
 import { RegisterUserResponse } from '../DTO/Responses/register-user-response';
+import { RegisterUserRequest } from '../DTO/Requests/register-user-request';
 
 @Injectable({
   providedIn: 'root'
@@ -18,7 +19,7 @@ export class UserService {
   }
  
 
-  create(request:User):Observable<RegisterUserResponse> {
+  create(request:RegisterUserRequest):Observable<RegisterUserResponse> {
     return this.commService.registerUser(request)
   }
 

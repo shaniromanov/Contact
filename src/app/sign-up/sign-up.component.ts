@@ -16,7 +16,7 @@ export class SignUpComponent implements OnInit {
 
   constructor(private router :Router,private userService:UserService, private authonticationService:AuthonticationService) { }
   signUp(){
-    this.userService.create(this.form.value)
+    this.userService.create({"user":this.form.value})
     .subscribe(
       response => {
         if(response instanceof RegisterUserResponseOk)

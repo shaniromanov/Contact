@@ -11,6 +11,7 @@ import { AddContactResponse } from '../DTO/Responses/add-contact-response';
 import { ContactRequest } from '../DTO/Requests/contact-request';
 import { GroupRequest } from '../DTO/Requests/group-request';
 import { AddGroupResponse } from '../DTO/Responses/add-group-response';
+import { RegisterUserRequest } from '../DTO/Requests/register-user-request';
 
 @Injectable()
 export class LocalCommService implements CommService{
@@ -28,7 +29,7 @@ export class LocalCommService implements CommService{
     )
   }  
   
-  registerUser(request: User): Observable<RegisterUserResponse> {
+  registerUser(request: RegisterUserRequest): Observable<RegisterUserResponse> {
     return new Observable<LoginResponse>(
       subscriber=>{
         let ret = this.repositoryService.registerUser(request)
