@@ -1,7 +1,7 @@
 <div id="mean" [formGroup]="currentFormGroup" >
   
     <br/>
-<select type="text"  id="typeOfContact" formControlName="typeOfMeanContact" form="currentFormGroup" (change)="setValidators($event)">
+<select type="text"  formControlName="typeOfMeanContact" form="currentFormGroup" (change)="setValidators($event)">
     <option hidden *ngIf="currentFormGroup.value.typeOfMeanContact">{{currentFormGroup.value.typeOfMeanContact}} </option>
     <option hidden *ngIf="!currentFormGroup.value.typeOfMeanContact">Select mean of contract </option>
     <option   *ngFor="let key of keys();">{{key}}</option>
@@ -14,7 +14,5 @@
     *Invalid value
 </div> 
 <br/> <br/>
-
-<!-- <button (click)="Save()">Save</button> -->
 
 </div>

@@ -14,14 +14,14 @@
     </div> 
     <br/> <br/>
     <div formGroupName="address">
-        <input type="hidden" id="typeOfMeanContact" formControlName="typeOfMeanContact"> 
-        <input type="text" id="value" formControlName="value" placeholder="Address"> 
+        <input type="hidden"  formControlName="typeOfMeanContact"> 
+        <input type="text" formControlName="value" placeholder="Address"> 
     </div>
    
     <br/> <br/>
     <div formGroupName="website">
-        <input type="hidden" id="typeOfMeanContact" formControlName="typeOfMeanContact"> 
-        <input type="text" id="value" formControlName="value" placeholder="Website" > 
+        <input type="hidden"  formControlName="typeOfMeanContact"> 
+        <input type="text"  formControlName="value" placeholder="Website" > 
         <div class="validation-msg" *ngIf="form.get('website').invalid && form.get('website').touched">
             *Invalid website
         </div> 
@@ -29,8 +29,8 @@
    
     <br/> <br/>
     <div formGroupName="username">
-        <input type="hidden" id="typeOfMeanContact" formControlName="typeOfMeanContact"> 
-        <input type="text" id="value" formControlName="value" placeholder="Username"> 
+        <input type="hidden"  formControlName="typeOfMeanContact"> 
+        <input type="text"  formControlName="value" placeholder="Username"> 
     </div> 
     <br/> <br/>
     

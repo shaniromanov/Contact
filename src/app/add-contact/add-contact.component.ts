@@ -30,7 +30,7 @@ export class AddContactComponent implements OnInit {
   }
  
   onSubmit(){
-  console.log((this.form.get('img') as FormControl).value)
+ 
   this.form.get('contact_id').setValue(this.contactsService.numberOfContacts()+1)
     this.contactsService.addContact({"UserName":this.authonticationService.getCurrentUser().UserName,"contact":this.form.value}).subscribe(response=>{
       this.router.navigate(['/contacts/']);

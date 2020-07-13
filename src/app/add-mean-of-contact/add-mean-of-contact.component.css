@@ -69,3 +69,8 @@ input{
     font-weight: bold;
   }
 
+  .validation-msg{
+    color:purple;
+    height: 5px;
+  }
+

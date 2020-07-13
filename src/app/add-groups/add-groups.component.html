@@ -2,7 +2,7 @@
   
     <br/>
    
-<select type="text"  id="groupName" formControlName="groupName" form="currentFormGroup" >
+<select type="text"   formControlName="groupName" form="currentFormGroup" >
     <option hidden *ngIf="currentFormGroup.value.groupName">{{currentFormGroup.value.groupName}} </option>
     <option hidden *ngIf="!currentFormGroup.value.groupName">Select Group </option>
     <option  *ngFor="let group of groups;" >{{group.groupName}}</option>
@@ -10,6 +10,5 @@
     <br/> <br/>
    
 
-<!-- <button (click)="Save()">Save</button> -->
 
 </div>

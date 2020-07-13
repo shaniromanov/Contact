@@ -25,7 +25,7 @@ export class ImageComponent implements OnInit {
 
       reader.onload = (event) => { // called once readAsDataURL is completed
         this.url = event.target.result as string;
-        console.log(this.url)
+    
       
         this.currentFormGroup.get('img').setValue(this.url)
         
