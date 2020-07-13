@@ -24,6 +24,7 @@ import { AddGroupResponseGroupAlreadyExist } from '../DTO/Responses/add-group-re
 import { FormGroupName } from '@angular/forms';
 import { AddGroupResponseOK } from '../DTO/Responses/add-group-response-ok';
 import { RegisterUserRequest } from '../DTO/Requests/register-user-request';
+import { group } from 'console';
 
 
 @Injectable({
@@ -52,14 +53,7 @@ export class RepositoryService {
   }
   return retval
  }
- getGroup(request:User):Array<Group>{
-  if(this.users.find(user=>user.UserName===request.UserName)){
-return request.groups
-}
-else{
-  console.log("You dont have any groups")
-}
-}
+ 
 
 
  registerUser(request:RegisterUserRequest):RegisterUserResponse{
@@ -77,7 +71,7 @@ else{
 addGroup(request:GroupRequest):AddGroupResponse{
   let retval:AddGroupResponse
   const user=this.users.find(user=>user.UserName==request.UserName)
-  if(user.groups.find(group=>group.groupName==request.GroupName.groupName)){
+  if(user.groups.find(group=>group.groupName==request.GroupName)){
     retval=new AddGroupResponseGroupAlreadyExist()
   }
   else{
