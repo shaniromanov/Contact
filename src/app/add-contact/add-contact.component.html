@@ -4,8 +4,14 @@
 <form [formGroup]="form" (ngSubmit)="onSubmit()">
     <input type="hidden"  formControlName="contact_id"> 
     <input type="text" id= "firstName" formControlName="firstName" placeholder="First Name"> 
+    <div class="validation-msg" *ngIf="form.get('firstName').invalid">
+        *First Name is required
+    </div>
     <br/> <br/>
-    <input type="text" id="lastName" formControlName="lastName" placeholder="Last Name"> 
+    <input type="text" id="lastName" formControlName="lastName" placeholder="Last Name">
+    <div class="validation-msg" *ngIf="form.get('lastName').invalid">
+        *Last Name is required
+    </div> 
     <br/> <br/>
     <div formGroupName="address">
         <input type="hidden" id="typeOfMeanContact" formControlName="typeOfMeanContact"> 
@@ -15,7 +21,10 @@
     <br/> <br/>
     <div formGroupName="website">
         <input type="hidden" id="typeOfMeanContact" formControlName="typeOfMeanContact"> 
-        <input type="text" id="value" formControlName="value" placeholder="Website"> 
+        <input type="text" id="value" formControlName="value" placeholder="Website" > 
+        <div class="validation-msg" *ngIf="form.get('website').invalid && form.get('website').touched">
+            *Invalid website
+        </div> 
     </div>
    
     <br/> <br/>
@@ -50,7 +59,7 @@
             <br/> <br/>
         </div>
         <div>
-            <button class=btn2 type='submit' >Submit</button>
+            <button class=btn2 type='submit' [disabled]="!form.valid">Submit</button>
          </div>
          
             

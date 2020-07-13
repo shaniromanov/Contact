@@ -18,7 +18,7 @@ import { Adress } from '../DTO/adress';
 })
 export class AddContactComponent implements OnInit {
   form:FormGroup
-
+  // websiteValidateMsg:boolean=false
  
   meansOfContactList:{[meanType:string]:typeof  MeansOfContact}={"Address":Adress,"Phone Number":PhoneNumber}
   get meansOfContact(): FormArray {
@@ -27,6 +27,7 @@ export class AddContactComponent implements OnInit {
   get groups(): FormArray {
     return this.form.get('groups') as FormArray;
   }
+ 
   onSubmit(){
   console.log((this.form.get('img') as FormControl).value)
   this.form.get('contact_id').setValue(this.contactsService.numberOfContacts()+1)
@@ -68,13 +69,13 @@ deleteGroup(index:string)
     this.headerService.show();
       this.form = new FormGroup({
         contact_id:new FormControl(),
-        firstName:new FormControl(),
-        lastName:new FormControl(),
+        firstName:new FormControl('',[Validators.required]),
+        lastName:new FormControl('',[Validators.required]),
         address:new FormGroup({ typeOfMeanContact:new FormControl("Address"),
           value:new FormControl()}),
           img:new FormControl(),
         website:new FormGroup({ typeOfMeanContact:new FormControl("Website"),
-        value:new FormControl()}),
+        value:new FormControl('',Validators.pattern('(https?://)?(www.)?([\\da-z.-]+)\\.([a-z.]{2,6})[/\\w .-]*/?'))}),
         username:new FormGroup({ typeOfMeanContact:new FormControl("UserName"),
         value:new FormControl()}),
         meansOfContact:new FormArray([]),
@@ -82,9 +83,15 @@ deleteGroup(index:string)
       })
 
   }
-//   onURLinserted() {
-    
-// }
+
+  // validateWebsite(event){
+  //   console.log("website validator")
+  //   if(this.form.get('website').invalid)
+  //   this.websiteValidateMsg=true
+  //   else this.websiteValidateMsg=false
+
+  // }
+
 
 
   constructor(private router :Router,private contactsService:ContactsService,public headerService:HeaderService,private authonticationService:AuthonticationService) { }

@@ -21,6 +21,7 @@ import { SignUpComponent } from './sign-up/sign-up.component';
 import { ImageComponent } from './image/image.component';
 
 
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -35,7 +36,8 @@ import { ImageComponent } from './image/image.component';
     AddGroupsComponent,
     SignInComponent,
     SignUpComponent,
-    ImageComponent
+    ImageComponent,
+   
   ],
   imports: [
     BrowserModule,
