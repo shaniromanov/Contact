@@ -32,7 +32,7 @@ export class GroupsComponent implements OnInit {
   
   onSubmit(){
     console.log("groups form===>>>",this.form.value);
-    this.groupsService.addGroup({"UserName":this.authonticationService.getCurrentUser().UserName,"GroupName":this.form.value})
+    this.groupsService.addGroup({"UserName":this.authonticationService.getCurrentUser().UserName,"Groups":this.Groups.value})
     .subscribe()
     
   }
