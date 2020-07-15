@@ -12,12 +12,18 @@ import { ContactRequest } from '../DTO/Requests/contact-request';
 import { GroupRequest } from '../DTO/Requests/group-request';
 import { AddGroupResponse } from '../DTO/Responses/add-group-response';
 import { RegisterUserRequest } from '../DTO/Requests/register-user-request';
+import { DeleteGroupResponse } from '../DTO/Responses/delete-group-response';
 
 @Injectable()
 export class LocalCommService implements CommService{
 
   constructor(private repositoryService:RepositoryService) { }
-  
+  deleteGroup(index: number): Observable<DeleteGroupResponse> {
+    return new Observable<DeleteGroupResponse>(
+      subscriber=>{
+        subscriber.next(this.repositoryService.deleteGroup(index))
+    })  
+    }
   addGroup(request: GroupRequest): Observable<AddGroupResponse> {
     return new Observable<AddGroupResponse>(
       subscriber=>{

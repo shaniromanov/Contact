@@ -29,16 +29,18 @@ export class GroupsComponent implements OnInit {
     })
     this.groups.map(val=>this.Groups.push(new FormGroup({groupName:new FormControl(val.groupName)})))
   }
-  
+
   onSubmit(){
     console.log("groups form===>>>",this.form.value);
     this.groupsService.addGroup({"UserName":this.authonticationService.getCurrentUser().UserName,"Groups":this.Groups.value})
     .subscribe()
     
   }
-  deleteGroup(index:string){
+  deleteGroup(index:number){
     this.Groups.removeAt(this.Groups.value[index])
     //delete from repository
+    this.groupsService.deleteGroup(index)
+
   }
   AddGroupToForm(){
     var f:FormArray = this.form.get('Groups') as FormArray

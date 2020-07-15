@@ -24,6 +24,7 @@ import { AddGroupResponseGroupAlreadyExist } from '../DTO/Responses/add-group-re
 import { FormGroupName } from '@angular/forms';
 import { AddGroupResponseOK } from '../DTO/Responses/add-group-response-ok';
 import { RegisterUserRequest } from '../DTO/Requests/register-user-request';
+import { DeleteGroupResponse } from '../DTO/Responses/delete-group-response';
 
 
 
@@ -54,7 +55,16 @@ export class RepositoryService {
   return retval
  }
  
-
+ deleteGroup(index: number):DeleteGroupResponse {
+  let retval: DeleteGroupResponse
+  delete(this.users[Group[index]])
+   
+  console.log("deleted")
+  retval=new DeleteGroupResponse()
+    return retval
+  
+  
+  }
 
  registerUser(request:RegisterUserRequest):RegisterUserResponse{
   let retval:RegisterUserResponse;
