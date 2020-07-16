@@ -15,29 +15,29 @@ import { RegisterUserRequest } from '../DTO/Requests/register-user-request';
 import { DeleteGroupResponse } from '../DTO/Responses/delete-group-response';
 
 @Injectable()
-export class LocalCommService implements CommService{
+export class LocalCommService implements CommService {
 
-  constructor(private repositoryService:RepositoryService) { }
+  constructor(private repositoryService: RepositoryService) { }
   deleteGroup(index: number): Observable<DeleteGroupResponse> {
     return new Observable<DeleteGroupResponse>(
-      subscriber=>{
+      subscriber => {
         subscriber.next(this.repositoryService.deleteGroup(index))
-    })  
-    }
+      })
+  }
   addGroup(request: GroupRequest): Observable<AddGroupResponse> {
     return new Observable<AddGroupResponse>(
-      subscriber=>{
-       
+      subscriber => {
+
         let ret = this.repositoryService.addGroup(request)
 
         return subscriber.next(ret)
       }
     )
-  }  
-  
+  }
+
   registerUser(request: RegisterUserRequest): Observable<RegisterUserResponse> {
     return new Observable<LoginResponse>(
-      subscriber=>{
+      subscriber => {
         let ret = this.repositoryService.registerUser(request)
         return subscriber.next(ret)
       }
@@ -45,7 +45,7 @@ export class LocalCommService implements CommService{
   }
   getUser(request: LoginRequest): Observable<LoginResponse> {
     return new Observable<LoginResponse>(
-      subscriber=>{
+      subscriber => {
         let ret = this.repositoryService.getUser(request)
 
         return subscriber.next(ret)
@@ -53,11 +53,11 @@ export class LocalCommService implements CommService{
     )
   }
 
-  addContact(request: ContactRequest): Observable<AddContactResponse>{
-    
+  addContact(request: ContactRequest): Observable<AddContactResponse> {
+
     return new Observable<LoginResponse>(
-      subscriber=>{
-       
+      subscriber => {
+
         let ret = this.repositoryService.addContact(request)
 
         return subscriber.next(ret)

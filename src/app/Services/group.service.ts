@@ -6,37 +6,38 @@ import { AuthonticationService } from './authontication.service';
 import { GroupRequest } from '../DTO/Requests/group-request';
 import { AddGroupResponse } from '../DTO/Responses/add-group-response';
 import { Observable, Subject } from 'rxjs';
+import { map } from 'rxjs/operators';
+import { DeleteGroupResponse } from '../DTO/Responses/delete-group-response';
 
 @Injectable({
   providedIn: 'root'
 })
 export class GroupService {
-  currentUser:User
-  groups:Array<Group>=[]
+  currentUser: User
+  groups: Array<Group> = []
   deleteSubject = new Subject<number>()
 
-  constructor(private commService:CommService, private authonticationService:AuthonticationService) { 
-    this.groups=this.authonticationService.getCurrentUser().groups
+  constructor(private commService: CommService, private authonticationService: AuthonticationService) {
+    this.groups = this.authonticationService.getCurrentUser().groups
 
   }
-  ngOnInit(){
+  ngOnInit() {
   }
-  getGroups():Array<Group>{
+  getGroups(): Array<Group> {
     return this.groups
 
   }
-  deleteGroup(index:number){
-    this.commService.deleteGroup(index)
-    .subscribe(obj=>{
-      console.log(obj)
-                        this.deleteSubject.next(index)
-                        this.deleteSubject.complete
-                    }
+  deleteGroup(index: number) {
+    return this.commService.deleteGroup(index)
+      .pipe(map((obj: DeleteGroupResponse) => {
 
+        return obj.groups
+      })
+      )
+  }
 
-    )}
-  addGroup(request:GroupRequest):Observable<AddGroupResponse>{
-    console.log("groupService",request)
-   return this.commService.addGroup(request)
+  addGroup(request: GroupRequest): Observable<AddGroupResponse> {
+    console.log("groupService", request)
+    return this.commService.addGroup(request)
   }
 }

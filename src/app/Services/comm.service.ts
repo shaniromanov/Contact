@@ -18,8 +18,8 @@ export abstract class CommService {
   abstract getUser(request: LoginRequest): Observable<LoginResponse>
   abstract registerUser(request: RegisterUserRequest): Observable<RegisterUserResponse>
   abstract addContact(request: ContactRequest): Observable<AddContactResponse>
-  abstract addGroup(request:GroupRequest):Observable<AddGroupResponse>
-  abstract deleteGroup(index: number):Observable<DeleteGroupResponse>
+  abstract addGroup(request: GroupRequest): Observable<AddGroupResponse>
+  abstract deleteGroup(index: number): Observable<DeleteGroupResponse>
 
 
 }
