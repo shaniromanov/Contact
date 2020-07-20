@@ -1,41 +1,37 @@
-
 <h1>Update Contact</h1>
-<br/> <br/>
+<br /> <br />
 <form [formGroup]="form" (ngSubmit)="onSubmit()">
 
-    <input type="text" id= "FirstName" formControlName="FirstName" > 
-    <br/> <br/>
-    <input type="text" id="LastName" formControlName="LastName" > 
+    <input type="text" id="FirstName" formControlName="FirstName">
+    <br /> <br />
+    <input type="text" id="LastName" formControlName="LastName">
 
-    <br/> <br/><br/>
-    <app-image  [currentFormGroup]="form"></app-image>
+    <br /><br /><br />
+    <app-image [currentFormGroup]="form"></app-image>
     <h4>Means Of Contact:</h4>
 
     <div formArrayName="MeansContact">
-       
-    <div *ngFor='let contact of MeansContact.controls;index as i'>
-        <button type="button" (click)="deleteMeanContact(i)" class="delete fa fa-times" aria-hidden="true"></button>
-        <app-add-mean-of-contact 
-        [currentFormGroup]="contact" [currentIndex]="i"></app-add-mean-of-contact>
-       
+
+        <div *ngFor='let contact of MeansContact.controls;index as i'>
+            <button type="button" (click)="deleteMeanContact(i)" class="delete fa fa-times" aria-hidden="true"></button>
+            <app-add-mean-of-contact [currentFormGroup]="contact" [currentIndex]="i"></app-add-mean-of-contact>
+
+        </div>
+        <button type='button' class="btn btn-dark" (click)="AddToForm()">Add Mean Of Contact</button>
+        <br /> <br />
     </div>
-    <button type='button' class="btn btn-dark"(click)="AddToForm()">Add Mean Of Contact</button>
-    <br/> <br/>
-</div>
-   
-<h4>Groups:</h4>
-<div formArrayName="Groups">
-    <div *ngFor='let grp of Groups.controls;index as i'>
-        <button type="button" (click)="deleteGroup(i)" class="delete fa fa-times" aria-hidden="true"></button>
-        <add-groups [currentFormGroup]="grp" [currentIndex]="i"></add-groups>
-        
+
+    <h4>Groups:</h4>
+    <div formArrayName="Groups">
+        <div *ngFor='let grp of Groups.controls;index as i'>
+            <button type="button" (click)="deleteGroup(i)" class="delete fa fa-times" aria-hidden="true"></button>
+            <add-groups [currentFormGroup]="grp" [currentIndex]="i"></add-groups>
+
         </div>
         <button type='button' class="btn btn-dark" (click)="AddGroupToForm()">Add another group</button>
     </div>
-         
-           
-            <br/> <br/>
-            <button class="add-btn"type='submit' >Submit</button>
-</form>
 
- 
+
+    <br /> <br />
+    <button class="add-btn" type='submit'>Submit</button>
+</form>

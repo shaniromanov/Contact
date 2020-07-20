@@ -12,39 +12,50 @@ import { AuthonticationService } from '../Services/authontication.service';
   styleUrls: ['./groups.component.css']
 })
 export class GroupsComponent implements OnInit {
-  groups:Array<Group>
-  form:FormGroup
+  groups: Array<Group>
+  form: FormGroup
 
   get Groups(): FormArray {
     return this.form.get('Groups') as FormArray;
   }
+  set Groups(value) {
+    this.form.controls.Groups = value;
+  }
 
-  constructor(private router: Router,private groupsService:GroupService, public headerService:HeaderService,private authonticationService:AuthonticationService) { }
+  constructor(private router: Router, private groupsService: GroupService, public headerService: HeaderService, private authonticationService: AuthonticationService) { }
 
   ngOnInit(): void {
     this.headerService.show()
-    this.groups=this.groupsService.groups
+    this.groups = this.groupsService.groups
     this.form = new FormGroup({
-      Groups:new FormArray([])
+      Groups: new FormArray([])
     })
-    this.groups.map(val=>this.Groups.push(new FormGroup({groupName:new FormControl(val.groupName)})))
+    this.setGroupsIntoForm(this.groups);
   }
-  
-  onSubmit(){
-    console.log("groups form===>>>",this.form.value);
-    this.groupsService.addGroup({"UserName":this.authonticationService.getCurrentUser().UserName,"Groups":this.Groups.value})
-    .subscribe()
-    
+
+  setGroupsIntoForm(groups) {
+    this.Groups = new FormArray([])
+    groups.map(val => this.Groups.push(new FormGroup({ groupName: new FormControl(val.groupName) })))
   }
-  deleteGroup(index:string){
-    this.Groups.removeAt(this.Groups.value[index])
-    //delete from repository
+
+  onSubmit() {
+    console.log("groups form===>>>", this.form.value);
+    this.groupsService.addGroup({ "UserName": this.authonticationService.getCurrentUser().UserName, "Groups": this.Groups.value })
+      .subscribe()
+
   }
-  AddGroupToForm(){
-    var f:FormArray = this.form.get('Groups') as FormArray
-      f.push(new FormGroup({groupName:new FormControl()}))
+  deleteGroup(index: number) {
+
+    this.groupsService.deleteGroup(index).subscribe((res: Group[]) => {
+      this.setGroupsIntoForm(res)
+    })
+
   }
-  updateGroup(index:string){
+  AddGroupToForm() {
+    var f: FormArray = this.form.get('Groups') as FormArray
+    f.push(new FormGroup({ groupName: new FormControl() }))
+  }
+  updateGroup(index: string) {
 
   }
 }

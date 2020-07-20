@@ -24,6 +24,8 @@ import { AddGroupResponseGroupAlreadyExist } from '../DTO/Responses/add-group-re
 import { FormGroupName } from '@angular/forms';
 import { AddGroupResponseOK } from '../DTO/Responses/add-group-response-ok';
 import { RegisterUserRequest } from '../DTO/Requests/register-user-request';
+import { DeleteGroupResponse } from '../DTO/Responses/delete-group-response';
+import { DeleteGroupRequest } from '../DTO/Requests/delete-group-request';
 
 
 
@@ -55,55 +57,65 @@ export class RepositoryService {
       {"groupName":"Freinds","contacts":{1:{"contact_id":1,"firstName":"shani","lastName": "romanov","website":new Website("www.shani.co.il"),"username":new UserName("shanoRomanov"),"address":new Adress("Harav Bloy 10 Bnei-Brak"),"meansOfContact":[new PhoneNumber("03-5794441"),new Email("shaniromanov@gmail.com ")],
       "groups":["OpenCourse","Work"],"img":"https://img.icons8.com/dusk/64/000000/old-man.png"}},"group_id":3}]}
   ]
- getUser(request:LoginRequest):LoginResponse{
-  let retval:LoginResponse;
-  const user= this.users.find(user=>user.UserName===request.UserName&& user.Password===request.Password)
-  if(user){
-   retval=new LoginResponseOk(user)
+  getUser(request: LoginRequest): LoginResponse {
+    let retval: LoginResponse;
+    const user = this.users.find(user => user.UserName === request.UserName && user.Password === request.Password)
+    if (user) {
+      retval = new LoginResponseOk(user)
+    }
+    else {
+      retval = new LoginResponseNotExists()
+    }
+    return retval
   }
-  else{
-    retval=new LoginResponseNotExists()
-  }
-  return retval
- }
- 
 
+  deleteGroup(index: number, username = "margaliteSayada", password = "234567"): DeleteGroupResponse {
+    const user = this.users.find(u => u.Password === password && u.UserName === username)
+    if (user) {
+      user.groups.splice(index, 1)
+      let retval: DeleteGroupResponse
+      console.log("deleted")
+      retval = new DeleteGroupResponse();
+      retval.groups = user.groups;
+      return retval
+    }
+  }
 
- registerUser(request:RegisterUserRequest):RegisterUserResponse{
-  let retval:RegisterUserResponse;
-  if(this.users.find(user=>user.UserName===request.user.UserName)){
-    retval=new RegisterUserResponseUsernameExists()
+  registerUser(request: RegisterUserRequest): RegisterUserResponse {
+    let retval: RegisterUserResponse;
+    if (this.users.find(user => user.UserName === request.user.UserName)) {
+      retval = new RegisterUserResponseUsernameExists()
+    }
+    else {
+      this.users.push(request.user)
+      console.log(this.users)
+      retval = new RegisterUserResponseOk(request.user)
+    }
+    return retval
   }
-  else{
-    this.users.push(request.user)
-    console.log(this.users)
-    retval=new RegisterUserResponseOk(request.user)
-  }
-  return retval
- }
-addGroup(request:GroupRequest):AddGroupResponse{
- 
-  const user=this.users.find(user=>user.UserName==request.UserName)
-  const mergeArrayWithoutDup:Array<Group>=request.Groups.filter((v,i,array) => array.findIndex((group=>v.groupName==group.groupName))==i)
-  user.groups=mergeArrayWithoutDup
+  addGroup(request: GroupRequest): AddGroupResponse {
 
- return new AddGroupResponseOK()
- }
- addContact(request: ContactRequest):AddContactResponse {
-  let retval:AddContactResponse
-  const user=this.users.find(user=>user.UserName==request.UserName)
-  if(user.contacts.find(contact=>contact.contact_id==request.contact.contact_id)){
-    retval=new AddContactResponseIdExists()
+    const user = this.users.find(user => user.UserName == request.UserName)
+    const mergeArrayWithoutDup: Array<Group> = request.Groups.filter((v, i, array) => array.findIndex((group => v.groupName == group.groupName)) == i)
+    user.groups = mergeArrayWithoutDup
 
+    return new AddGroupResponseOK()
   }
-  else{
-    console.log("before: ",this.users.find(user=>user.UserName==request.UserName).contacts)
-    user.contacts.push(request.contact)
-    retval=new AddContactResponseOk()
-    console.log("after: ",this.users.find(user=>user.UserName==request.UserName).contacts)
+  addContact(request: ContactRequest): AddContactResponse {
+    let retval: AddContactResponse
+    const user = this.users.find(user => user.UserName == request.UserName)
+    if (user.contacts.find(contact => contact.contact_id == request.contact.contact_id)) {
+      retval = new AddContactResponseIdExists()
+
+    }
+    else {
+      console.log("before: ", this.users.find(user => user.UserName == request.UserName).contacts)
+      user.contacts.push(request.contact)
+      retval = new AddContactResponseOk()
+      console.log("after: ", this.users.find(user => user.UserName == request.UserName).contacts)
+    }
+    console.log(retval)
+    return retval
   }
-  console.log(retval)
-  return retval
-}
   constructor() { }
 }
