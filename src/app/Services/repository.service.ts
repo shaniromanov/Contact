@@ -26,6 +26,7 @@ import { AddGroupResponseOK } from '../DTO/Responses/add-group-response-ok';
 import { RegisterUserRequest } from '../DTO/Requests/register-user-request';
 import { DeleteGroupResponse } from '../DTO/Responses/delete-group-response';
 import { DeleteGroupRequest } from '../DTO/Requests/delete-group-request';
+import { UpdateContactResponse } from '../DTO/Responses/update-contact-response';
 
 
 
@@ -112,5 +113,19 @@ export class RepositoryService {
     console.log(retval)
     return retval
   }
+  debugger;
+
+  updateContact(request: ContactRequest): UpdateContactResponse {
+    let retval: UpdateContactResponse
+    const user = this.users.find(user => user.UserName == request.UserName)
+    if (user.contacts.find(contact => contact.contact_id == request.contact.contact_id)) {
+      retval = new UpdateContactResponse()
+
+    }
+    console.log(retval)
+    return retval
+  }
+
+
   constructor() { }
 }

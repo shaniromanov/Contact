@@ -9,6 +9,8 @@ import { FormArray, FormGroup, FormControl, Validators } from '@angular/forms';
 import { Adress } from '../DTO/adress';
 import { HeaderService } from '../Services/header.service';
 import { GroupService } from '../Services/group.service';
+import { UserName } from '../DTO/user-name';
+import { AuthonticationService } from '../Services/authontication.service';
 
 @Component({
   selector: 'app-contact-update',
@@ -17,13 +19,13 @@ import { GroupService } from '../Services/group.service';
 })
 export class ContactUpdateComponent implements OnInit {
 
-  constructor(private contactsService:ContactsService, private route: ActivatedRoute ,public headerService:HeaderService,private groupService:GroupService) { }
-  currentContact:Contact
-  form:FormGroup
-  groupList:Array<String>
+  constructor(private contactsService: ContactsService, private route: ActivatedRoute, public headerService: HeaderService, private groupService: GroupService, private authonticationService: AuthonticationService) { }
+  currentContact: Contact
+  form: FormGroup
+  groupList: Array<String>
 
-  
-  meansContact:{[meanType:string]:typeof  MeansOfContact}={"Email":Email,"Phone Number":PhoneNumber,"Adress":Adress}
+
+  meansContact: { [meanType: string]: typeof MeansOfContact } = { "Email": Email, "Phone Number": PhoneNumber, "Adress": Adress }
 
   get MeansContact(): FormArray {
     return this.form.get('MeansContact') as FormArray;
@@ -33,54 +35,58 @@ export class ContactUpdateComponent implements OnInit {
   }
   ngOnInit(): void {
     this.headerService.show();
-    this.currentContact=this.getUser(this.route.snapshot.paramMap.get('id'))
-    this.groupList=this.groupService.groups.map(v=>v.groupName)
-
+    this.currentContact = this.getUser(this.route.snapshot.paramMap.get('id'))
+    this.groupList = this.groupService.groups.map(v => v.groupName)
     this.form = new FormGroup({
-      FirstName:new FormControl(this.currentContact.firstName),
-      LastName:new FormControl(this.currentContact.lastName),
-      Image:new FormControl(),
-      Adress:new FormControl(this.currentContact.meansOfContact.filter(mean=>mean.typeOfMeanContact=="Adress")[0]),
-      Website:new FormControl(this.currentContact.meansOfContact.filter(mean=>mean.typeOfMeanContact=="Website")[0]),
-      Username:new FormControl(this.currentContact.meansOfContact.filter(mean=>mean.typeOfMeanContact=="Usernamr")[0]),
-      MeansContact:new FormArray([]),
-      Groups:new FormArray([])
+      FirstName: new FormControl(this.currentContact.firstName, [Validators.required]),
+      LastName: new FormControl(this.currentContact.lastName, [Validators.required]),
+      Image: new FormControl(),
+      Adress: new FormControl(this.currentContact.meansOfContact.filter(mean => mean.typeOfMeanContact == "Adress")[0]),
+      Website: new FormControl(this.currentContact.meansOfContact.filter(mean => mean.typeOfMeanContact == "Website")[0]),
+      Username: new FormControl(this.currentContact.meansOfContact.filter(mean => mean.typeOfMeanContact == "Username")[0]),
+      MeansContact: new FormArray([]),
+      Groups: new FormArray([])
     })
 
-    this.currentContact.meansOfContact.map(val=>this.MeansContact.push( new FormGroup({typeOfContact:new FormControl(val.typeOfMeanContact),value:new FormControl(val.value)})))
-    this.currentContact.groups.map(val=>this.Groups.push(new FormGroup({groupName:new FormControl(val.groupName)})))
+    this.currentContact.meansOfContact.map(val => this.MeansContact.push(new FormGroup({ typeOfContact: new FormControl(val.typeOfMeanContact), value: new FormControl(val.value) })))
+    this.currentContact.groups.map(val => this.Groups.push(new FormGroup({ groupName: new FormControl(val.groupName) })))
+
+
+    this.form.get('currentContact')
+    this.contactsService.updateContact({ "UserName": this.authonticationService.getCurrentUser().UserName, "contact": this.form.value }).subscribe(response => {
+      this.form.value
+    })
   }
-  getUser(id:string):Contact{
-   return this.contactsService.findContact(id)
+  getUser(id: string): Contact {
+    return this.contactsService.findContact(id)
   }
-  keys() : Array<string> {
+  keys(): Array<string> {
     return Object.keys(this.meansContact);
   }
-  AddToForm(){
-    var f:FormArray = this.form.get('MeansContact') as FormArray
+  AddToForm() {
+    var f: FormArray = this.form.get('MeansContact') as FormArray
 
-    f.push(new FormGroup({ typeOfContact:new FormControl(),
-      value:new FormControl('',[Validators.required]),
-     }))
-    
-    
-}
-deleteMeanContact(index:string)
-{
+    f.push(new FormGroup({
+      typeOfContact: new FormControl(),
+      value: new FormControl('', [Validators.required]),
+    }))
 
-  this.MeansContact.removeAt(this.MeansContact.value[index])
-}
-deleteGroup(index:string)
-{
-  this.Groups.removeAt(this.Groups.value[index])
-}
 
-AddGroupToForm(){
-  var f:FormArray = this.form.get('Groups') as FormArray
-  f.push(new FormGroup({groupName:new FormControl('',[Validators.required])}))
-}
-onSubmit(){
-  console.log("onsubmit==>>",this.form.value)
-}
+  }
+  deleteMeanContact(index: string) {
+
+    this.MeansContact.removeAt(this.MeansContact.value[index])
+  }
+  deleteGroup(index: string) {
+    this.Groups.removeAt(this.Groups.value[index])
+  }
+
+  AddGroupToForm() {
+    var f: FormArray = this.form.get('Groups') as FormArray
+    f.push(new FormGroup({ groupName: new FormControl('', [Validators.required]) }))
+  }
+  onSubmit() {
+    console.log("onsubmit==>>", this.form.value)
+  }
 
 }

@@ -3,8 +3,13 @@
 <form [formGroup]="form" (ngSubmit)="onSubmit()">
 
     <input type="text" id="FirstName" formControlName="FirstName">
+    <div class="validation-msg" *ngIf="form.get('FirstName').invalid">
+        *First Name is required
+    </div>
     <br /> <br />
     <input type="text" id="LastName" formControlName="LastName">
+    <div class="validation-msg" *ngIf="form.get('LastName').invalid">
+        *Last Name is required</div>
 
     <br /><br /><br />
     <app-image [currentFormGroup]="form"></app-image>
@@ -33,5 +38,5 @@
 
 
     <br /> <br />
-    <button class="add-btn" type='submit'>Submit</button>
+    <button class="add-btn" type='submit' [disabled]="!form.valid">Submit</button>
 </form>

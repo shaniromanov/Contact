@@ -79,3 +79,7 @@ input{
   
   }
 
+  .validation-msg{
+    color:purple;
+    height: 5px;
+  }
