@@ -12,6 +12,6 @@ export class Contact {
     username:UserName
     address:Adress
     meansOfContact:Array<MeansOfContact>
-    groups:Array<Group>
+    groups:Array<string>
     img:string
 }

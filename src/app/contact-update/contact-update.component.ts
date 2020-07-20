@@ -49,7 +49,7 @@ export class ContactUpdateComponent implements OnInit {
     })
 
     this.currentContact.meansOfContact.map(val => this.MeansContact.push(new FormGroup({ typeOfContact: new FormControl(val.typeOfMeanContact), value: new FormControl(val.value) })))
-    this.currentContact.groups.map(val => this.Groups.push(new FormGroup({ groupName: new FormControl(val.groupName) })))
+    this.currentContact.groups.map(val => this.Groups.push(new FormControl(val)))
 
 
     this.form.get('currentContact')

@@ -1,14 +1,14 @@
-<div id="group" [formGroup]="currentFormGroup" >
+
   
     <br/>
    
-<select type="text"   formControlName="groupName" form="currentFormGroup" >
-    <option hidden *ngIf="currentFormGroup.value.groupName">{{currentFormGroup.value.groupName}} </option>
-    <option hidden *ngIf="!currentFormGroup.value.groupName">Select Group </option>
+<select type="text"   [formControl]="currentFormControl" >
+    <option hidden *ngIf="currentFormControl.value">{{currentFormControl.value}} </option>
+    <option hidden *ngIf="!currentFormControl.value">Select Group </option>
     <option  *ngFor="let group of groups;" >{{group.groupName}}</option>
     </select> 
     <br/> <br/>
    
 
 
-</div>
+

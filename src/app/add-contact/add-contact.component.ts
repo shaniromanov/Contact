@@ -47,7 +47,7 @@ export class AddContactComponent implements OnInit {
 
   AddGroupToForm(){
     var f:FormArray = this.form.get('groups') as FormArray
-      f.push(new FormGroup({groupName:new FormControl()}))
+      f.push(new FormControl())
   }
 
   deleteMeanContact(index:string)
@@ -67,6 +67,7 @@ deleteGroup(index:string)
   
 
   ngOnInit(): void {
+    console.log("userGroups: ",this.authonticationService.getCurrentUser().groups)
     this.headerService.show();
       this.form = new FormGroup({
         contact_id:new FormControl(),

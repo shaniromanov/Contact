@@ -1,7 +1,7 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { GroupService } from '../Services/group.service';
 import { Group } from '../DTO/group';
-import { FormGroup } from '@angular/forms';
+import { FormGroup, FormControl } from '@angular/forms';
 import { AuthonticationService } from '../Services/authontication.service';
 
 @Component({
@@ -12,11 +12,11 @@ import { AuthonticationService } from '../Services/authontication.service';
 export class AddGroupsComponent implements OnInit {
   groups:Array<Group>=this.groupsService.groups
   constructor(private groupsService:GroupService) { }
-  @Input() currentFormGroup: FormGroup;
+  @Input() currentFormControl: FormControl;
   @Input() currentIndex:number;
 
   ngOnInit(): void {
-    console.log("group form===>>>",this.currentFormGroup.value)
+    console.log("group form===>>>",this.currentFormControl.value)
    
   }
 }
