@@ -1,0 +1,7 @@
+<div class="filter">
+    <h4>Filter by group: </h4>
+    <select type="text"  id="groupName" (change)="filterByNameGroup($event.target.value)" >
+        <option  >without filter</option>
+        <option  *ngFor="let group of groups;" >{{group.groupName}}</option>
+        </select>
+</div>

@@ -15,18 +15,26 @@ import { GroupService } from '../Services/group.service';
   styleUrls: ['./contacts-list.component.css']
 })
 export class ContactsListComponent implements OnInit {
-  //replace the search to Independent component
-groups:Array<Group>=this.groupService.groups
+
   contacts:Array<Contact>
-  //delete groupService
+  filterContacts:Array<Contact>
+
   constructor(private contactservice:ContactsService,private router: Router ,public headerService:HeaderService, private groupService:GroupService) { }
 
   ngOnInit(): void {
     this.headerService.show()
     this.contacts=this.contactservice.getContacts()
+    this.filterContacts=this.contacts
 
   }
-
+  FilterByGroup(contacts:Array<Contact>){
+    if(contacts==null){
+      this.filterContacts=this.contacts
+    }
+   else{
+    this.filterContacts=contacts
+   }
+  }
   getUserContacts(username:string){
 
   }
@@ -34,9 +42,7 @@ groups:Array<Group>=this.groupService.groups
   deleteContact(contact_id:number){
 
   }
-  filterByNameGroup(event){
 
-  }
   searchByName(){
 
   }

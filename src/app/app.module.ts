@@ -19,6 +19,7 @@ import { AddGroupsComponent } from './add-groups/add-groups.component';
 import { SignInComponent } from './sign-in/sign-in.component';
 import { SignUpComponent } from './sign-up/sign-up.component';
 import { ImageComponent } from './image/image.component';
+import { FilterByGroupComponent } from './filter-by-group/filter-by-group.component';
 
 
 
@@ -37,6 +38,7 @@ import { ImageComponent } from './image/image.component';
     SignInComponent,
     SignUpComponent,
     ImageComponent,
+    FilterByGroupComponent,
    
   ],
   imports: [

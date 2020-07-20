@@ -1,0 +1,12 @@
+.filter{
+    margin: auto;
+    width: 85%;
+    padding: 10px;
+  }
+  select{
+    background: #eee;
+    border: none;
+    width:70%;
+    padding: 10px 15px;
+    margin: 2px;
+  }

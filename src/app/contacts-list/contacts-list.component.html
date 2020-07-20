@@ -8,13 +8,8 @@
     <input class="tHT4-2 placeholder" type="text" id="lastName" name="lastName"  placeholder="Last Name">
     <button (click)="searchByName()">Search</button>
 </div>
-<div class="filter">
-    <h4>Filter by group: </h4>
-    <select type="text"  id="groupName" (change)="filterByNameGroup($event.target.value)" >
-        <option hidden >Select Group </option>
-        <option  *ngFor="let group of groups;" >{{group.groupName}}</option>
-        </select>
-</div>
+<app-filter-by-group (filterContacts)="FilterByGroup($event)"></app-filter-by-group>
+
 <br/>
 <table  >
     <thead>
@@ -32,7 +27,7 @@
     </tr>
 </thead>
 <tbody>
-    <tr *ngFor ="let contact of contacts;index as i">
+    <tr *ngFor ="let contact of filterContacts;index as i">
 
         <td><img src={{contact.img}}/></td>
         <td>{{contact.firstName}}</td>
