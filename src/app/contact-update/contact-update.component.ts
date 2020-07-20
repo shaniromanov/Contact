@@ -21,7 +21,7 @@ export class ContactUpdateComponent implements OnInit {
   currentContact:Contact
   form:FormGroup
   groupList:Array<String>
-
+  currentContactId:string
   
   meansContact:{[meanType:string]:typeof  MeansOfContact}={"Email":Email,"Phone Number":PhoneNumber,"Adress":Adress}
 
@@ -33,16 +33,17 @@ export class ContactUpdateComponent implements OnInit {
   }
   ngOnInit(): void {
     this.headerService.show();
-    this.currentContact=this.getUser(this.route.snapshot.paramMap.get('id'))
+    this.currentContactId=this.route.snapshot.paramMap.get('id')
+    this.currentContact=this.getUser(this.currentContactId)
     this.groupList=this.groupService.groups.map(v=>v.groupName)
 
     this.form = new FormGroup({
       FirstName:new FormControl(this.currentContact.firstName),
       LastName:new FormControl(this.currentContact.lastName),
       Image:new FormControl(),
-      Adress:new FormControl(this.currentContact.meansOfContact.filter(mean=>mean.typeOfMeanContact=="Adress")[0]),
-      Website:new FormControl(this.currentContact.meansOfContact.filter(mean=>mean.typeOfMeanContact=="Website")[0]),
-      Username:new FormControl(this.currentContact.meansOfContact.filter(mean=>mean.typeOfMeanContact=="Usernamr")[0]),
+      Adress:new FormControl(this.currentContact.meansOfContact.find(mean=>mean.typeOfMeanContact=="Adress")),
+      Website:new FormControl(this.currentContact.meansOfContact.find(mean=>mean.typeOfMeanContact=="Website")),
+      Username:new FormControl(this.currentContact.meansOfContact.find(mean=>mean.typeOfMeanContact=="Usernamr")),
       MeansContact:new FormArray([]),
       Groups:new FormArray([])
     })
