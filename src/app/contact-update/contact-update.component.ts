@@ -49,7 +49,7 @@ export class ContactUpdateComponent implements OnInit {
     })
 
     this.currentContact.meansOfContact.map(val=>this.MeansContact.push( new FormGroup({typeOfContact:new FormControl(val.typeOfMeanContact),value:new FormControl(val.value)})))
-    this.currentContact.groups.map(val=>this.Groups.push(new FormGroup({groupName:new FormControl(val.groupName)})))
+    this.currentContact.groups.map(val=>this.Groups.push(new FormControl(val)))
   }
   getUser(id:string):Contact{
    return this.contactsService.findContact(id)
@@ -78,7 +78,7 @@ deleteGroup(index:string)
 
 AddGroupToForm(){
   var f:FormArray = this.form.get('Groups') as FormArray
-  f.push(new FormGroup({groupName:new FormControl('',[Validators.required])}))
+  f.push(new FormControl('',[Validators.required]))
 }
 onSubmit(){
   console.log("onsubmit==>>",this.form.value)

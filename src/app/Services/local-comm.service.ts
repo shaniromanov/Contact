@@ -4,15 +4,15 @@ import { RepositoryService } from './repository.service';
 import { Observable } from 'rxjs';
 import { LoginResponse } from '../DTO/Responses/login-response';
 import { LoginRequest } from '../DTO/Requests/login-request';
-import { User } from '../DTO/user';
 import { RegisterUserResponse } from '../DTO/Responses/register-user-response';
-import { Contact } from '../DTO/contact';
 import { AddContactResponse } from '../DTO/Responses/add-contact-response';
 import { ContactRequest } from '../DTO/Requests/contact-request';
 import { GroupRequest } from '../DTO/Requests/group-request';
 import { AddGroupResponse } from '../DTO/Responses/add-group-response';
 import { RegisterUserRequest } from '../DTO/Requests/register-user-request';
 import { DeleteGroupResponse } from '../DTO/Responses/delete-group-response';
+import { AddContactToGroupRequest } from '../DTO/Requests/add-contact-to-group-request';
+import { AddContactToGroupResponse } from '../DTO/Responses/add-contact-to-group-response';
 
 @Injectable()
 export class LocalCommService implements CommService {
@@ -54,12 +54,17 @@ export class LocalCommService implements CommService {
   }
 
   addContact(request: ContactRequest): Observable<AddContactResponse> {
-
-    return new Observable<LoginResponse>(
+    return new Observable<AddContactResponse>(
       subscriber => {
-
         let ret = this.repositoryService.addContact(request)
-
+        return subscriber.next(ret)
+      }
+    )
+  }
+  AddContactToGroup(request:AddContactToGroupRequest):Observable<AddContactToGroupResponse>{
+    return new Observable<AddContactToGroupResponse>(
+      subscriber => {
+        let ret = this.repositoryService.AddContactToGroup(request)
         return subscriber.next(ret)
       }
     )

@@ -24,6 +24,7 @@ groups:Array<Group>=this.groupService.groups
   ngOnInit(): void {
     this.headerService.show()
     this.contacts=this.contactservice.getContacts()
+
   }
 
   getUserContacts(username:string){
