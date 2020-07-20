@@ -40,7 +40,7 @@ export class ContactUpdateComponent implements OnInit {
     this.form = new FormGroup({
       FirstName: new FormControl(this.currentContact.firstName, [Validators.required]),
       LastName: new FormControl(this.currentContact.lastName, [Validators.required]),
-      Image: new FormControl(),
+      img: new FormControl(this.currentContact.img),
       Adress: new FormControl(this.currentContact.meansOfContact.filter(mean => mean.typeOfMeanContact == "Adress")[0]),
       Website: new FormControl(this.currentContact.meansOfContact.filter(mean => mean.typeOfMeanContact == "Website")[0]),
       Username: new FormControl(this.currentContact.meansOfContact.filter(mean => mean.typeOfMeanContact == "Username")[0]),
@@ -48,7 +48,7 @@ export class ContactUpdateComponent implements OnInit {
       Groups: new FormArray([])
     })
 
-    this.currentContact.meansOfContact.map(val => this.MeansContact.push(new FormGroup({ typeOfContact: new FormControl(val.typeOfMeanContact), value: new FormControl(val.value) })))
+    this.currentContact.meansOfContact.map(val => this.MeansContact.push(new FormGroup({ typeOfMeanContact: new FormControl(val.typeOfMeanContact), value: new FormControl(val.value) })))
     this.currentContact.groups.map(val => this.Groups.push(new FormControl(val)))
 
 
@@ -64,14 +64,11 @@ export class ContactUpdateComponent implements OnInit {
     return Object.keys(this.meansContact);
   }
   AddToForm() {
-    var f: FormArray = this.form.get('MeansContact') as FormArray
+    var f:FormArray = this.form.get('meansOfContact') as FormArray
 
-    f.push(new FormGroup({
-      typeOfContact: new FormControl(),
-      value: new FormControl('', [Validators.required]),
-    }))
-
-
+    f.push(new FormGroup({ typeOfMeanContact:new FormControl(),
+      value:new FormControl('',[Validators.required])
+     })) 
   }
   deleteMeanContact(index: string) {
 
@@ -82,8 +79,8 @@ export class ContactUpdateComponent implements OnInit {
   }
 
   AddGroupToForm() {
-    var f: FormArray = this.form.get('Groups') as FormArray
-    f.push(new FormGroup({ groupName: new FormControl('', [Validators.required]) }))
+    var f:FormArray = this.form.get('groups') as FormArray
+    f.push(new FormControl())
   }
   onSubmit() {
     console.log("onsubmit==>>", this.form.value)

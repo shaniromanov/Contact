@@ -12,7 +12,10 @@ export class ImageComponent implements OnInit {
   constructor() { }
 
   ngOnInit(): void {
-   
+    const img=this.currentFormGroup.get('img').value
+   if(img){
+    this.url=img
+   }
   }
   onSelectFile(event) { // called each time file input changes
    
