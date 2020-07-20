@@ -43,8 +43,8 @@ export class ContactsListComponent implements OnInit {
 
   }
 
-  searchByName(){
-
+  searchContact(contacts:Array<Contact>){
+    this.filterContacts=contacts
   }
   routeToUpdateContact(contact_id:number){
     this.router.navigate(['/contacts/' + contact_id ]);

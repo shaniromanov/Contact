@@ -2,12 +2,8 @@
 
 <br/>
 <br/>
+<app-search-contact (searchContacts)="searchContact($event)"></app-search-contact>
 
-<div class="search">
-    <input class="tHT4-2 placeholder" type="text" id="firstName" name="firstName"  placeholder="First Name">
-    <input class="tHT4-2 placeholder" type="text" id="lastName" name="lastName"  placeholder="Last Name">
-    <button (click)="searchByName()">Search</button>
-</div>
 <app-filter-by-group (filterContacts)="FilterByGroup($event)"></app-filter-by-group>
 
 <br/>
