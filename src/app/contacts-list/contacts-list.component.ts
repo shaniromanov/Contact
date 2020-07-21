@@ -46,13 +46,8 @@ export class ContactsListComponent implements OnInit {
 
   }
 
-<<<<<<< HEAD
-  searchByName() {
-
-=======
-  searchContact(contacts:Array<Contact>){
-    this.filterContacts=contacts
->>>>>>> 29e7e172b48a80f088f5c77ff08f78efab036afe
+  searchContact(contacts: Array<Contact>) {
+    this.filterContacts = contacts
   }
   routeToUpdateContact(contact_id: number) {
     this.router.navigate(['/contacts/' + contact_id]);

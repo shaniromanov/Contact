@@ -8,20 +8,22 @@ import { ContactsService } from '../Services/contacts.service';
   styleUrls: ['./search-contact.component.css']
 })
 export class SearchContactComponent implements OnInit {
-  @Output() searchContacts:EventEmitter<Array<Contact>>
-  contacts:Array<Contact>
+  @Output() searchContacts: EventEmitter<Array<Contact>>
+  contacts: Array<Contact>
 
-  constructor(private contactService:ContactsService) {
-    this.searchContacts = new EventEmitter<Array<Contact>>() 
-   }
+  constructor(private contactService: ContactsService) {
+    this.searchContacts = new EventEmitter<Array<Contact>>()
+  }
 
   ngOnInit(): void {
-    this.contacts=this.contactService.getContacts()
+    this.contactService.getContacts().subscribe(contacts =>
+      this.contacts = contacts)
+
   }
-  firstNameSearch(firstName:string){
-    this.searchContacts.emit(this.contacts.filter(contact=>contact.firstName.startsWith(firstName.toLowerCase())||contact.firstName.startsWith(firstName.toUpperCase())))
+  firstNameSearch(firstName: string) {
+    this.searchContacts.emit(this.contacts.filter(contact => contact.firstName.startsWith(firstName.toLowerCase()) || contact.firstName.startsWith(firstName.toUpperCase())))
   }
-  lastNameSearch(lastName:string){
-    this.searchContacts.emit(this.contacts.filter(contact=>contact.lastName.startsWith(lastName.toLowerCase())||contact.lastName.startsWith(lastName.toUpperCase())))
+  lastNameSearch(lastName: string) {
+    this.searchContacts.emit(this.contacts.filter(contact => contact.lastName.startsWith(lastName.toLowerCase()) || contact.lastName.startsWith(lastName.toUpperCase())))
   }
 }
