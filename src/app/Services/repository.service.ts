@@ -107,6 +107,15 @@ export class RepositoryService {
     return retval
   }
 
+  _getUser(_user: User): User {
+    return this.users.find(user => user.UserName === _user.UserName && user.Password === _user.Password)
+  }
+
+
+  getContacts(user: User) {
+    return this._getUser(user).contacts;
+  }
+
   deleteGroup(index: number, username = "margaliteSayada", password = "234567"): DeleteGroupResponse {
     const user = this.users.find(u => u.Password === password && u.UserName === username)
     if (user) {
@@ -164,14 +173,14 @@ export class RepositoryService {
 
 
   updateContact(request: ContactRequest): UpdateContactResponse {
-    let retval: UpdateContactResponse
-    const user = this.users.find(user => user.UserName == request.UserName)
-    if (user.contacts.find(contact => contact.contact_id == request.contact.contact_id)) {
-      retval = new UpdateContactResponse()
+    try {
+      const user = this.users.find(user => user.UserName == request.UserName);
+      let foundContactIndex = user.contacts.findIndex(contact => contact.contact_id == request.contact.contact_id)
+      user.contacts[foundContactIndex] = request.contact;
+      return new UpdateContactResponse()
+    } catch{
 
     }
-    console.log(retval)
-    return retval
   }
 
 

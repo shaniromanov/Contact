@@ -16,40 +16,43 @@ import { GroupService } from '../Services/group.service';
 })
 export class ContactsListComponent implements OnInit {
 
-  contacts:Array<Contact>
-  filterContacts:Array<Contact>
+  contacts: Array<Contact> = [];
+  filterContacts: Array<Contact> = [];
 
-  constructor(private contactservice:ContactsService,private router: Router ,public headerService:HeaderService, private groupService:GroupService) { }
+  constructor(private contactservice: ContactsService, private router: Router, public headerService: HeaderService, private groupService: GroupService) { }
 
   ngOnInit(): void {
     this.headerService.show()
-    this.contacts=this.contactservice.getContacts()
-    this.filterContacts=this.contacts
-
-  }
-  FilterByGroup(contacts:Array<Contact>){
-    if(contacts==null){
-      this.filterContacts=this.contacts
+    this.contactservice.getContacts().subscribe(contacts => {
+      this.contacts = contacts;
+      this.filterContacts = contacts
     }
-   else{
-    this.filterContacts=contacts
-   }
+    )
+
   }
-  getUserContacts(username:string){
+  FilterByGroup(contacts: Array<Contact>) {
+    if (contacts == null) {
+      this.filterContacts = this.contacts
+    }
+    else {
+      this.filterContacts = contacts
+    }
+  }
+  getUserContacts(username: string) {
 
   }
 
-  deleteContact(contact_id:number){
+  deleteContact(contact_id: number) {
 
   }
 
-  searchByName(){
+  searchByName() {
 
   }
-  routeToUpdateContact(contact_id:number){
-    this.router.navigate(['/contacts/' + contact_id ]);
+  routeToUpdateContact(contact_id: number) {
+    this.router.navigate(['/contacts/' + contact_id]);
   }
-  routeToAddContact(){
-    this.router.navigate(['/add-contact/'  ]);
+  routeToAddContact() {
+    this.router.navigate(['/add-contact/']);
   }
 }

@@ -25,5 +25,5 @@ export abstract class CommService {
   abstract deleteGroup(index: number): Observable<DeleteGroupResponse>
   abstract updateContact(request: ContactRequest): Observable<UpdateContactResponse>
   abstract AddContactToGroup(request: AddContactToGroupRequest): Observable<AddContactToGroupResponse>
-
+  abstract getContacts(user: User): Observable<Contact[]>
 }

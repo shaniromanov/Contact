@@ -2,7 +2,8 @@ import { Injectable } from '@angular/core';
 import { Contact } from '../DTO/contact';
 import { CommService } from './comm.service';
 import { AuthonticationService } from './authontication.service';
-import { Observable } from 'rxjs';
+import { Observable, Subject } from 'rxjs';
+import { map } from 'rxjs/operators';
 import { AddContactResponse } from '../DTO/Responses/add-contact-response';
 import { ContactRequest } from '../DTO/Requests/contact-request';
 import { UpdateContactResponse } from '../DTO/Responses/update-contact-response';
@@ -12,13 +13,11 @@ import { GroupService } from './group.service';
   providedIn: 'root'
 })
 export class ContactsService {
-
   contacts: Array<Contact> = []
   constructor(private commService: CommService, private authonticationService: AuthonticationService, private groupService: GroupService) {
-    this.contacts = this.authonticationService.getCurrentUser().contacts
   }
-  getContacts(): Array<Contact> {
-    return this.contacts
+  getContacts(): Observable<Contact[]> {
+    return this.commService.getContacts(this.authonticationService.getCurrentUser()).pipe(map((contacts) => { this.contacts = contacts; return contacts; }))
   }
   findContact(id: string): Contact {
     return this.contacts.find(contact => contact.contact_id.toString() == id)

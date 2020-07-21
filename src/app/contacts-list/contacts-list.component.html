@@ -1,69 +1,70 @@
 <h1>Contacts</h1>
 
-<br/>
-<br/>
+<br />
+<br />
 
 <div class="search">
-    <input class="tHT4-2 placeholder" type="text" id="firstName" name="firstName"  placeholder="First Name">
-    <input class="tHT4-2 placeholder" type="text" id="lastName" name="lastName"  placeholder="Last Name">
+    <input class="tHT4-2 placeholder" type="text" id="firstName" name="firstName" placeholder="First Name">
+    <input class="tHT4-2 placeholder" type="text" id="lastName" name="lastName" placeholder="Last Name">
     <button (click)="searchByName()">Search</button>
 </div>
 <app-filter-by-group (filterContacts)="FilterByGroup($event)"></app-filter-by-group>
 
-<br/>
-<table  >
+<br />
+<table>
     <thead>
-    <tr>
-        <td></td>
-        <td>First Name</td>
-        <td>Last Name</td>
-        <td>Address</td>
-        <td>Website</td>
-        <td>Means Of Contact</td>
-        <td>Groups</td>
-        <td>User Name</td>
-        <td></td>
-        <td></td>
-    </tr>
-</thead>
-<tbody>
-    <tr *ngFor ="let contact of filterContacts;index as i">
+        <tr>
+            <td></td>
+            <td>First Name</td>
+            <td>Last Name</td>
+            <td>Address</td>
+            <td>Website</td>
+            <td>Means Of Contact</td>
+            <td>Groups</td>
+            <td>User Name</td>
+            <td></td>
+            <td></td>
+        </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor="let contact of filterContacts;index as i">
 
-        <td><img src={{contact.img}}/></td>
-        <td>{{contact.firstName}}</td>
-        <td>{{contact.lastName}}</td>
-        <td>{{contact.address.value}}</td>
-        <td>{{contact.website.value}}</td>
-        <td>
-            <div class="dropdown">
-                <button class="btn btn-secondary dropdown-toggle" type="button" data-toggle="dropdown">
-                    <span class="caret"></span></button>
-                <ul class="dropdown-menu">
-                  <li *ngFor="let meanContract of contact.meansOfContact">{{meanContract.typeOfMeanContact}}: {{meanContract.value}}</li>
-                </ul>
-              </div>
-        </td>
-        <td>
-            <div class="dropdown">
-                <button class="btn btn-secondary dropdown-toggle" type="button" data-toggle="dropdown">
-                    <span class="caret"></span></button>
-                <ul class="dropdown-menu">
-                  <li *ngFor="let group of contact.groups">{{group}}</li>
-                </ul>
-              </div>
-        </td>
-        <td>{{contact.username.value}}</td>
+            <td><img src={{contact.img}} /></td>
+            <td>{{contact.firstName}}</td>
+            <td>{{contact.lastName}}</td>
+            <td>{{contact.address.value}}</td>
+            <td>{{contact.website.value}}</td>
+            <td>
+                <div class="dropdown">
+                    <button class="btn btn-secondary dropdown-toggle" type="button" data-toggle="dropdown">
+                        <span class="caret"></span></button>
+                    <ul class="dropdown-menu">
+                        <li *ngFor="let meanContract of contact.meansOfContact">{{meanContract.typeOfMeanContact}}:
+                            {{meanContract.value}}</li>
+                    </ul>
+                </div>
+            </td>
+            <td>
+                <div class="dropdown">
+                    <button class="btn btn-secondary dropdown-toggle" type="button" data-toggle="dropdown">
+                        <span class="caret"></span></button>
+                    <ul class="dropdown-menu">
+                        <li *ngFor="let group of contact.groups">{{group}}</li>
+                    </ul>
+                </div>
+            </td>
+            <td>{{contact.username.value}}</td>
 
-        <td><button (click)="routeToUpdateContact(contact.contact_id)">Update</button></td>
-        <td><button (click)="deleteContact(contact.contact_id)" >Delete</button></td>
-    </tr>
-</tbody>
+            <td><button (click)="routeToUpdateContact(contact.contact_id)">Update</button></td>
+            <td><button (click)="deleteContact(contact.contact_id)">Delete</button></td>
+        </tr>
+    </tbody>
 </table>
-    <br/>
-   
-    <div>
+<br />
+
+<div>
 
     <button class="btn2" (click)="routeToAddContact()">Add Contact</button>
 </div>
-<br/>
-<br/>
+<br />
+<br />
