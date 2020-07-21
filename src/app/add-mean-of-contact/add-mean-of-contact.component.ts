@@ -34,6 +34,7 @@ export class AddMeanOfContactComponent implements OnInit {
   }
   setValue(event) {
     const typ = this.currentFormGroup.get('typeOfMeanContact').value
+    console.log('fffff',typ )
     this.meansContact[typ].setValue(event.target.value)
     this.currentFormGroup.setValue(this.meansContact[typ])
     this.currentFormGroup.get('typeOfMeanContact').setValue(typ)

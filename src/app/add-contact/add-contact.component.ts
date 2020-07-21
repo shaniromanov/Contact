@@ -11,6 +11,7 @@ import { AuthonticationService } from '../Services/authontication.service';
 import { Router } from '@angular/router';
 import { Adress } from '../DTO/adress';
 import { Website } from '../DTO/website';
+import { MobileNumber } from '../DTO/mobile-number';
 
 @Component({
   selector: 'app-add-contact',
@@ -21,7 +22,7 @@ export class AddContactComponent implements OnInit {
   form:FormGroup
   // websiteValidateMsg:boolean=false
  
-  meansOfContactList:{[meanType:string]:typeof  MeansOfContact}={"Address":Adress,"Phone Number":PhoneNumber}
+  meansOfContactList:{[meanType:string]:typeof  MeansOfContact}={"Email":Email,"Phone Number":PhoneNumber,"Mobile Phone":MobileNumber}
   get meansOfContact(): FormArray {
     return this.form.get('meansOfContact') as FormArray;
   }
@@ -86,13 +87,7 @@ deleteGroup(index:string)
 
   }
 
-  // validateWebsite(event){
-  //   console.log("website validator")
-  //   if(this.form.get('website').invalid)
-  //   this.websiteValidateMsg=true
-  //   else this.websiteValidateMsg=false
 
-  // }
 
 
 

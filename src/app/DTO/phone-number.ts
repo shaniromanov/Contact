@@ -7,7 +7,7 @@ export class PhoneNumber extends MeansOfContact{
     }
     constructor(val:string) {
         super(val);
-        this.typeOfMeanContact="Phone"
+        this.typeOfMeanContact="Phone Number"
 
     }
   

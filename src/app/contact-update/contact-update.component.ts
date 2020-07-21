@@ -11,6 +11,8 @@ import { HeaderService } from '../Services/header.service';
 import { GroupService } from '../Services/group.service';
 import { UserName } from '../DTO/user-name';
 import { AuthonticationService } from '../Services/authontication.service';
+import { MobileNumber } from '../DTO/mobile-number';
+import { Website } from '../DTO/website';
 
 @Component({
   selector: 'app-contact-update',
@@ -25,7 +27,7 @@ export class ContactUpdateComponent implements OnInit {
   groupList: Array<String>
 
 
-  meansContact: { [meanType: string]: typeof MeansOfContact } = { "Email": Email, "Phone Number": PhoneNumber, "Adress": Adress }
+  meansContact: { [meanType: string]: typeof MeansOfContact } = { "Email": Email, "Phone Number": PhoneNumber, "Mobile Phone": MobileNumber }
 
   get meansOfContact(): FormArray {
     return this.form.get('meansOfContact') as FormArray;
@@ -33,6 +35,7 @@ export class ContactUpdateComponent implements OnInit {
   get groups(): FormArray {
     return this.form.get('groups') as FormArray;
   }
+
   ngOnInit(): void {
     this.headerService.show();
     this.currentContact = this.getUser(this.route.snapshot.paramMap.get('id'))
@@ -41,19 +44,29 @@ export class ContactUpdateComponent implements OnInit {
       firstName: new FormControl(this.currentContact.firstName, [Validators.required]),
       lastName: new FormControl(this.currentContact.lastName, [Validators.required]),
       img: new FormControl(this.currentContact.img),
-      // Adress: new FormControl(this.currentContact.meansOfContact.filter(mean => mean.typeOfMeanContact == "Adress")[0]),
-      // Website: new FormControl(this.currentContact.meansOfContact.filter(mean => mean.typeOfMeanContact == "Website")[0]),
-      // username: new FormControl(this.currentContact.meansOfContact.filter(mean => mean.typeOfMeanContact == "Username")[0]),
+      address:new FormGroup({ typeOfMeanContact:new FormControl("Address"),
+      value:new FormControl()}),
+      website:new FormGroup({ typeOfMeanContact:new FormControl("Website"),
+      value:new FormControl('',new Website("").validate())}),
+      username:new FormGroup({ typeOfMeanContact:new FormControl("UserName"),
+      value:new FormControl()}),
       meansOfContact: new FormArray([]),
       groups: new FormArray([])
     })
 
-    this.currentContact.meansOfContact.map(val => this.meansOfContact.push(new FormGroup({ typeOfMeanContact: new FormControl(val.typeOfMeanContact), value: new FormControl(val.value) })))
-    this.currentContact.groups.map(val => this.groups.push(new FormControl(val)))
+    this.currentContact.meansOfContact.map(val => {
+      if(this.meansContact[val.typeOfMeanContact]){
+        this.meansOfContact.push(new FormGroup({ typeOfMeanContact: new FormControl(val.typeOfMeanContact), value: new FormControl(val.value) }))
+      }
+      else{
+        console.log(val.typeOfMeanContact.toLowerCase())
+        this.form.get(val.typeOfMeanContact.toLowerCase()).get("typeOfMeanContact").setValue(val.typeOfMeanContact)
+        this.form.get(val.typeOfMeanContact.toLowerCase()).get("value").setValue(val.value)
+      }
 
-
-
-  }
+  })
+  this.currentContact.groups.map(val => this.groups.push(new FormControl(val)))
+}
   getUser(id: string): Contact {
     return this.contactsService.findContact(id)
   }
