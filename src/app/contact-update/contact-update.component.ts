@@ -44,29 +44,36 @@ export class ContactUpdateComponent implements OnInit {
       firstName: new FormControl(this.currentContact.firstName, [Validators.required]),
       lastName: new FormControl(this.currentContact.lastName, [Validators.required]),
       img: new FormControl(this.currentContact.img),
-      address:new FormGroup({ typeOfMeanContact:new FormControl("Address"),
-      value:new FormControl()}),
-      website:new FormGroup({ typeOfMeanContact:new FormControl("Website"),
-      value:new FormControl('',new Website("").validate())}),
-      username:new FormGroup({ typeOfMeanContact:new FormControl("UserName"),
-      value:new FormControl()}),
+      address: new FormGroup({
+        typeOfMeanContact: new FormControl("Address"),
+        value: new FormControl(this.currentContact.address.value)
+      }),
+      website: new FormGroup({
+        typeOfMeanContact: new FormControl("Website"),
+        value: new FormControl(this.currentContact.website.value)
+      }),
+
+      username: new FormGroup({
+        typeOfMeanContact: new FormControl("UserName"),
+        value: new FormControl(this.currentContact.username.value)
+      }),
       meansOfContact: new FormArray([]),
       groups: new FormArray([])
     })
 
     this.currentContact.meansOfContact.map(val => {
-      if(this.meansContact[val.typeOfMeanContact]){
+      if (this.meansContact[val.typeOfMeanContact]) {
         this.meansOfContact.push(new FormGroup({ typeOfMeanContact: new FormControl(val.typeOfMeanContact), value: new FormControl(val.value) }))
       }
-      else{
+      else {
         console.log(val.typeOfMeanContact.toLowerCase())
         this.form.get(val.typeOfMeanContact.toLowerCase()).get("typeOfMeanContact").setValue(val.typeOfMeanContact)
         this.form.get(val.typeOfMeanContact.toLowerCase()).get("value").setValue(val.value)
       }
 
-  })
-  this.currentContact.groups.map(val => this.groups.push(new FormControl(val)))
-}
+    })
+    this.currentContact.groups.map(val => this.groups.push(new FormControl(val)))
+  }
   getUser(id: string): Contact {
     return this.contactsService.findContact(id)
   }
