@@ -26,7 +26,8 @@ export class ContactUpdateComponent implements OnInit {
   groupList: Array<String>
   msg:string
 
-  meansContact: { [meanType: string]: typeof MeansOfContact } = { "Email": Email, "Phone Number": PhoneNumber, "Mobile Phone": MobileNumber }
+  meansContact: { [meanType: string]: MeansOfContact } =
+  { "Email": new Email(null), "Phone Number": new PhoneNumber(null), "Mobile Number": new MobileNumber(null) }
 
   get meansOfContact(): FormArray {
     return this.form.get('meansOfContact') as FormArray;
@@ -47,15 +48,16 @@ export class ContactUpdateComponent implements OnInit {
       address:new FormGroup({ typeOfMeanContact:new FormControl(this.currentContact.address.typeOfMeanContact),
       value:new FormControl(this.currentContact.address.value)}),
       website:new FormGroup({ typeOfMeanContact:new FormControl(this.currentContact.website.typeOfMeanContact),
-      value:new FormControl(this.currentContact.website.value,this.currentContact.website.validate)}),
+      value:new FormControl(this.currentContact.website.value,new Website("").validate())}),
       username:new FormGroup({ typeOfMeanContact:new FormControl(this.currentContact.username.typeOfMeanContact),
       value:new FormControl(this.currentContact.username.value)}),
       meansOfContact: new FormArray([]),
       groups: new FormArray([])
     })
 
-    this.currentContact.meansOfContact.map(val => {
-        this.meansOfContact.push(new FormGroup({ typeOfMeanContact: new FormControl(val.typeOfMeanContact), value: new FormControl(val.value) }))
+    this.currentContact.meansOfContact.map(val=> {
+console.log(val.typeOfMeanContact)
+        this.meansOfContact.push(new FormGroup({ typeOfMeanContact: new FormControl(val.typeOfMeanContact), value: new FormControl(val.value,this.meansContact[val.typeOfMeanContact].validate()) }))
   })
 
   this.currentContact.groups.map(val => this.groups.push(new FormControl(val)))
@@ -92,11 +94,13 @@ export class ContactUpdateComponent implements OnInit {
     console.log("onsubmit==>>", this.form.value, 'updated=>', updatedContact)
 
     this.contactsService.updateContact({
-      "UserName": this.authonticationService.getCurrentUser().UserName,
+      "UserName": this.authonticationService.getUserName(),
       "contact": updatedContact
     }).subscribe(response => {
       if(response instanceof UpdateContactResponseOk){
         Object.assign(this.currentContact, this.form.value)
+        this.currentContact.groups.forEach(grp =>
+          this.authonticationService.getCurrentUser().groups.find(group => group.groupName == grp).contacts[this.form.get("contact_id").value] = this.form.value)
         this.router.navigate(['/contacts/']);
       }
       this.msg=response.Message()

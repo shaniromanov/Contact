@@ -34,12 +34,14 @@ export class AddContactComponent implements OnInit {
   }
  
   onSubmit(){
- 
+    this.contactsService.valueForId++
+    console.log()
   this.form.get('contact_id').setValue(this.contactsService.valueForId)
-    this.contactsService.addContact({"UserName":this.authonticationService.getCurrentUser().UserName,"contact":this.form.value}).subscribe(response=>{
+    this.contactsService.addContact({"UserName":this.authonticationService.getUserName(),"contact":this.form.value}).subscribe(response=>{
       if(response instanceof AddContactResponseOk){
-        this.contactsService.valueForId+1
         this.contactsService.contacts.push(this.form.value)
+        this.contactsService.contacts.find(contact=>contact.contact_id==this.form.get("contact_id").value).groups.forEach(grp =>
+          this.authonticationService.getCurrentUser().groups.find(group => group.groupName == grp).contacts[this.form.get("contact_id").value] = this.form.value)
         this.router.navigate(['/contacts/']);
       }
       this.msg=response.Message()

@@ -39,7 +39,7 @@ export class GroupsComponent implements OnInit {
   }
 
   onSubmit() {
-    this.groupsService.addGroup({ "UserName": this.authonticationService.getCurrentUser().UserName, "Groups": this.Groups.value })
+    this.groupsService.addGroup({ "UserName": this.authonticationService.getUserName(), "Groups": this.Groups.value })
       .subscribe(response=>{
         if(response instanceof AddGroupResponseOK){
           Object.assign(this.groupList, this.Groups.value)
@@ -52,7 +52,7 @@ export class GroupsComponent implements OnInit {
     const i= this.groupList.findIndex(grp=>grp.group_id==this.Groups.value[index].group_id)
     console.log("index comp",index)
     if(i>-1){
-      this.groupsService.deleteGroup( {"id":this.Groups.value[index].group_id,"userName":this.authonticationService.getCurrentUser().UserName}
+      this.groupsService.deleteGroup( {"id":this.Groups.value[index].group_id,"userName":this.authonticationService.getUserName()}
       ).subscribe((response) => {
     if(response instanceof DeleteGroupResponse){
     console.log(this.groupList)
@@ -64,7 +64,7 @@ export class GroupsComponent implements OnInit {
     console.log(this.groupList)
   }
   AddGroupToForm() {
-    this.groupsService.valueForId+1
+    this.groupsService.valueForId++
     var f: FormArray = this.form.get('Groups') as FormArray
     f.push(new FormGroup({group_id:new FormControl(this.groupsService.valueForId), groupName: new FormControl() }))
     
