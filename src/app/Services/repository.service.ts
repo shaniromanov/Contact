@@ -29,6 +29,9 @@ import { AddContactToGroupResponseOk } from '../DTO/Responses/add-contact-to-gro
 import { AddContactToGroupResponseContactExists } from '../DTO/Responses/add-contact-to-group-response-contact-exists';
 import { UpdateContactResponseOk } from '../DTO/Responses/update-contact-response-ok';
 import { DeleteGroupRequest } from '../DTO/Requests/delete-group-request';
+import { DeleteContactResponse } from '../DTO/Responses/delete-contact-response';
+import { DeleteContactResponseOk } from '../DTO/Responses/delete-contact-response-ok';
+import { DeleteContactRequest } from '../DTO/Requests/delete-contact-request';
 
 
 
@@ -176,7 +179,18 @@ export class RepositoryService {
 
     }
   }
-
+  deleteContact(request:DeleteContactRequest):DeleteContactResponse{
+    console.log(request)
+    const user = this.users.find(user => user.UserName == request.UserName)
+    console.log("before", user.contacts)
+    if (user) {
+      const i=user.contacts.findIndex(contact=>contact.contact_id==request.id)
+      user.contacts.splice(i, 1)
+      console.log("after", user.contacts)
+      let retval = new DeleteContactResponseOk();
+      return retval
+    }
+  }
   AddContactToGroup(request: AddContactToGroupRequest): AddContactToGroupResponse {
     let retval = new AddContactToGroupResponseOk()
     const user = this.users.find(user => user.UserName == request.UserName)

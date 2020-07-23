@@ -8,6 +8,9 @@ import { Email } from '../DTO/email';
 import { Router } from '@angular/router';
 import { HeaderService } from '../Services/header.service';
 import { GroupService } from '../Services/group.service';
+import { AuthonticationService } from '../Services/authontication.service';
+import { DeleteContactResponse } from '../DTO/Responses/delete-contact-response';
+import { DeleteContactResponseOk } from '../DTO/Responses/delete-contact-response-ok';
 
 @Component({
   selector: 'app-contacts-list',
@@ -19,7 +22,7 @@ export class ContactsListComponent implements OnInit {
   contacts: Array<Contact> = [];
   filterContacts: Array<Contact> = [];
 
-  constructor(private contactservice: ContactsService, private router: Router, public headerService: HeaderService, private groupService: GroupService) { }
+  constructor(private contactservice: ContactsService, private router: Router, public headerService: HeaderService, private authonticationService: AuthonticationService) { }
 
   ngOnInit(): void {
     this.headerService.show()
@@ -35,20 +38,27 @@ export class ContactsListComponent implements OnInit {
       this.filterContacts = contacts
     }
   }
-  getUserContacts(username: string) {
-
-  }
 
   deleteContact(contact_id: number) {
-
-  }
+    console.log(this.contacts)
+    this.contactservice.deleteContact( {"UserName":this.authonticationService.getUserName(),
+    "id":contact_id}).subscribe((response) => {
+      if(response instanceof DeleteContactResponseOk){
+       const i= this.contacts.findIndex(contact=>contact.contact_id==contact_id)
+       console.log(this.contacts)
+       this.contacts.splice(i, 1)
+    }
+  })   
+}
 
   searchContact(contacts: Array<Contact>) {
     this.filterContacts = contacts
   }
+
   routeToUpdateContact(contact_id: number) {
     this.router.navigate(['/contacts/' + contact_id]);
   }
+
   routeToAddContact() {
     this.router.navigate(['/add-contact/']);
   }

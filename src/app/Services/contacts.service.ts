@@ -8,6 +8,8 @@ import { AddContactResponse } from '../DTO/Responses/add-contact-response';
 import { ContactRequest } from '../DTO/Requests/contact-request';
 import { UpdateContactResponse } from '../DTO/Responses/update-contact-response';
 import { GroupService } from './group.service';
+import { DeleteContactResponse } from '../DTO/Responses/delete-contact-response';
+import { DeleteContactRequest } from '../DTO/Requests/delete-contact-request';
 
 @Injectable({
   providedIn: 'root'
@@ -31,6 +33,10 @@ export class ContactsService {
   addContact(request: ContactRequest): Observable<AddContactResponse> {
     
     return this.commService.addContact(request)
+  }
+  
+  deleteContact(request:DeleteContactRequest):Observable<DeleteContactResponse>{
+    return this.commService.deleteContact(request)
   }
 
   updateContact(request: ContactRequest): Observable<UpdateContactResponse> {

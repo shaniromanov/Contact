@@ -17,6 +17,8 @@ import { AddContactToGroupResponse } from '../DTO/Responses/add-contact-to-group
 import { User } from '../DTO/user';
 import { Contact } from '../DTO/contact';
 import { DeleteGroupRequest } from '../DTO/Requests/delete-group-request';
+import { DeleteContactResponse } from '../DTO/Responses/delete-contact-response';
+import { DeleteContactRequest } from '../DTO/Requests/delete-contact-request';
 
 @Injectable()
 export class LocalCommService implements CommService {
@@ -94,5 +96,12 @@ export class LocalCommService implements CommService {
         return subscriber.next(ret)
       }
     )
+  }
+
+  deleteContact(request:DeleteContactRequest):Observable<DeleteContactResponse>{
+    return new Observable<DeleteContactResponse>(
+      subscriber => {
+        subscriber.next(this.repositoryService.deleteContact(request))
+      })
   }
 }
