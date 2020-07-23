@@ -11,9 +11,10 @@
             <tr formArrayName="Groups" *ngFor='let group of Groups.controls;index as i'>
                 <td>
                     <h4>Group Name:</h4>
+                   
                 </td>
                 <td [formGroup]="group">
-
+                    <input type="hidden"  formControlName="group_id"> 
                     <input type="text" id="groupName" formControlName="groupName" placeholder="Add Group Name">
 
                 </td>
@@ -27,6 +28,7 @@
         </tbody>
     </table>
     <br />
+    <div class="msg">{{msg}}</div>
     <div>
         <button type="button" class=btn2 (click)="AddGroupToForm()">Add new group</button>
     </div><br /><br />

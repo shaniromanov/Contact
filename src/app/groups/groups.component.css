@@ -63,4 +63,9 @@ input [type=text]:disabled {
     background: white;
 
 }
+.msg{
+    color:purple;
+    font-size: medium;
+    font-weight: bold;
+  }
 

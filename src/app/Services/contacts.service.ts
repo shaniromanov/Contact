@@ -14,8 +14,10 @@ import { GroupService } from './group.service';
 })
 export class ContactsService {
   contacts: Array<Contact> = []
+  valueForId:number
   constructor(private commService: CommService, private authonticationService: AuthonticationService, private groupService: GroupService) {
     this.contacts=this.authonticationService.getCurrentUser().contacts
+    this.valueForId=Math.max.apply(Math, this.contacts.map(contact=>contact.contact_id))+1
   }
   getContacts(): Contact[] {
     return this.contacts
@@ -30,9 +32,7 @@ export class ContactsService {
     
     return this.commService.addContact(request)
   }
-  numberOfContacts(): number {
-    return this.contacts.length
-  }
+
   updateContact(request: ContactRequest): Observable<UpdateContactResponse> {
     return this.commService.updateContact(request)
   }

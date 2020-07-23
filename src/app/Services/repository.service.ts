@@ -28,6 +28,7 @@ import { AddContactToGroupResponse } from '../DTO/Responses/add-contact-to-group
 import { AddContactToGroupResponseOk } from '../DTO/Responses/add-contact-to-group-response-ok';
 import { AddContactToGroupResponseContactExists } from '../DTO/Responses/add-contact-to-group-response-contact-exists';
 import { UpdateContactResponseOk } from '../DTO/Responses/update-contact-response-ok';
+import { DeleteGroupRequest } from '../DTO/Requests/delete-group-request';
 
 
 
@@ -113,14 +114,16 @@ export class RepositoryService {
     return this._getUser(user).contacts;
   }
 
-  deleteGroup(index: number, username = "margaliteSayada", password = "234567"): DeleteGroupResponse {
-    const user = this.users.find(u => u.Password === password && u.UserName === username)
+  deleteGroup(request:DeleteGroupRequest): DeleteGroupResponse {
+   console.log(request)
+    const user = this.users.find(user => user.UserName == request.userName)
+    console.log("before", user.groups)
     if (user) {
-      user.groups.splice(index, 1)
-      let retval: DeleteGroupResponse
-      console.log("deleted")
-      retval = new DeleteGroupResponse();
-      retval.groups = user.groups;
+      const i=user.groups.findIndex(grp=>grp.group_id==request.id)
+      console.log("i",i)
+      user.groups.splice(i, 1)
+      console.log("after", user.groups)
+      let retval = new DeleteGroupResponse();
       return retval
     }
   }

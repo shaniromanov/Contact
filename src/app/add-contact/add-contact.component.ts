@@ -35,9 +35,10 @@ export class AddContactComponent implements OnInit {
  
   onSubmit(){
  
-  this.form.get('contact_id').setValue(this.contactsService.numberOfContacts()+1)
+  this.form.get('contact_id').setValue(this.contactsService.valueForId)
     this.contactsService.addContact({"UserName":this.authonticationService.getCurrentUser().UserName,"contact":this.form.value}).subscribe(response=>{
       if(response instanceof AddContactResponseOk){
+        this.contactsService.valueForId+1
         this.contactsService.contacts.push(this.form.value)
         this.router.navigate(['/contacts/']);
       }
@@ -46,7 +47,6 @@ export class AddContactComponent implements OnInit {
   }
   AddToForm(){
       var f:FormArray = this.form.get('meansOfContact') as FormArray
-
       f.push(new FormGroup({ typeOfMeanContact:new FormControl(),
         value:new FormControl('',[Validators.required])
        })) 

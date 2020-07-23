@@ -5,6 +5,8 @@ import { GroupService } from '../Services/group.service';
 import { FormGroup, FormArray, FormControl, Validators } from '@angular/forms';
 import { HeaderService } from '../Services/header.service';
 import { AuthonticationService } from '../Services/authontication.service';
+import { AddGroupResponseOK } from '../DTO/Responses/add-group-response-ok';
+import { DeleteGroupResponse } from '../DTO/Responses/delete-group-response';
 
 @Component({
   selector: 'app-groups',
@@ -12,48 +14,60 @@ import { AuthonticationService } from '../Services/authontication.service';
   styleUrls: ['./groups.component.css']
 })
 export class GroupsComponent implements OnInit {
-  groups: Array<Group>
+  groupList: Array<Group>
   form: FormGroup
+  msg:string
 
   get Groups(): FormArray {
     return this.form.get('Groups') as FormArray;
   }
-  set Groups(value) {
-    this.form.controls.Groups = value;
-  }
+ 
 
   constructor(private router: Router, private groupsService: GroupService, public headerService: HeaderService, private authonticationService: AuthonticationService) { }
 
   ngOnInit(): void {
     this.headerService.show()
-    this.groups = this.groupsService.groups
+    this.groupList = this.groupsService.groups
     this.form = new FormGroup({
       Groups: new FormArray([])
     })
-    this.setGroupsIntoForm(this.groups);
+    this.setGroupsIntoForm(this.groupList);
   }
 
-  setGroupsIntoForm(groups) {
-    this.Groups = new FormArray([])
-    groups.map(val => this.Groups.push(new FormGroup({ groupName: new FormControl(val.groupName) })))
+  setGroupsIntoForm(groups:Array<Group>) {
+    groups.map(val => this.Groups.push(new FormGroup({group_id: new FormControl(val.group_id), groupName: new FormControl(val.groupName) })))
   }
 
   onSubmit() {
-    console.log("groups form===>>>", this.form.value);
     this.groupsService.addGroup({ "UserName": this.authonticationService.getCurrentUser().UserName, "Groups": this.Groups.value })
-      .subscribe()
+      .subscribe(response=>{
+        if(response instanceof AddGroupResponseOK){
+          Object.assign(this.groupList, this.Groups.value)
+        }
+        this.msg=response.Message()
+      })
 
   }
   deleteGroup(index: number) {
-
-    this.groupsService.deleteGroup(index).subscribe((res: Group[]) => {
-      this.setGroupsIntoForm(res)
-    })
-
+    const i= this.groupList.findIndex(grp=>grp.group_id==this.Groups.value[index].group_id)
+    console.log("index comp",index)
+    if(i>-1){
+      this.groupsService.deleteGroup( {"id":this.Groups.value[index].group_id,"userName":this.authonticationService.getCurrentUser().UserName}
+      ).subscribe((response) => {
+    if(response instanceof DeleteGroupResponse){
+    console.log(this.groupList)
+    this.groupList.splice(i, 1)
+  }
+  })   
+    }
+    this.Groups.removeAt(index)
+    console.log(this.groupList)
   }
   AddGroupToForm() {
+    this.groupsService.valueForId+1
     var f: FormArray = this.form.get('Groups') as FormArray
-    f.push(new FormGroup({ groupName: new FormControl() }))
+    f.push(new FormGroup({group_id:new FormControl(this.groupsService.valueForId), groupName: new FormControl() }))
+    
   }
   updateGroup(index: string) {
 

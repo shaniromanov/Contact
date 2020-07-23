@@ -10,6 +10,7 @@ import { map } from 'rxjs/operators';
 import { DeleteGroupResponse } from '../DTO/Responses/delete-group-response';
 import { AddContactToGroupRequest } from '../DTO/Requests/add-contact-to-group-request';
 import { AddContactToGroupResponse } from '../DTO/Responses/add-contact-to-group-response';
+import { DeleteGroupRequest } from '../DTO/Requests/delete-group-request';
 
 @Injectable({
   providedIn: 'root'
@@ -17,11 +18,12 @@ import { AddContactToGroupResponse } from '../DTO/Responses/add-contact-to-group
 export class GroupService {
   currentUser: User
   groups: Array<Group> = []
+  valueForId:number
   deleteSubject = new Subject<number>()
 
   constructor(private commService: CommService, private authonticationService: AuthonticationService) {
     this.groups = this.authonticationService.getCurrentUser().groups
-
+    this.valueForId=Math.max.apply(Math, this.groups.map(grp=>grp.group_id))+1
   }
   ngOnInit() {
   }
@@ -29,17 +31,12 @@ export class GroupService {
     return this.groups
 
   }
-  deleteGroup(index: number) {
-    return this.commService.deleteGroup(index)
-      .pipe(map((obj: DeleteGroupResponse) => {
-
-        return obj.groups
-      })
-      )
+  deleteGroup(request: DeleteGroupRequest) {
+    return this.commService.deleteGroup(request)
   }
 
   addGroup(request: GroupRequest): Observable<AddGroupResponse> {
-    console.log("groupService", request)
+    
     return this.commService.addGroup(request)
   }
   AddContactToGroup(request:AddContactToGroupRequest):Observable<AddContactToGroupResponse>{

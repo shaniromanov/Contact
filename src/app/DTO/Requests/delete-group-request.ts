@@ -1,6 +1,6 @@
 export class DeleteGroupRequest {
 
-    index: number
+    id: number
     userName: string
-    password: string
+
 }
