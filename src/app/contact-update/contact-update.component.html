@@ -13,30 +13,48 @@
     <div class="validation-msg" *ngIf="form.get('lastName').invalid">
         *Last Name is required</div>
 
+
     <br /><br /><br />
     <div formGroupName="address">
+<<<<<<< HEAD
         <input type="hidden"  formControlName="typeOfMeanContact"> 
         <label>Address: &emsp;</label>
         <input type="text" formControlName="value" placeholder="Address"> 
+=======
+        <input type="hidden" formControlName="typeOfMeanContact">
+        <input type="text" formControlName="value" placeholder="Address">
+>>>>>>> a8b1d6f37dc7bef314e66548fd4a3f270b13799f
     </div>
-   
-    <br/> <br/>
+
+    <br /> <br />
     <div formGroupName="website">
+<<<<<<< HEAD
         <input type="hidden"  formControlName="typeOfMeanContact"> 
         <label>Website: &emsp;</label>
         <input type="text"  formControlName="value" placeholder="Website" > 
+=======
+        <input type="hidden" formControlName="typeOfMeanContact">
+        <input type="text" formControlName="value" placeholder="Website">
+>>>>>>> a8b1d6f37dc7bef314e66548fd4a3f270b13799f
         <div class="validation-msg" *ngIf="form.get('website').invalid && form.get('website').touched">
             *Invalid website
-        </div> 
+        </div>
     </div>
-   
-    <br/> <br/>
+
+    <br /> <br />
     <div formGroupName="username">
+<<<<<<< HEAD
         <input type="hidden"  formControlName="typeOfMeanContact"> 
         <label>User Name: &emsp;</label>
         <input type="text"  formControlName="value" placeholder="Username"> 
     </div> 
     <br/> <br/>
+=======
+        <input type="hidden" formControlName="typeOfMeanContact">
+        <input type="text" formControlName="value" placeholder="UserName">
+    </div>
+    <br /> <br />
+>>>>>>> a8b1d6f37dc7bef314e66548fd4a3f270b13799f
     <app-image [currentFormGroup]="form"></app-image>
     <h4>Means Of Contact:</h4>
 
