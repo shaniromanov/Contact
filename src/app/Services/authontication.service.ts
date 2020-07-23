@@ -12,9 +12,9 @@ import { LoginResponseOk } from '../DTO/Responses/login-response-ok';
 export class AuthonticationService {
   private currentUser: User;
   constructor() { }
-  public initUser(user)
+  public initUser(user:User)
   {
-       this.currentUser=user;
+       this.currentUser=JSON.parse(JSON.stringify(user))
        console.log("currentUser ",this.currentUser)
   }
   getCurrentUser():User{

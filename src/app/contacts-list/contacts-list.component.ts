@@ -23,13 +23,10 @@ export class ContactsListComponent implements OnInit {
 
   ngOnInit(): void {
     this.headerService.show()
-    this.contactservice.getContacts().subscribe(contacts => {
-      this.contacts = contacts;
-      this.filterContacts = contacts
+    this.contacts = this.contactservice.getContacts()
+    this.filterContacts = this.contacts
     }
-    )
 
-  }
   FilterByGroup(contacts: Array<Contact>) {
     if (contacts == null) {
       this.filterContacts = this.contacts

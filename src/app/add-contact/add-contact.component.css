@@ -85,3 +85,8 @@ input{
     transform: translate(2500%, 60%);
   
   }
+  .msg{
+    color:purple;
+    font-size: medium;
+    font-weight: bold;
+  }

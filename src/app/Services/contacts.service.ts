@@ -15,16 +15,19 @@ import { GroupService } from './group.service';
 export class ContactsService {
   contacts: Array<Contact> = []
   constructor(private commService: CommService, private authonticationService: AuthonticationService, private groupService: GroupService) {
+    this.contacts=this.authonticationService.getCurrentUser().contacts
   }
-  getContacts(): Observable<Contact[]> {
-    return this.commService.getContacts(this.authonticationService.getCurrentUser()).pipe(map((contacts) => { this.contacts = contacts; return contacts; }))
+  getContacts(): Contact[] {
+    return this.contacts
   }
   findContact(id: string): Contact {
     return this.contacts.find(contact => contact.contact_id.toString() == id)
   }
+  findIndexOfContact(id: number): number {
+    return this.contacts.findIndex(contact => contact.contact_id == id)
+  }
   addContact(request: ContactRequest): Observable<AddContactResponse> {
-    console.log("contactService", request)
-    //  this.groupService.AddContactToGroup()
+    
     return this.commService.addContact(request)
   }
   numberOfContacts(): number {

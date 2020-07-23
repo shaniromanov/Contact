@@ -3,6 +3,7 @@ input{
   border: none;
   width:70%;
   padding: 10px 15px;
+
   margin: 2px;
 
 }
@@ -64,6 +65,7 @@ input{
     color:purple;
     font-size: medium;
     font-weight: bold;
+   width: 8em;;
   }
   h4{
     font-weight: bold;
@@ -82,4 +84,9 @@ input{
   .validation-msg{
     color:purple;
     height: 5px;
+  }
+  .msg{
+    color:purple;
+    font-size: medium;
+    font-weight: bold;
   }

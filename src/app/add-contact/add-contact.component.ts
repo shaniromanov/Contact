@@ -12,6 +12,8 @@ import { Router } from '@angular/router';
 import { Adress } from '../DTO/adress';
 import { Website } from '../DTO/website';
 import { MobileNumber } from '../DTO/mobile-number';
+import { AddGroupResponseOK } from '../DTO/Responses/add-group-response-ok';
+import { AddContactResponseOk } from '../DTO/Responses/add-contact-response-ok';
 
 @Component({
   selector: 'app-add-contact',
@@ -20,6 +22,7 @@ import { MobileNumber } from '../DTO/mobile-number';
 })
 export class AddContactComponent implements OnInit {
   form:FormGroup
+  msg:string
   // websiteValidateMsg:boolean=false
  
   meansOfContactList:{[meanType:string]:typeof  MeansOfContact}={"Email":Email,"Phone Number":PhoneNumber,"Mobile Phone":MobileNumber}
@@ -34,8 +37,11 @@ export class AddContactComponent implements OnInit {
  
   this.form.get('contact_id').setValue(this.contactsService.numberOfContacts()+1)
     this.contactsService.addContact({"UserName":this.authonticationService.getCurrentUser().UserName,"contact":this.form.value}).subscribe(response=>{
-      this.router.navigate(['/contacts/']);
-     this.form.value.address
+      if(response instanceof AddContactResponseOk){
+        this.contactsService.contacts.push(this.form.value)
+        this.router.navigate(['/contacts/']);
+      }
+      this.msg=response.Message()
     })
   }
   AddToForm(){
@@ -75,20 +81,17 @@ deleteGroup(index:string)
         firstName:new FormControl('',[Validators.required]),
         lastName:new FormControl('',[Validators.required]),
         address:new FormGroup({ typeOfMeanContact:new FormControl("Address"),
-          value:new FormControl()}),
-          img:new FormControl(),
+            value:new FormControl()}),
+        img:new FormControl(),
         website:new FormGroup({ typeOfMeanContact:new FormControl("Website"),
-        value:new FormControl('',new Website("").validate())}),
+            value:new FormControl('',new Website("").validate())}),
         username:new FormGroup({ typeOfMeanContact:new FormControl("UserName"),
-        value:new FormControl()}),
+           value:new FormControl()}),
         meansOfContact:new FormArray([]),
         groups:new FormArray([])
       })
 
   }
-
-
-
 
 
   constructor(private router :Router,private contactsService:ContactsService,public headerService:HeaderService,private authonticationService:AuthonticationService) { }

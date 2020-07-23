@@ -16,14 +16,14 @@ export class SearchContactComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.contactService.getContacts().subscribe(contacts =>
-      this.contacts = contacts)
+      this.contacts = this.contactService.getContacts()
+  }
 
-  }
   firstNameSearch(firstName: string) {
-    this.searchContacts.emit(this.contacts.filter(contact => contact.firstName.startsWith(firstName.toLowerCase()) || contact.firstName.startsWith(firstName.toUpperCase())))
+    this.searchContacts.emit(this.contacts.filter(contact => contact.firstName.toLowerCase().startsWith(firstName.toLowerCase()) ))
   }
+  
   lastNameSearch(lastName: string) {
-    this.searchContacts.emit(this.contacts.filter(contact => contact.lastName.startsWith(lastName.toLowerCase()) || contact.lastName.startsWith(lastName.toUpperCase())))
+    this.searchContacts.emit(this.contacts.filter(contact => contact.lastName.toLowerCase().startsWith(lastName.toLowerCase()) ))
   }
 }

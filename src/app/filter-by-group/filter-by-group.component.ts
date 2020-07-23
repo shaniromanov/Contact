@@ -19,8 +19,8 @@ export class FilterByGroupComponent implements OnInit {
   ngOnInit(): void {
   }
   filterByNameGroup(group:string){
-
-    if(group=="without"){
+console.log(group)
+    if(group=="without filter"){
       this.filterContacts.emit(null)
     }
     else{

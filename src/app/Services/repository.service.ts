@@ -13,24 +13,21 @@ import { LoginResponseNotExists } from '../DTO/Responses/login-response-not-exis
 import { RegisterUserResponse } from '../DTO/Responses/register-user-response';
 import { RegisterUserResponseUsernameExists } from '../DTO/Responses/register-user-response-username-exists';
 import { RegisterUserResponseOk } from '../DTO/Responses/register-user-response-ok';
-import { Contact } from '../DTO/contact';
 import { AddContactResponse } from '../DTO/Responses/add-contact-response';
 import { AddContactResponseIdExists } from '../DTO/Responses/add-contact-response-id-exists';
 import { AddContactResponseOk } from '../DTO/Responses/add-contact-response-ok';
 import { ContactRequest } from '../DTO/Requests/contact-request';
 import { GroupRequest } from '../DTO/Requests/group-request';
 import { AddGroupResponse } from '../DTO/Responses/add-group-response';
-import { AddGroupResponseGroupAlreadyExist } from '../DTO/Responses/add-group-response-group-already-exist';
-import { FormGroupName } from '@angular/forms';
 import { AddGroupResponseOK } from '../DTO/Responses/add-group-response-ok';
 import { RegisterUserRequest } from '../DTO/Requests/register-user-request';
 import { DeleteGroupResponse } from '../DTO/Responses/delete-group-response';
-import { DeleteGroupRequest } from '../DTO/Requests/delete-group-request';
 import { UpdateContactResponse } from '../DTO/Responses/update-contact-response';
 import { AddContactToGroupRequest } from '../DTO/Requests/add-contact-to-group-request';
 import { AddContactToGroupResponse } from '../DTO/Responses/add-contact-to-group-response';
 import { AddContactToGroupResponseOk } from '../DTO/Responses/add-contact-to-group-response-ok';
 import { AddContactToGroupResponseContactExists } from '../DTO/Responses/add-contact-to-group-response-contact-exists';
+import { UpdateContactResponseOk } from '../DTO/Responses/update-contact-response-ok';
 
 
 
@@ -44,7 +41,7 @@ export class RepositoryService {
     {
       "UserName": "shaniRomanov", "Password": "123456", "email": "shaniromanov@gmail.com",
       "contacts": [{
-        "contact_id": 1, "firstName": "racheli", "lastName": "cohen", "website": new Website("www.rachel.co.il"), "username": new UserName("racheli"), "address": new Adress("shevet yehuda 5"), "meansOfContact": [new PhoneNumber("03-5794441"), new Email("rachli548@gmail.com "), new Adress("Bilu 5 Bnei-Brak")],
+        "contact_id": 1, "firstName": "racheli", "lastName": "cohen", "website": new Website("www.rachel.co.il"), "username": new UserName("racheli"), "address": new Adress("shevet yehuda 5"), "meansOfContact": [new PhoneNumber("03-5794441"), new Email("rachli548@gmail.com ")],
         "groups": ["Family", "Work"], "img": "https://img.icons8.com/dusk/64/000000/old-man.png"
       }, { "contact_id": 2, "firstName": "margalite", "lastName": "Sayada", "website": new Website("www.margalite.co.il"), "username": new UserName("margalite"), "address": new Adress("shevet yehuda 5"), "meansOfContact": [new PhoneNumber("03-5794441"), new Email("margalite95@gmail.com")], "groups": ["Freind", "Work"], "img": "https://img.icons8.com/dusk/64/000000/old-man.png" }],
 
@@ -52,7 +49,7 @@ export class RepositoryService {
         {
           "groupName": "Family", "contacts": {
             1: {
-              "contact_id": 1, "firstName": "racheli", "lastName": "cohen", "website": new Website("www.rachel.co.il"), "username": new UserName("racheli"), "address": new Adress("shevet yehuda 5"), "meansOfContact": [new PhoneNumber("03-5794441"), new Email("rachli548@gmail.com "), new Adress("Bilu 5 Bnei-Brak")],
+              "contact_id": 1, "firstName": "racheli", "lastName": "cohen", "website": new Website("www.rachel.co.il"), "username": new UserName("racheli"), "address": new Adress("shevet yehuda 5"), "meansOfContact": [new PhoneNumber("03-5794441"), new Email("rachli548@gmail.com ")],
               "groups": ["Family", "Work"], "img": "https://img.icons8.com/dusk/64/000000/old-man.png"
             }
           }, "group_id": 1
@@ -60,7 +57,7 @@ export class RepositoryService {
         {
           "groupName": "Work", "contacts": {
             1: {
-              "contact_id": 1, "firstName": "racheli", "lastName": "cohen", "website": new Website("www.rachel.co.il"), "username": new UserName("racheli"), "address": new Adress("shevet yehuda 5"), "meansOfContact": [new PhoneNumber("03-5794441"), new Email("rachli548@gmail.com "), new Adress("Bilu 5 Bnei-Brak")],
+              "contact_id": 1, "firstName": "racheli", "lastName": "cohen", "website": new Website("www.rachel.co.il"), "username": new UserName("racheli"), "address": new Adress("shevet yehuda 5"), "meansOfContact": [new PhoneNumber("03-5794441"), new Email("rachli548@gmail.com ")],
               "groups": ["Family", "Work"], "img": "https://img.icons8.com/dusk/64/000000/old-man.png"
             }, 2: { "contact_id": 2, "firstName": "margalite", "lastName": "Sayada", "website": new Website("www.margalite.co.il"), "username": new UserName("margalite"), "address": new Adress("shevet yehuda 5"), "meansOfContact": [new PhoneNumber("03-5794441"), new Email("margalite95@gmail.com")], "groups": ["Freind", "Work"], "img": "https://img.icons8.com/dusk/64/000000/old-man.png" }
           }, "group_id": 2
@@ -145,29 +142,23 @@ export class RepositoryService {
     const user = this.users.find(user => user.UserName == request.UserName)
     const mergeArrayWithoutDup: Array<Group> = request.Groups.filter((v, i, array) => array.findIndex((group => v.groupName == group.groupName)) == i)
     user.groups = mergeArrayWithoutDup
-
     return new AddGroupResponseOK()
   }
+
   addContact(request: ContactRequest): AddContactResponse {
     let retval: AddContactResponse
-
     const user = this.users.find(user => user.UserName == request.UserName)
-
     if (user.contacts.find(contact => contact.contact_id == request.contact.contact_id)) {
       retval = new AddContactResponseIdExists()
 
     }
     else {
-      console.log("before: ", this.users.find(user => user.UserName == request.UserName).contacts)
       user.contacts.push(request.contact)
       retval = new AddContactResponseOk()
-      console.log("request.contact", request.contact)
       request.contact.groups.forEach(grp =>
         user.groups.find(group => group.groupName == grp).contacts[request.contact.contact_id] = request.contact)
-      console.log("after addcontactToGroup=>>", user.groups)
-      console.log("after: ", this.users.find(user => user.UserName == request.UserName).contacts)
     }
-    console.log(retval)
+
     return retval
   }
 
@@ -177,13 +168,11 @@ export class RepositoryService {
       const user = this.users.find(user => user.UserName == request.UserName);
       let foundContactIndex = user.contacts.findIndex(contact => contact.contact_id == request.contact.contact_id)
       user.contacts[foundContactIndex] = request.contact;
-      return new UpdateContactResponse()
+      return new UpdateContactResponseOk()
     } catch{
 
     }
   }
-
-
 
   AddContactToGroup(request: AddContactToGroupRequest): AddContactToGroupResponse {
     let retval = new AddContactToGroupResponseOk()

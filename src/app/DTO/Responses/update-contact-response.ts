@@ -1,7 +1,5 @@
 import { GlobalResponse } from './global-response';
 
-export class UpdateContactResponse implements GlobalResponse {
-    Message(): string {
-        return "Updated succesfully"
-    }
+export abstract class UpdateContactResponse implements GlobalResponse {
+    abstract Message(): string 
 }
