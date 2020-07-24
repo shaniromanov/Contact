@@ -1,0 +1,12 @@
+.groupContacts{
+    width: 44%;
+    margin-right: 3%;
+    margin-left: 3%;
+    padding: 2%; 
+    float:left;
+    box-shadow: 10px 10px 5px #aaaaaa;
+    background-color: rgb(185, 219, 251);
+    border-color:  rgb(242, 244, 246);
+    border-width: 15px;
+    border-style: solid;
+}

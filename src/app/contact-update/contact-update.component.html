@@ -55,8 +55,7 @@
     <h4>Groups:</h4>
     <div formArrayName="groups">
         <div *ngFor='let grp of groups.controls;index as i'>
-            <button type="button" (click)="deleteGroup(i)" class="delete fa fa-times" aria-hidden="true"></button>
-            <add-groups [currentFormControl]="grp" [currentIndex]="i"></add-groups>
+            <add-groups [formArray]="groups" [currentFormControl]="grp" [currentIndex]="i"  [contact_id]="contact_id"></add-groups>
 
         </div>
         <button type='button' class="btn btn-dark" (click)="AddGroupToForm()">Add another group</button>

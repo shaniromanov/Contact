@@ -7,6 +7,7 @@ import { ContactUpdateComponent } from './contact-update/contact-update.componen
 import { AddContactComponent } from './add-contact/add-contact.component';
 import { GroupsComponent } from './groups/groups.component';
 import { AddGroupsComponent } from './add-groups/add-groups.component';
+import { GroupDetailsComponent } from './group-details/group-details.component';
 
 
 const routes: Routes = [

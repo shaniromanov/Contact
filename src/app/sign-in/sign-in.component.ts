@@ -4,6 +4,7 @@ import { Router } from '@angular/router';
 import { UserService } from '../Services/user.service';
 import { LoginResponseOk } from '../DTO/Responses/login-response-ok';
 import { AuthonticationService } from '../Services/authontication.service';
+import { HeaderService } from '../Services/header.service';
 
 @Component({
   selector: 'app-sign-in',
@@ -15,7 +16,8 @@ export class SignInComponent implements OnInit {
   LoginResult=""
   constructor(private router: Router,
     private userService:UserService,
-    private authonticationService:AuthonticationService) { }
+    private authonticationService:AuthonticationService,
+    private headerService:HeaderService) { }
 
 
   signIn(){
@@ -29,6 +31,7 @@ export class SignInComponent implements OnInit {
         const res=response as LoginResponseOk 
         this.authonticationService.initUser(res.user);
         this.router.navigate(['/contacts/']);
+        this.headerService.userName=res.user.UserName
        }
        this.LoginResult=response.Message()
       },

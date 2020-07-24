@@ -21,6 +21,7 @@ import { SignUpComponent } from './sign-up/sign-up.component';
 import { ImageComponent } from './image/image.component';
 import { FilterByGroupComponent } from './filter-by-group/filter-by-group.component';
 import { SearchContactComponent } from './search-contact/search-contact.component';
+import { GroupDetailsComponent } from './group-details/group-details.component';
 
 
 
@@ -41,6 +42,7 @@ import { SearchContactComponent } from './search-contact/search-contact.componen
     ImageComponent,
     FilterByGroupComponent,
     SearchContactComponent,
+    GroupDetailsComponent,
    
   ],
   imports: [

@@ -25,10 +25,12 @@ export class ContactUpdateComponent implements OnInit {
   form: FormGroup
   groupList: Array<String>
   msg:string
+  contact_id:number
 
   meansContact: { [meanType: string]: MeansOfContact } =
   { "Email": new Email(null), "Phone Number": new PhoneNumber(null), "Mobile Number": new MobileNumber(null) }
 
+ 
   get meansOfContact(): FormArray {
     return this.form.get('meansOfContact') as FormArray;
   }
@@ -38,7 +40,9 @@ export class ContactUpdateComponent implements OnInit {
 
   ngOnInit(): void {
     this.headerService.show();
-    this.currentContact = this.getContact(this.route.snapshot.paramMap.get('id'))
+    this.contact_id=+this.route.snapshot.paramMap.get('id')
+    console.log(this.contact_id)
+    this.currentContact = this.getContact(this.contact_id)
     this.groupList = this.groupService.groups.map(v => v.groupName)
     this.form = new FormGroup({
       contact_id:new FormControl(),
@@ -53,16 +57,16 @@ export class ContactUpdateComponent implements OnInit {
       value:new FormControl(this.currentContact.username.value)}),
       meansOfContact: new FormArray([]),
       groups: new FormArray([])
+      
     })
-
+    console.log(this.form.valid)
     this.currentContact.meansOfContact.map(val=> {
-console.log(val.typeOfMeanContact)
-        this.meansOfContact.push(new FormGroup({ typeOfMeanContact: new FormControl(val.typeOfMeanContact), value: new FormControl(val.value,this.meansContact[val.typeOfMeanContact].validate()) }))
+    this.meansOfContact.push(new FormGroup({ typeOfMeanContact: new FormControl(val.typeOfMeanContact), value: new FormControl(val.value,this.meansContact[val.typeOfMeanContact].validate()) }))
   })
 
   this.currentContact.groups.map(val => this.groups.push(new FormControl(val)))
 }
-  getContact(id: string): Contact {
+  getContact(id: number): Contact {
     return this.contactsService.findContact(id)
   }
   keys(): Array<string> {
@@ -76,13 +80,11 @@ console.log(val.typeOfMeanContact)
       value: new FormControl('', [Validators.required])
     }))
   }
-  deleteMeanContact(index: string) {
+  deleteMeanContact(index: number) {
 
-    this.meansOfContact.removeAt(this.meansOfContact.value[index])
+    this.meansOfContact.removeAt(index)
   }
-  deleteGroup(index: string) {
-    this.groups.removeAt(this.groups.value[index])
-  }
+
 
   AddGroupToForm() {
     var f: FormArray = this.form.get('groups') as FormArray

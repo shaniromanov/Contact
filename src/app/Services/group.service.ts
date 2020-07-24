@@ -11,15 +11,19 @@ import { DeleteGroupResponse } from '../DTO/Responses/delete-group-response';
 import { AddContactToGroupRequest } from '../DTO/Requests/add-contact-to-group-request';
 import { AddContactToGroupResponse } from '../DTO/Responses/add-contact-to-group-response';
 import { DeleteGroupRequest } from '../DTO/Requests/delete-group-request';
+import { DeleteContactFromGroupRequest } from '../DTO/Requests/delete-contact-from-group-request';
+import { DeleteContactFromGroupResponse } from '../DTO/Responses/delete-contact-from-group-response';
+import { Contact } from '../DTO/contact';
 
 @Injectable({
   providedIn: 'root'
 })
 export class GroupService {
+  
   currentUser: User
   groups: Array<Group> = []
   valueForId:number
-  deleteSubject = new Subject<number>()
+
 
   constructor(private commService: CommService, private authonticationService: AuthonticationService) {
     this.groups = this.authonticationService.getCurrentUser().groups
@@ -42,11 +46,18 @@ export class GroupService {
   AddContactToGroup(request:AddContactToGroupRequest):Observable<AddContactToGroupResponse>{
     return this.commService.AddContactToGroup(request)
   }
-
-  numberOfGroups():number{
-    return this.groups.length
+  deleteContactFromGroup(request: DeleteContactFromGroupRequest):Observable<DeleteContactFromGroupResponse>
+  {
+    return this.commService.deleteContactFromGroup(request)
   }
-
+  getContacts(groupName: string): Array<Contact> {
+    console.log("what")
+    console.log(this.groups.find(grp=>grp.groupName==groupName))
+    console.log(this.groups.find(grp=>grp.groupName==groupName).contacts)
+    const contactsArray=Object.values(this.groups.find(grp=>grp.groupName==groupName).contacts)
+    console.log("what",contactsArray)
+   return contactsArray
+  }
   // private contactExistsInGroup = (contact_id:number):boolean =>this.contacts.hasOwnProperty(contact_id)
   // addContact(contact:Contact){
 

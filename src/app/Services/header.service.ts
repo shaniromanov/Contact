@@ -6,6 +6,7 @@ import { Injectable } from '@angular/core';
 export class HeaderService {
 
   visible: boolean;
+  userName:string
 
   constructor() { this.visible = false; }
 

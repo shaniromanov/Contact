@@ -32,6 +32,9 @@ import { DeleteGroupRequest } from '../DTO/Requests/delete-group-request';
 import { DeleteContactResponse } from '../DTO/Responses/delete-contact-response';
 import { DeleteContactResponseOk } from '../DTO/Responses/delete-contact-response-ok';
 import { DeleteContactRequest } from '../DTO/Requests/delete-contact-request';
+import { DeleteContactFromGroupRequest } from '../DTO/Requests/delete-contact-from-group-request';
+import { DeleteContactFromGroupResponse } from '../DTO/Responses/delete-contact-from-group-response';
+import { DeleteContactFromGroupResponseOk } from '../DTO/Responses/delete-contact-from-group-response-ok';
 
 
 
@@ -45,15 +48,15 @@ export class RepositoryService {
     {
       "UserName": "shaniRomanov", "Password": "123456", "email": "shaniromanov@gmail.com",
       "contacts": [{
-        "contact_id": 1, "firstName": "racheli", "lastName": "cohen", "website": new Website("www.rachel.co.il"), "username": new UserName("racheli"), "address": new Adress("shevet yehuda 5"), "meansOfContact": [new PhoneNumber("03-5794441"), new Email("rachli548@gmail.com ")],
+        "contact_id": 1, "firstName": "racheli", "lastName": "cohen", "website": new Website("www.rachel.co.il"), "username": new UserName("racheli"), "address": new Adress("shevet yehuda 5"), "meansOfContact": [new PhoneNumber("03-5794441"), new Email("racheli@gmail.com")],
         "groups": ["Family", "Work"], "img": "https://img.icons8.com/dusk/64/000000/old-man.png"
-      }, { "contact_id": 2, "firstName": "margalite", "lastName": "Sayada", "website": new Website("www.margalite.co.il"), "username": new UserName("margalite"), "address": new Adress("shevet yehuda 5"), "meansOfContact": [new PhoneNumber("03-5794441"), new Email("margalite95@gmail.com")], "groups": ["Freind", "Work"], "img": "https://img.icons8.com/dusk/64/000000/old-man.png" }],
+      }, { "contact_id": 2, "firstName": "margalite", "lastName": "Sayada", "website": new Website("www.margalite.co.il"), "username": new UserName("margalite"), "address": new Adress("shevet yehuda 5"), "meansOfContact": [new PhoneNumber("03-5794441"), new Email("margalite95@gmail.com")], "groups": ["Freinds", "Work"], "img": "https://img.icons8.com/dusk/64/000000/old-man.png" }],
 
       "groups": [
         {
           "groupName": "Family", "contacts": {
             1: {
-              "contact_id": 1, "firstName": "racheli", "lastName": "cohen", "website": new Website("www.rachel.co.il"), "username": new UserName("racheli"), "address": new Adress("shevet yehuda 5"), "meansOfContact": [new PhoneNumber("03-5794441"), new Email("rachli548@gmail.com ")],
+              "contact_id": 1, "firstName": "racheli", "lastName": "cohen", "website": new Website("www.rachel.co.il"), "username": new UserName("racheli"), "address": new Adress("shevet yehuda 5"), "meansOfContact": [new PhoneNumber("03-5794441"), new Email("racheli@gmail.com")],
               "groups": ["Family", "Work"], "img": "https://img.icons8.com/dusk/64/000000/old-man.png"
             }
           }, "group_id": 1
@@ -61,35 +64,35 @@ export class RepositoryService {
         {
           "groupName": "Work", "contacts": {
             1: {
-              "contact_id": 1, "firstName": "racheli", "lastName": "cohen", "website": new Website("www.rachel.co.il"), "username": new UserName("racheli"), "address": new Adress("shevet yehuda 5"), "meansOfContact": [new PhoneNumber("03-5794441"), new Email("rachli548@gmail.com ")],
+              "contact_id": 1, "firstName": "racheli", "lastName": "cohen", "website": new Website("www.rachel.co.il"), "username": new UserName("racheli"), "address": new Adress("shevet yehuda 5"), "meansOfContact": [new PhoneNumber("03-5794441"), new Email("racheli@gmail.com")],
               "groups": ["Family", "Work"], "img": "https://img.icons8.com/dusk/64/000000/old-man.png"
-            }, 2: { "contact_id": 2, "firstName": "margalite", "lastName": "Sayada", "website": new Website("www.margalite.co.il"), "username": new UserName("margalite"), "address": new Adress("shevet yehuda 5"), "meansOfContact": [new PhoneNumber("03-5794441"), new Email("margalite95@gmail.com")], "groups": ["Freind", "Work"], "img": "https://img.icons8.com/dusk/64/000000/old-man.png" }
+            }, 2: { "contact_id": 2, "firstName": "margalite", "lastName": "Sayada", "website": new Website("www.margalite.co.il"), "username": new UserName("margalite"), "address": new Adress("shevet yehuda 5"), "meansOfContact": [new PhoneNumber("03-5794441"), new Email("margalite95@gmail.com")], "groups": ["Freinds", "Work"], "img": "https://img.icons8.com/dusk/64/000000/old-man.png" }
           }, "group_id": 2
         },
-        { "groupName": "Freinds", "contacts": { 2: { "contact_id": 2, "firstName": "margalite", "lastName": "Sayada", "website": new Website("www.margalite.co.il"), "username": new UserName("margalite"), "address": new Adress("shevet yehuda 5"), "meansOfContact": [new PhoneNumber("03-5794441"), new Email("margalite95@gmail.com")], "groups": ["Freind", "Work"], "img": "https://img.icons8.com/dusk/64/000000/old-man.png" } }, "group_id": 3 },
+        { "groupName": "Freinds", "contacts": { 2: { "contact_id": 2, "firstName": "margalite", "lastName": "Sayada", "website": new Website("www.margalite.co.il"), "username": new UserName("margalite"), "address": new Adress("shevet yehuda 5"), "meansOfContact": [new PhoneNumber("03-5794441"), new Email("margalite95@gmail.com")], "groups": ["Freinds", "Work"], "img": "https://img.icons8.com/dusk/64/000000/old-man.png" } }, "group_id": 3 },
         { "groupName": "Emergency", "contacts": {}, "group_id": 4 }]
     }
 
     , {
       "UserName": "margaliteSayada", "Password": "234567", "email": "margalite95@gmail.com",
       "contacts": [{
-        "contact_id": 1, "firstName": "shani", "lastName": "romanov", "website": new Website("www.shani.co.il"), "username": new UserName("shanoRomanov"), "address": new Adress("Harav Bloy 10 Bnei-Brak"), "meansOfContact": [new PhoneNumber("03-5794441"), new Email("shaniromanov@gmail.com ")],
-        "groups": ["OpenCourse", "Freind"], "img": "https://img.icons8.com/dusk/64/000000/old-man.png"
+        "contact_id": 1, "firstName": "shani", "lastName": "romanov", "website": new Website("www.shani.co.il"), "username": new UserName("shanoRomanov"), "address": new Adress("Harav Bloy 10 Bnei-Brak"), "meansOfContact": [new PhoneNumber("03-5794441"), new Email("shaniromanov@gmail.com")],
+        "groups": ["OpenCourse", "Freinds"], "img": "https://img.icons8.com/dusk/64/000000/old-man.png"
       }, { "contact_id": 2, "firstName": "chavi", "lastName": "berkovich", "website": new Website("www.chavi.co.il"), "username": new UserName("chavi"), "address": new Adress("shevet yehuda 5"), "meansOfContact": [new PhoneNumber("03-5794441"), new Email("chavi@gmail.com")], "groups": ["OpenCourse"], "img": "https://img.icons8.com/dusk/64/000000/old-man.png" }],
       "groups": [
         { "groupName": "Family", "contacts": {}, "group_id": 1 },
         {
           "groupName": "OpenCourse", "contacts": {
             1: {
-              "contact_id": 1, "firstName": "shani", "lastName": "romanov", "website": new Website("www.shani.co.il"), "username": new UserName("shanoRomanov"), "address": new Adress("Harav Bloy 10 Bnei-Brak"), "meansOfContact": [new PhoneNumber("03-5794441"), new Email("shaniromanov@gmail.com ")],
-              "groups": ["OpenCourse", "Freind"], "img": "https://img.icons8.com/dusk/64/000000/old-man.png"
+              "contact_id": 1, "firstName": "shani", "lastName": "romanov", "website": new Website("www.shani.co.il"), "username": new UserName("shanoRomanov"), "address": new Adress("Harav Bloy 10 Bnei-Brak"), "meansOfContact": [new PhoneNumber("03-5794441"), new Email("shaniromanov@gmail.com")],
+              "groups": ["OpenCourse", "Freinds"], "img": "https://img.icons8.com/dusk/64/000000/old-man.png"
             }, 2: { "contact_id": 2, "firstName": "chavi", "lastName": "berkovich", "website": new Website("www.chavi.co.il"), "username": new UserName("chavi"), "address": new Adress("shevet yehuda 5"), "meansOfContact": [new PhoneNumber("03-5794441"), new Email("chavi@gmail.com")], "groups": ["OpenCourse"], "img": "https://img.icons8.com/dusk/64/000000/old-man.png" }
           }, "group_id": 2
         },
         {
           "groupName": "Freinds", "contacts": {
             1: {
-              "contact_id": 1, "firstName": "shani", "lastName": "romanov", "website": new Website("www.shani.co.il"), "username": new UserName("shanoRomanov"), "address": new Adress("Harav Bloy 10 Bnei-Brak"), "meansOfContact": [new PhoneNumber("03-5794441"), new Email("shaniromanov@gmail.com ")],
+              "contact_id": 1, "firstName": "shani", "lastName": "romanov", "website": new Website("www.shani.co.il"), "username": new UserName("shanoRomanov"), "address": new Adress("Harav Bloy 10 Bnei-Brak"), "meansOfContact": [new PhoneNumber("03-5794441"), new Email("shaniromanov@gmail.com")],
               "groups": ["OpenCourse", "Work"], "img": "https://img.icons8.com/dusk/64/000000/old-man.png"
             }
           }, "group_id": 3
@@ -202,6 +205,17 @@ export class RepositoryService {
       retval = new AddContactToGroupResponseContactExists()
     }
     return retval
+  }
+  deleteContactFromGroup(request:DeleteContactFromGroupRequest):DeleteContactFromGroupResponse{
+    console.log("repository")
+    console.log(request)
+    const user = this.users.find(user => user.UserName == request.userName)
+    if (user) {
+      const group=user.groups.find(grp=>grp.group_id==request.group_id)
+      delete  group.contacts[request.Contact_id]
+      console.log("after", user.contacts)
+      return  new DeleteContactFromGroupResponseOk()
+    }
   }
   constructor() { }
 }

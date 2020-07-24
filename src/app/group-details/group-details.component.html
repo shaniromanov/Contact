@@ -1,0 +1,23 @@
+
+<div id="groupContacts">
+    <table>
+        <tr >
+            <td colspan="2">
+                <h2 class="text-primary text-center"><strong>{{groupName}}</strong></h2>
+            </td>
+        </tr>
+        <tr>
+            <td colspan="2" id="title"><h3>Participants</h3></td>
+        </tr>
+        <tr *ngFor="let contact of groupContacts">
+            <td>
+                <div>{{contact.firstName}}</div>                       
+            </td>
+            <td id="btn">
+                <button  id="btn" title="Remove" (click)="deleteContactFromGroup(contact.contact_id)">
+                    <span class="glyphicon glyphicon-remove"></span>
+                </button>
+            </td>
+        </tr>
+    </table>
+</div>

@@ -53,6 +53,15 @@ ul li a:hover::before {
 ul li a:hover {
     background: rgb(214, 120, 214);
 }
-
+h4{
+    text-decoration: none;
+    padding: 1.7em;
+    padding-left:8em ;
+    display: inline-block;
+    transition: all .5s;
+    position: relative;
+    color:rgb(179, 42, 179);
+    font-family: "Comic Sans MS", cursive, sans-serif;
+}
 
 

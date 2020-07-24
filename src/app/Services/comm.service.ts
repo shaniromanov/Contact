@@ -16,6 +16,8 @@ import { AddContactToGroupRequest } from '../DTO/Requests/add-contact-to-group-r
 import { AddContactToGroupResponse } from '../DTO/Responses/add-contact-to-group-response';
 import { DeleteGroupRequest } from '../DTO/Requests/delete-group-request';
 import { DeleteContactRequest } from '../DTO/Requests/delete-contact-request';
+import { DeleteContactFromGroupRequest } from '../DTO/Requests/delete-contact-from-group-request';
+import { DeleteContactFromGroupResponse } from '../DTO/Responses/delete-contact-from-group-response';
 
 @Injectable()
 export abstract class CommService {
@@ -28,4 +30,5 @@ export abstract class CommService {
   abstract updateContact(request: ContactRequest): Observable<UpdateContactResponse>
   abstract AddContactToGroup(request: AddContactToGroupRequest): Observable<AddContactToGroupResponse>
   abstract deleteContact(request:DeleteContactRequest):Observable<DeleteGroupResponse>
+  abstract deleteContactFromGroup(request:DeleteContactFromGroupRequest):Observable<DeleteContactFromGroupResponse>
 }

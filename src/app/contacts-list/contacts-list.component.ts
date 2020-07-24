@@ -27,6 +27,7 @@ export class ContactsListComponent implements OnInit {
   ngOnInit(): void {
     this.headerService.show()
     this.contacts = this.contactservice.getContacts()
+    console.log("here")
     this.filterContacts = this.contacts
     }
 
@@ -37,6 +38,8 @@ export class ContactsListComponent implements OnInit {
     else {
       this.filterContacts = contacts
     }
+    console.log(this.filterContacts)
+    console.log(this.contacts)
   }
 
   deleteContact(contact_id: number) {

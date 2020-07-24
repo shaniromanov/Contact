@@ -8,18 +8,25 @@
     <div class="header">
         <div class="cont">
             <div class="navbar">
+             
+
                 <div class="logo">
                     <h1><i class="fa fa-address-book" style="font-size:36px">  My contacts</i></h1>
                 </div>
                 <div class="menu">
                     <ul>
                         <li *ngIf="!headerService.visible"><a routerLink='login'>Sign in / Sign up</a><br/></li>
-                        <li *ngIf="headerService.visible"><a routerLink='home'>Sign out</a><br/></li>
+                        <li *ngIf="headerService.visible" (click)="resetUser()"><a routerLink=''>Sign out</a><br/></li>
                         <li *ngIf="headerService.visible"><a routerLink='contacts'>Contact List</a></li>
                         <li *ngIf="headerService.visible"><a routerLink='groups'>Groups</a></li>
                         <li ><a routerLink=''>Home</a></li>
+                        
                     </ul>
+                   
                 </div>
+                <div>
+                <h4 *ngIf="headerService.visible"> Hi,&nbsp;{{userName}}</h4>
+              </div>
             </div>
         </div>
     </div>

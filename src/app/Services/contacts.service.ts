@@ -24,8 +24,8 @@ export class ContactsService {
   getContacts(): Contact[] {
     return this.contacts
   }
-  findContact(id: string): Contact {
-    return this.contacts.find(contact => contact.contact_id.toString() == id)
+  findContact(id: number): Contact {
+    return this.contacts.find(contact => contact.contact_id == id)
   }
   findIndexOfContact(id: number): number {
     return this.contacts.findIndex(contact => contact.contact_id == id)

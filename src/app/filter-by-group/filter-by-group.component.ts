@@ -25,6 +25,7 @@ console.log(group)
     }
     else{
    const contacts=Object.values(this.groups.find(grp=>grp.groupName==group).contacts)
+   console.log(this.groups)
     this.filterContacts.emit(contacts)
     }
   }

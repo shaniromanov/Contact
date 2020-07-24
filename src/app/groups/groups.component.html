@@ -1,38 +1,64 @@
-<form [formGroup]="form" (ngSubmit)="onSubmit()">
-    <table>
-        <thead>
-            <tr>
-                <td>
+<div class="container" id="container">
+    <br>
+    <div class="form-container group-container">
+        <form [formGroup]="form" (ngSubmit)="onSubmit()">
+            <table>
+             <thead>
+             <tr>
+                <td colspan="4">
                     <h1>Groups</h1>
+                <br>
                 </td>
-            </tr>
-        </thead>
-        <tbody>
-            <tr formArrayName="Groups" *ngFor='let group of Groups.controls;index as i'>
+              </tr>
+            </thead>
+            <tbody>
+            
+            <tr formArrayName="Groups" *ngFor='let group of Groups.controls;index as i' >
+              
+                  <button id="GroupDetails" type="button" (click)="selectGroup(group.get('groupName').value,group.get('group_id').value)"> 
                 <td>
-                    <h4>Group Name:</h4>
                    
+                    <h4>Group:</h4>
+        
                 </td>
                 <td [formGroup]="group">
-                    <input type="hidden"  formControlName="group_id"> 
-                    <input type="text" id="groupName" formControlName="groupName" placeholder="Add Group Name">
+                   
+                    <input type="hidden"  formControlName="group_id">
 
+                     <input type="text" id="groupName" formControlName="groupName" placeholder="Add Group Name">
+                     
+                  
                 </td>
+            
                 <td>
                     <button type="button" (click)="updateGroup(i)">Update</button>
                 </td>
                 <td>
                     <button type="button" (click)="deleteGroup(i)">Delete</button>
                 </td>
+            </button> 
             </tr>
         </tbody>
     </table>
     <br />
+    <br />
     <div class="msg">{{msg}}</div>
     <div>
         <button type="button" class=btn2 (click)="AddGroupToForm()">Add new group</button>
-    </div><br /><br />
+    </div><br />
     <div>
         <button type="submit" class="btn2">Save All Changes</button>
     </div>
 </form>
+</div>
+<div *ngIf="selectedGroup" class="overlay-container">
+    <div class="overlay">
+
+        <div class="overlay-panel overlay-right">
+            <div class="form-containerSingUp group-container">
+                <app-group-details *ngIf="selectedGroup" [groupName]="selectedGroup"  [group_id]="selectedGroupId"></app-group-details>
+            </div>
+        </div>
+    </div>
+</div>
+</div>
