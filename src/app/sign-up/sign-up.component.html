@@ -1,13 +1,19 @@
 <form [formGroup]="form" (ngSubmit)="signUp()">
     <input type="text" id= "FirstName" formControlName="FirstName" placeholder="First Name">
+ 
     <input type="text" id="LastName" formControlName="LastName" placeholder="Last Name">
 
     <input type="text" id="UserName" formControlName="UserName" placeholder="UserName">
-    
-    <input type="text" id="Password" formControlName="Password" placeholder="Password">  
+
+    <input type="text" id="Password" formControlName="Password" placeholder="Password"> 
+
     <input type="text" id="Email" formControlName="Email" placeholder="Email">
+  
     <br/>
     <div class="invalid">{{RegisterResult}}</div>
     <br/>
-    <button>Sign Up</button>  
+    <div class="validation-msg" *ngIf="!form.valid">
+        *All field is required
+    </div>
+    <button [disabled]="!form.valid">Sign Up</button>  
 </form>

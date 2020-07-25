@@ -73,7 +73,7 @@ input [type=text]:disabled {
   }
 
 #GroupDetails{
-
+border: none;
     background:transparent;
 
 }

@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormGroup, FormControl } from '@angular/forms';
+import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { UserService } from '../Services/user.service';
 import { AuthonticationService } from '../Services/authontication.service';
@@ -36,11 +36,11 @@ export class SignUpComponent implements OnInit {
 
   ngOnInit(): void {
     this.form = new FormGroup({
-      FirstName:new FormControl(),
-      LastName:new FormControl(),
-      UserName:new FormControl(),
-      Password:new FormControl(),
-      Email:new FormControl()
+      FirstName:new FormControl('',[Validators.required]),
+      LastName:new FormControl('',[Validators.required]),
+      UserName:new FormControl('',[Validators.required]),
+      Password:new FormControl('',[Validators.required]),
+      Email:new FormControl('',[Validators.required])
   })
   }
 }

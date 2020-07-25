@@ -53,7 +53,7 @@ export class RepositoryService {
 
   users: Array<User> = [
     {
-      "UserName": "shaniRomanov", "Password": "123456", "email": "shaniromanov@gmail.com",
+      "UserName": "shaniRomanov","FirstName":"Shani","LastName":"Romanov" ,"Password": "123456", "Email": "shaniromanov@gmail.com",
       "contacts": [{
         "contact_id": 1, "firstName": "racheli", "lastName": "cohen", "website": new Website("www.rachel.co.il"), "username": new UserName("racheli"), "address": new Adress("shevet yehuda 5"), "meansOfContact": [new PhoneNumber("03-5794441"), new Email("racheli@gmail.com")],
         "groups": ["Family", "Work"], "img": "https://img.icons8.com/dusk/64/000000/old-man.png"
@@ -81,7 +81,7 @@ export class RepositoryService {
     }
 
     , {
-      "UserName": "margaliteSayada", "Password": "234567", "email": "margalite95@gmail.com",
+      "UserName": "margaliteSayada","FirstName":"Margalite","LastName":"Sayada" , "Password": "234567", "Email": "margalite95@gmail.com",
       "contacts": [{
         "contact_id": 1, "firstName": "shani", "lastName": "romanov", "website": new Website("www.shani.co.il"), "username": new UserName("shanoRomanov"), "address": new Adress("Harav Bloy 10 Bnei-Brak"), "meansOfContact": [new PhoneNumber("03-5794441"), new Email("shaniromanov@gmail.com")],
         "groups": ["OpenCourse", "Freinds"], "img": "https://img.icons8.com/dusk/64/000000/old-man.png"
@@ -193,9 +193,7 @@ export class RepositoryService {
       user.contacts.splice(i, 1)
       user.groups.forEach(grp=>{
         if(grp.contacts[request.id]){
-          console.log("===>>>",grp)
           delete grp.contacts[request.id]
-          console.log("===>>>",grp)
         }
       })
       let retval = new DeleteContactResponseOk();

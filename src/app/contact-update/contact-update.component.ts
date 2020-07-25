@@ -102,7 +102,7 @@ export class ContactUpdateComponent implements OnInit {
       if(response instanceof UpdateContactResponseOk){
         Object.assign(this.currentContact, this.form.value)
         this.currentContact.groups.forEach(grp =>
-          this.authonticationService.getCurrentUser().groups.find(group => group.groupName == grp).contacts[this.form.get("contact_id").value] = this.form.value)
+          this.authonticationService.getGroups().find(group => group.groupName == grp).contacts[this.form.get("contact_id").value] = this.form.value)
         this.router.navigate(['/contacts/']);
       }
       this.msg=response.Message()
