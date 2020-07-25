@@ -2,7 +2,7 @@
 
 <br />
 <br />
-<app-search-contact (searchContacts)="searchContact($event)"></app-search-contact>
+<app-search-contact (searchContacts)="searchContact($event)" [contacts]="filterContacts"></app-search-contact>
 
 <app-filter-by-group (filterContacts)="FilterByGroup($event)"></app-filter-by-group>
 

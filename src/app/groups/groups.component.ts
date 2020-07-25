@@ -87,10 +87,11 @@ export class GroupsComponent implements OnInit {
   updateGroup(index: number) {
     const id=this.Groups.value[index].group_id
     const name=this.Groups.value[index].groupName
+    let nameBeforeChange=this.groupList.find(grp=>grp.group_id==id).groupName
     this.groupService.updateGroup({"userName":this.authonticationService.getUserName(),
-      "group_id":id, "groupName":name}).subscribe(response=>{
+      "group_id":id, "groupName":name,"nameBeforeChange":nameBeforeChange}).subscribe(response=>{
         if(response instanceof UpdateGroupResponseOk){
-          let nameBeforeChange=this.groupList.find(grp=>grp.group_id==id).groupName
+        
           this.groupList.find(grp=>grp.group_id==id).groupName=name
           this.authonticationService.getContacts().forEach(contact=>{
            let i= contact.groups.findIndex(grp=>grp==nameBeforeChange)

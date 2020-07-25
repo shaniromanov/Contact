@@ -238,9 +238,9 @@ export class RepositoryService {
     console.log("request",request)
     user.groups.find(grp=>grp.group_id==request.group_id).groupName=request.groupName
     user.contacts.forEach(contact=> {
-      let currentGroup=contact.groups.find(grp=>grp==request.groupName)
+      let currentGroup=contact.groups.findIndex(grp=>grp==request.nameBeforeChange)
       if(currentGroup){
-        currentGroup=request.groupName
+        contact.groups[currentGroup]=request.groupName
       }
     })
     return new UpdateGroupResponseOk()
