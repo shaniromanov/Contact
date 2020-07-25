@@ -19,6 +19,10 @@ import { DeleteContactResponse } from '../DTO/Responses/delete-contact-response'
 import { DeleteContactRequest } from '../DTO/Requests/delete-contact-request';
 import { DeleteContactFromGroupRequest } from '../DTO/Requests/delete-contact-from-group-request';
 import { DeleteContactFromGroupResponse } from '../DTO/Responses/delete-contact-from-group-response';
+import { DeleteGroupFromContactRequest } from '../DTO/Requests/delete-group-from-contact-request';
+import { DeleteGroupFromContactResponse } from '../DTO/Responses/delete-group-from-contact-response';
+import { UpdateGroupRequest } from '../DTO/Requests/update-group-request';
+import { UpdateGroupResponse } from '../DTO/Responses/update-group-response';
 
 @Injectable()
 export class LocalCommService implements CommService {
@@ -110,6 +114,18 @@ export class LocalCommService implements CommService {
     return new Observable<DeleteContactFromGroupResponse>(
       subscriber => {
         subscriber.next(this.repositoryService.deleteContactFromGroup(request))
+      })
+  }
+  deleteGroupFromContact(request: DeleteGroupFromContactRequest): Observable<DeleteGroupFromContactResponse> {
+    return new Observable<DeleteGroupFromContactResponse>(
+      subscriber => {
+        subscriber.next(this.repositoryService.deleteGroupFromContact(request))
+      })
+  }
+  updateGroup(request:UpdateGroupRequest):Observable<UpdateGroupResponse>{
+    return new Observable<UpdateGroupResponse>(
+      subscriber => {
+        subscriber.next(this.repositoryService.updateGroup(request))
       })
   }
 }

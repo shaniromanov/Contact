@@ -14,6 +14,10 @@ import { DeleteGroupRequest } from '../DTO/Requests/delete-group-request';
 import { DeleteContactFromGroupRequest } from '../DTO/Requests/delete-contact-from-group-request';
 import { DeleteContactFromGroupResponse } from '../DTO/Responses/delete-contact-from-group-response';
 import { Contact } from '../DTO/contact';
+import { DeleteGroupFromContactRequest } from '../DTO/Requests/delete-group-from-contact-request';
+import { DeleteGroupFromContactResponse } from '../DTO/Responses/delete-group-from-contact-response';
+import { UpdateGroupRequest } from '../DTO/Requests/update-group-request';
+import { UpdateGroupResponse } from '../DTO/Responses/update-group-response';
 
 @Injectable({
   providedIn: 'root'
@@ -23,10 +27,11 @@ export class GroupService {
   currentUser: User
   groups: Array<Group> = []
   valueForId:number
+  
 
 
   constructor(private commService: CommService, private authonticationService: AuthonticationService) {
-    this.groups = this.authonticationService.getCurrentUser().groups
+    this.groups = this.authonticationService.getGroups()
     this.valueForId=Math.max.apply(Math, this.groups.map(grp=>grp.group_id))+1
   }
   ngOnInit() {
@@ -51,26 +56,23 @@ export class GroupService {
     return this.commService.deleteContactFromGroup(request)
   }
   getContacts(groupName: string): Array<Contact> {
-    console.log("what")
-    console.log(this.groups.find(grp=>grp.groupName==groupName))
-    console.log(this.groups.find(grp=>grp.groupName==groupName).contacts)
     const contactsArray=Object.values(this.groups.find(grp=>grp.groupName==groupName).contacts)
-    console.log("what",contactsArray)
    return contactsArray
   }
-  // private contactExistsInGroup = (contact_id:number):boolean =>this.contacts.hasOwnProperty(contact_id)
-  // addContact(contact:Contact){
 
-  //         this.contacts[contact.contact_id] = contact 
-  // }
-  // updateContactsInGroup(contact_id:number,contact:Contact){
-  //     if (this.contactExists(contact_id)){
-  //         this.contacts[contact_id] = contact
-  //     }
-  // }
-  // deleteContactsInGroup(contact_id:number){
-  //     if (this.contactExists(contact_id)){
-  //         delete(this.contacts[contact_id])
-  //     }
-  // }
+  deleteGroupFromContact(request: DeleteGroupFromContactRequest):Observable<DeleteGroupFromContactResponse>{
+    return this.commService.deleteGroupFromContact(request)
+  }
+  updateGroup(request:UpdateGroupRequest):Observable<UpdateGroupResponse>{
+    return this.commService.updateGroup(request)
+  }
+  deleteGroupFromContactLocal(groupName:string){
+    this.authonticationService.getContacts().forEach(contact=>
+      {
+          let groupIndex=contact.groups.findIndex(grp=>grp==groupName)
+          if(groupIndex>-1){
+           contact.groups.splice(groupIndex, 1)
+          }
+        })
+  } 
 }

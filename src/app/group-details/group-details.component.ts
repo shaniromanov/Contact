@@ -5,6 +5,7 @@ import { ActivatedRoute } from '@angular/router';
 import { AuthonticationService } from '../Services/authontication.service';
 import { DeleteContactFromGroupResponseOk } from '../DTO/Responses/delete-contact-from-group-response-ok';
 import { Group } from '../DTO/group';
+import { DeleteGroupFromContactResponseOk } from '../DTO/Responses/delete-group-from-contact-response-ok';
 
 @Component({
   selector: 'app-group-details',
@@ -44,10 +45,14 @@ export class GroupDetailsComponent implements OnInit ,OnChanges{
            delete this.groups.find(grp=>grp.group_id==this.group_id).contacts[id]
            this.groupContacts=Object.values(this.groups.find(grp=>grp.groupName==this.groupName).contacts)
            console.log(this.groups)
-     
+           this.groupService.deleteGroupFromContact({"userName":this.authonticationService.getUserName(),"groupName":this.groupName})
+           .subscribe(response=>{
+            if(response instanceof DeleteGroupFromContactResponseOk){
+              this.groupService.deleteGroupFromContactLocal(this.groupName)
+            }
+           })
         }
-      }
-      )
+      })
   }
 
 }

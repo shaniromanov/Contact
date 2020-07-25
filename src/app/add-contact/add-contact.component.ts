@@ -40,8 +40,9 @@ export class AddContactComponent implements OnInit {
     this.contactsService.addContact({"UserName":this.authonticationService.getUserName(),"contact":this.form.value}).subscribe(response=>{
       if(response instanceof AddContactResponseOk){
         this.contactsService.contacts.push(this.form.value)
-        this.contactsService.contacts.find(contact=>contact.contact_id==this.form.get("contact_id").value).groups.forEach(grp =>
-          this.authonticationService.getCurrentUser().groups.find(group => group.groupName == grp).contacts[this.form.get("contact_id").value] = this.form.value)
+        const currentContact=this.contactsService.contacts.find(contact=>contact.contact_id==this.form.get("contact_id").value)
+        currentContact.groups.forEach(grp =>
+          this.authonticationService.getGroups().find(group => group.groupName == grp).contacts[this.form.get("contact_id").value] = this.form.value)
         this.router.navigate(['/contacts/']);
       }
       this.msg=response.Message()

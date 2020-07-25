@@ -6,6 +6,8 @@ import { CommService } from './comm.service';
 import { LoginResponse } from '../DTO/Responses/login-response';
 import { LoginResponseOk } from '../DTO/Responses/login-response-ok';
 import { Subject, Observable } from 'rxjs';
+import { Contact } from '../DTO/contact';
+import { Group } from '../DTO/group';
 
 @Injectable({
   providedIn: 'root'
@@ -34,5 +36,11 @@ export class AuthonticationService {
   }
   oninitUser():Observable<string>{
     return this.userNameSubject
+}
+getGroups():Array<Group>{
+return this.currentUser.groups
+}
+getContacts():Array<Contact>{
+  return this.currentUser.contacts
 }
 }

@@ -18,7 +18,7 @@ export class ContactsService {
   contacts: Array<Contact> = []
   valueForId:number
   constructor(private commService: CommService, private authonticationService: AuthonticationService, private groupService: GroupService) {
-    this.contacts=this.authonticationService.getCurrentUser().contacts
+    this.contacts=this.authonticationService.getContacts()
     this.valueForId=Math.max.apply(Math, this.contacts.map(contact=>contact.contact_id))+1
   }
   getContacts(): Contact[] {
