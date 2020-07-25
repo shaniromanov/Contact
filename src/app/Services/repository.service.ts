@@ -35,6 +35,13 @@ import { DeleteContactRequest } from '../DTO/Requests/delete-contact-request';
 import { DeleteContactFromGroupRequest } from '../DTO/Requests/delete-contact-from-group-request';
 import { DeleteContactFromGroupResponse } from '../DTO/Responses/delete-contact-from-group-response';
 import { DeleteContactFromGroupResponseOk } from '../DTO/Responses/delete-contact-from-group-response-ok';
+import { DeleteGroupFromContactRequest } from '../DTO/Requests/delete-group-from-contact-request';
+import { DeleteGroupFromContactResponse } from '../DTO/Responses/delete-group-from-contact-response';
+import { DeleteGroupFromContactResponseOk } from '../DTO/Responses/delete-group-from-contact-response-ok';
+import { UpdateGroupRequest } from '../DTO/Requests/update-group-request';
+import { UpdateGroupResponse } from '../DTO/Responses/update-group-response';
+import { UpdateGroupResponseOk } from '../DTO/Responses/update-group-response-ok';
+
 
 
 
@@ -111,24 +118,21 @@ export class RepositoryService {
     return retval
   }
 
-  _getUser(_user: User): User {
-    return this.users.find(user => user.UserName === _user.UserName && user.Password === _user.Password)
-  }
+  // _getUser(_user: User): User {
+  //   return this.users.find(user => user.UserName === _user.UserName && user.Password === _user.Password)
+  // }
 
 
-  getContacts(user: User) {
-    return this._getUser(user).contacts;
-  }
+  // getContacts(user: User) {
+  //   return this._getUser(user).contacts;
+  // }
 
   deleteGroup(request:DeleteGroupRequest): DeleteGroupResponse {
-   console.log(request)
     const user = this.users.find(user => user.UserName == request.userName)
-    console.log("before", user.groups)
     if (user) {
       const i=user.groups.findIndex(grp=>grp.group_id==request.id)
-      console.log("i",i)
       user.groups.splice(i, 1)
-      console.log("after", user.groups)
+      // this.deleteGroupFromContact(user,request.groupName)
       let retval = new DeleteGroupResponse();
       return retval
     }
@@ -183,13 +187,17 @@ export class RepositoryService {
     }
   }
   deleteContact(request:DeleteContactRequest):DeleteContactResponse{
-    console.log(request)
     const user = this.users.find(user => user.UserName == request.UserName)
-    console.log("before", user.contacts)
     if (user) {
       const i=user.contacts.findIndex(contact=>contact.contact_id==request.id)
       user.contacts.splice(i, 1)
-      console.log("after", user.contacts)
+      user.groups.forEach(grp=>{
+        if(grp.contacts[request.id]){
+          console.log("===>>>",grp)
+          delete grp.contacts[request.id]
+          console.log("===>>>",grp)
+        }
+      })
       let retval = new DeleteContactResponseOk();
       return retval
     }
@@ -207,15 +215,36 @@ export class RepositoryService {
     return retval
   }
   deleteContactFromGroup(request:DeleteContactFromGroupRequest):DeleteContactFromGroupResponse{
-    console.log("repository")
-    console.log(request)
     const user = this.users.find(user => user.UserName == request.userName)
     if (user) {
       const group=user.groups.find(grp=>grp.group_id==request.group_id)
       delete  group.contacts[request.Contact_id]
-      console.log("after", user.contacts)
+      // this.deleteGroupFromContact(user,group.groupName)
       return  new DeleteContactFromGroupResponseOk()
     }
+  }
+  deleteGroupFromContact(request: DeleteGroupFromContactRequest):DeleteGroupFromContactResponse{
+    const user = this.users.find(user => user.UserName == request.userName)
+    user.contacts.forEach(contact=>{
+      let groupIndex=contact.groups.findIndex(grp=>grp==request.groupName)
+      if(groupIndex>-1){
+       contact.groups.splice(groupIndex, 1);
+      }
+    })
+    return new DeleteGroupFromContactResponseOk()
+  }
+  updateGroup(request:UpdateGroupRequest):UpdateGroupResponse{
+    const user = this.users.find(user => user.UserName == request.userName)
+    console.log("request",request)
+    user.groups.find(grp=>grp.group_id==request.group_id).groupName=request.groupName
+    user.contacts.forEach(contact=> {
+      let currentGroup=contact.groups.findIndex(grp=>grp==request.nameBeforeChange)
+      if(currentGroup){
+        contact.groups[currentGroup]=request.groupName
+      }
+    })
+    return new UpdateGroupResponseOk()
+    
   }
   constructor() { }
 }

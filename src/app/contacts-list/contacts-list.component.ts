@@ -50,8 +50,14 @@ export class ContactsListComponent implements OnInit {
        const i= this.contacts.findIndex(contact=>contact.contact_id==contact_id)
        console.log(this.contacts)
        this.contacts.splice(i, 1)
+       this.authonticationService.getGroups().forEach(grp=>{
+         if(grp.contacts[contact_id]){
+           delete grp.contacts[contact_id]
+         }
+       })
     }
-  })   
+  }) 
+  this.filterContacts=this.contacts  
 }
 
   searchContact(contacts: Array<Contact>) {

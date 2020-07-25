@@ -75,8 +75,7 @@ input [type=text]:disabled {
 #GroupDetails{
 
     background:transparent;
-    border-width: thin;
-    border-color: thistle;
+
 }
 /* *{
     box-sizing: content-box;

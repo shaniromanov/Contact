@@ -8,6 +8,8 @@ import { AuthonticationService } from '../Services/authontication.service';
 import { AddGroupResponseOK } from '../DTO/Responses/add-group-response-ok';
 import { DeleteGroupResponse } from '../DTO/Responses/delete-group-response';
 import { Contact } from '../DTO/contact';
+import { DeleteGroupFromContactResponseOk } from '../DTO/Responses/delete-group-from-contact-response-ok';
+import { UpdateGroupResponseOk } from '../DTO/Responses/update-group-response-ok';
 
 @Component({
   selector: 'app-groups',
@@ -53,6 +55,7 @@ export class GroupsComponent implements OnInit {
 
   }
   deleteGroup(index: number) {
+<<<<<<< HEAD
     const i = this.groupList.findIndex(grp => grp.group_id == this.Groups.value[index].group_id)
     console.log("index comp", index)
     if (i > -1) {
@@ -63,9 +66,24 @@ export class GroupsComponent implements OnInit {
           this.groupList.splice(i, 1)
         }
       })
+=======
+    const id=this.Groups.value[index].group_id
+    const name=this.Groups.value[index].groupName
+    const i= this.groupList.findIndex(grp=>grp.group_id==id)
+    if(i>-1){
+      this.groupService.deleteGroup( {"id":id,"userName":this.authonticationService.getUserName(),"groupName":name}
+      ).subscribe((response) => {
+    if(response instanceof DeleteGroupResponse){
+    this.groupList.splice(i, 1)
+    this.groupService.deleteGroupFromContact({"userName":this.authonticationService.getUserName(),"groupName":name})
+    .subscribe(response=>{
+     if(response instanceof DeleteGroupFromContactResponseOk){
+       this.groupService.deleteGroupFromContactLocal(name)
+     }
+    })} })   
+>>>>>>> bc7a0da3b2156c2e3cfe259b4d8f96550596d85c
     }
     this.Groups.removeAt(index)
-    console.log(this.groupList)
   }
   AddGroupToForm() {
     this.groupService.valueForId++
@@ -73,13 +91,33 @@ export class GroupsComponent implements OnInit {
     f.push(new FormGroup({ group_id: new FormControl(this.groupService.valueForId), groupName: new FormControl() }))
 
   }
+<<<<<<< HEAD
   selectGroup(groupName: string, group_id: number) {
     this.selectedGroup = groupName
     this.selectedGroupId = group_id
     console.log("what", this.groupList)
     console.log("selectGroup")
+=======
+  selectGroup(groupName:string,group_id:number){
+    this.selectedGroup=groupName
+    this.selectedGroupId=group_id
+   
+>>>>>>> bc7a0da3b2156c2e3cfe259b4d8f96550596d85c
   }
-  updateGroup(index: string) {
-
+  updateGroup(index: number) {
+    const id=this.Groups.value[index].group_id
+    const name=this.Groups.value[index].groupName
+    let nameBeforeChange=this.groupList.find(grp=>grp.group_id==id).groupName
+    this.groupService.updateGroup({"userName":this.authonticationService.getUserName(),
+      "group_id":id, "groupName":name,"nameBeforeChange":nameBeforeChange}).subscribe(response=>{
+        if(response instanceof UpdateGroupResponseOk){
+        
+          this.groupList.find(grp=>grp.group_id==id).groupName=name
+          this.authonticationService.getContacts().forEach(contact=>{
+           let i= contact.groups.findIndex(grp=>grp==nameBeforeChange)
+           contact.groups[i]=name
+          })
+        }
+      })
   }
 }
