@@ -180,3 +180,9 @@ h1{
  .overlay-left{ 
     transform: translateX(-20%);
 }
+.btn3{
+    border: none;
+  background-color: transparent;
+  font-size:18px;
+  }
+  

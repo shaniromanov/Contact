@@ -51,8 +51,10 @@
             </td>
             <td>{{contact.username.value}}</td>
 
-            <td><button (click)="routeToUpdateContact(contact.contact_id)">Update</button></td>
-            <td><button (click)="deleteContact(contact.contact_id)">Delete</button></td>
+            <td><button class="btn3" (click)="routeToUpdateContact(contact.contact_id)"><span
+                        class="glyphicon glyphicon-pencil"> </span></button></td>
+            <td><button class="btn3" (click)="deleteContact(contact.contact_id)"><i class="fa fa-trash-o"></i></button>
+            </td>
         </tr>
     </tbody>
 </table>
