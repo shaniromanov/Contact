@@ -53,7 +53,7 @@ export class RepositoryService {
 
   users: Array<User> = [
     {
-      "UserName": "shaniRomanov","FirstName":"Shani","LastName":"Romanov" ,"Password": "123456", "Email": "shaniromanov@gmail.com",
+      "UserName": "shaniRomanov", "FirstName": "Shani", "LastName": "Romanov", "Password": "123456", "Email": "shaniromanov@gmail.com",
       "contacts": [{
         "contact_id": 1, "firstName": "racheli", "lastName": "cohen", "website": new Website("www.rachel.co.il"), "username": new UserName("racheli"), "address": new Adress("shevet yehuda 5"), "meansOfContact": [new PhoneNumber("03-5794441"), new Email("racheli@gmail.com")],
         "groups": ["Family", "Work"], "img": "https://img.icons8.com/dusk/64/000000/old-man.png"
@@ -81,7 +81,7 @@ export class RepositoryService {
     }
 
     , {
-      "UserName": "margaliteSayada","FirstName":"Margalite","LastName":"Sayada" , "Password": "234567", "Email": "margalite95@gmail.com",
+      "UserName": "margaliteSayada", "FirstName": "Margalite", "LastName": "Sayada", "Password": "234567", "Email": "margalite95@gmail.com",
       "contacts": [{
         "contact_id": 1, "firstName": "shani", "lastName": "romanov", "website": new Website("www.shani.co.il"), "username": new UserName("shanoRomanov"), "address": new Adress("Harav Bloy 10 Bnei-Brak"), "meansOfContact": [new PhoneNumber("03-5794441"), new Email("shaniromanov@gmail.com")],
         "groups": ["OpenCourse", "Freinds"], "img": "https://img.icons8.com/dusk/64/000000/old-man.png"
@@ -118,21 +118,15 @@ export class RepositoryService {
     return retval
   }
 
-  // _getUser(_user: User): User {
-  //   return this.users.find(user => user.UserName === _user.UserName && user.Password === _user.Password)
-  // }
+  _getUser(_user: string): User {
+    return this.users.find(user => user.UserName === _user)
+  }
 
-
-  // getContacts(user: User) {
-  //   return this._getUser(user).contacts;
-  // }
-
-  deleteGroup(request:DeleteGroupRequest): DeleteGroupResponse {
-    const user = this.users.find(user => user.UserName == request.userName)
+  deleteGroup(request: DeleteGroupRequest): DeleteGroupResponse {
+    const user = this._getUser(request.userName)
     if (user) {
-      const i=user.groups.findIndex(grp=>grp.group_id==request.id)
+      const i = user.groups.findIndex(grp => grp.group_id == request.id)
       user.groups.splice(i, 1)
-      // this.deleteGroupFromContact(user,request.groupName)
       let retval = new DeleteGroupResponse();
       return retval
     }
@@ -140,7 +134,7 @@ export class RepositoryService {
 
   registerUser(request: RegisterUserRequest): RegisterUserResponse {
     let retval: RegisterUserResponse;
-    if (this.users.find(user => user.UserName === request.user.UserName)) {
+    if (this._getUser(request.user.UserName)) {
       retval = new RegisterUserResponseUsernameExists()
     }
     else {
@@ -152,7 +146,7 @@ export class RepositoryService {
   }
   addGroup(request: GroupRequest): AddGroupResponse {
 
-    const user = this.users.find(user => user.UserName == request.UserName)
+    const user = this._getUser(request.UserName)
     const mergeArrayWithoutDup: Array<Group> = request.Groups.filter((v, i, array) => array.findIndex((group => v.groupName == group.groupName)) == i)
     user.groups = mergeArrayWithoutDup
     return new AddGroupResponseOK()
@@ -160,7 +154,7 @@ export class RepositoryService {
 
   addContact(request: ContactRequest): AddContactResponse {
     let retval: AddContactResponse
-    const user = this.users.find(user => user.UserName == request.UserName)
+    const user = this._getUser(request.UserName)
     if (user.contacts.find(contact => contact.contact_id == request.contact.contact_id)) {
       retval = new AddContactResponseIdExists()
 
@@ -178,7 +172,7 @@ export class RepositoryService {
 
   updateContact(request: ContactRequest): UpdateContactResponse {
     try {
-      const user = this.users.find(user => user.UserName == request.UserName);
+      const user = this._getUser(request.UserName)
       let foundContactIndex = user.contacts.findIndex(contact => contact.contact_id == request.contact.contact_id)
       user.contacts[foundContactIndex] = request.contact;
       return new UpdateContactResponseOk()
@@ -186,13 +180,13 @@ export class RepositoryService {
 
     }
   }
-  deleteContact(request:DeleteContactRequest):DeleteContactResponse{
-    const user = this.users.find(user => user.UserName == request.UserName)
+  deleteContact(request: DeleteContactRequest): DeleteContactResponse {
+    const user = this._getUser(request.UserName)
     if (user) {
-      const i=user.contacts.findIndex(contact=>contact.contact_id==request.id)
+      const i = user.contacts.findIndex(contact => contact.contact_id == request.id)
       user.contacts.splice(i, 1)
-      user.groups.forEach(grp=>{
-        if(grp.contacts[request.id]){
+      user.groups.forEach(grp => {
+        if (grp.contacts[request.id]) {
           delete grp.contacts[request.id]
         }
       })
@@ -202,7 +196,7 @@ export class RepositoryService {
   }
   AddContactToGroup(request: AddContactToGroupRequest): AddContactToGroupResponse {
     let retval = new AddContactToGroupResponseOk()
-    const user = this.users.find(user => user.UserName == request.UserName)
+    const user = this._getUser(request.UserName)
     const group = user.groups.find(grp => grp.group_id == request.group_id)
     if (group.contacts[request.contact.contact_id] == null) {
       group.contacts[request.contact.contact_id] = request.contact
@@ -212,37 +206,37 @@ export class RepositoryService {
     }
     return retval
   }
-  deleteContactFromGroup(request:DeleteContactFromGroupRequest):DeleteContactFromGroupResponse{
-    const user = this.users.find(user => user.UserName == request.userName)
+  deleteContactFromGroup(request: DeleteContactFromGroupRequest): DeleteContactFromGroupResponse {
+    const user = this._getUser(request.userName)
     if (user) {
-      const group=user.groups.find(grp=>grp.group_id==request.group_id)
-      delete  group.contacts[request.Contact_id]
+      const group = user.groups.find(grp => grp.group_id == request.group_id)
+      delete group.contacts[request.Contact_id]
       // this.deleteGroupFromContact(user,group.groupName)
-      return  new DeleteContactFromGroupResponseOk()
+      return new DeleteContactFromGroupResponseOk()
     }
   }
-  deleteGroupFromContact(request: DeleteGroupFromContactRequest):DeleteGroupFromContactResponse{
-    const user = this.users.find(user => user.UserName == request.userName)
-    user.contacts.forEach(contact=>{
-      let groupIndex=contact.groups.findIndex(grp=>grp==request.groupName)
-      if(groupIndex>-1){
-       contact.groups.splice(groupIndex, 1);
+  deleteGroupFromContact(request: DeleteGroupFromContactRequest): DeleteGroupFromContactResponse {
+    const user = this._getUser(request.userName)
+    user.contacts.forEach(contact => {
+      let groupIndex = contact.groups.findIndex(grp => grp == request.groupName)
+      if (groupIndex > -1) {
+        contact.groups.splice(groupIndex, 1);
       }
     })
     return new DeleteGroupFromContactResponseOk()
   }
-  updateGroup(request:UpdateGroupRequest):UpdateGroupResponse{
-    const user = this.users.find(user => user.UserName == request.userName)
-    console.log("request",request)
-    user.groups.find(grp=>grp.group_id==request.group_id).groupName=request.groupName
-    user.contacts.forEach(contact=> {
-      let currentGroup=contact.groups.findIndex(grp=>grp==request.nameBeforeChange)
-      if(currentGroup){
-        contact.groups[currentGroup]=request.groupName
+  updateGroup(request: UpdateGroupRequest): UpdateGroupResponse {
+    const user = this._getUser(request.userName)
+    console.log("request", request)
+    user.groups.find(grp => grp.group_id == request.group_id).groupName = request.groupName
+    user.contacts.forEach(contact => {
+      let currentGroup = contact.groups.findIndex(grp => grp == request.nameBeforeChange)
+      if (currentGroup) {
+        contact.groups[currentGroup] = request.groupName
       }
     })
     return new UpdateGroupResponseOk()
-    
+
   }
   constructor() { }
 }
