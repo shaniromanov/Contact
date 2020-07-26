@@ -4,15 +4,11 @@ import { MeansOfContact } from '../DTO/means-of-contact';
 import { Email } from '../DTO/email';
 import { PhoneNumber } from '../DTO/phone-number';
 import { ContactsService } from '../Services/contacts.service';
-import { Group } from '../DTO/group';
 import { HeaderService } from '../Services/header.service';
-import { ContactRequest } from '../DTO/Requests/contact-request';
 import { AuthonticationService } from '../Services/authontication.service';
 import { Router } from '@angular/router';
-import { Adress } from '../DTO/adress';
 import { Website } from '../DTO/website';
 import { MobileNumber } from '../DTO/mobile-number';
-import { AddGroupResponseOK } from '../DTO/Responses/add-group-response-ok';
 import { AddContactResponseOk } from '../DTO/Responses/add-contact-response-ok';
 
 @Component({

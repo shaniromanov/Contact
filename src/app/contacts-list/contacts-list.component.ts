@@ -1,15 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { Contact } from '../DTO/contact';
 import { ContactsService } from '../Services/contacts.service';
-import { PhoneNumber } from '../DTO/phone-number';
-import { Group } from '../DTO/group';
-import { MeansOfContact } from '../DTO/means-of-contact';
-import { Email } from '../DTO/email';
 import { Router } from '@angular/router';
 import { HeaderService } from '../Services/header.service';
-import { GroupService } from '../Services/group.service';
 import { AuthonticationService } from '../Services/authontication.service';
-import { DeleteContactResponse } from '../DTO/Responses/delete-contact-response';
 import { DeleteContactResponseOk } from '../DTO/Responses/delete-contact-response-ok';
 
 @Component({
@@ -29,7 +23,7 @@ export class ContactsListComponent implements OnInit {
     this.contacts = this.contactservice.getContacts()
     console.log("here")
     this.filterContacts = this.contacts
-    }
+  }
 
   FilterByGroup(contacts: Array<Contact>) {
     if (contacts == null) {
@@ -44,21 +38,23 @@ export class ContactsListComponent implements OnInit {
 
   deleteContact(contact_id: number) {
     console.log(this.contacts)
-    this.contactservice.deleteContact( {"UserName":this.authonticationService.getUserName(),
-    "id":contact_id}).subscribe((response) => {
-      if(response instanceof DeleteContactResponseOk){
-       const i= this.contacts.findIndex(contact=>contact.contact_id==contact_id)
-       console.log(this.contacts)
-       this.contacts.splice(i, 1)
-       this.authonticationService.getGroups().forEach(grp=>{
-         if(grp.contacts[contact_id]){
-           delete grp.contacts[contact_id]
-         }
-       })
-    }
-  }) 
-  this.filterContacts=this.contacts  
-}
+    this.contactservice.deleteContact({
+      "UserName": this.authonticationService.getUserName(),
+      "id": contact_id
+    }).subscribe((response) => {
+      if (response instanceof DeleteContactResponseOk) {
+        const i = this.contacts.findIndex(contact => contact.contact_id == contact_id)
+        console.log(this.contacts)
+        this.contacts.splice(i, 1)
+        this.authonticationService.getGroups().forEach(grp => {
+          if (grp.contacts[contact_id]) {
+            delete grp.contacts[contact_id]
+          }
+        })
+      }
+    })
+    this.filterContacts = this.contacts
+  }
 
   searchContact(contacts: Array<Contact>) {
     this.filterContacts = contacts

@@ -4,7 +4,6 @@ import { Email } from '../DTO/email';
 import { PhoneNumber } from '../DTO/phone-number';
 import { FormGroup, FormControl, FormArray, Validators } from '@angular/forms';
 import { MobileNumber } from '../DTO/mobile-number';
-import { Website } from '../DTO/website';
 
 @Component({
   selector: 'app-add-mean-of-contact',
@@ -34,7 +33,7 @@ export class AddMeanOfContactComponent implements OnInit {
   }
   setValue(event) {
     const typ = this.currentFormGroup.get('typeOfMeanContact').value
-    console.log('fffff',typ )
+    console.log('fffff', typ)
     this.meansContact[typ].setValue(event.target.value)
     this.currentFormGroup.setValue(this.meansContact[typ])
     this.currentFormGroup.get('typeOfMeanContact').setValue(typ)

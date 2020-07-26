@@ -1,14 +1,14 @@
 import { MeansOfContact } from './means-of-contact';
-import { AbstractControl, Validators, ValidatorFn } from '@angular/forms';
+import { Validators, ValidatorFn } from '@angular/forms';
 
-export class Email extends MeansOfContact{
+export class Email extends MeansOfContact {
     validate(): ValidatorFn {
-            return Validators.pattern("[a-zA-Z0-9.-_]{1,}@[a-zA-Z.-]{2,}[.]{1}[a-zA-Z]{2,}")
+        return Validators.pattern("[a-zA-Z0-9.-_]{1,}@[a-zA-Z.-]{2,}[.]{1}[a-zA-Z]{2,}")
     }
-   
-    constructor(val:string) {
+
+    constructor(val: string) {
         super(val);
-        this.typeOfMeanContact="Email"
+        this.typeOfMeanContact = "Email"
 
     }
 

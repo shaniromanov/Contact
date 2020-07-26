@@ -2,8 +2,7 @@ import { Injectable } from '@angular/core';
 import { Contact } from '../DTO/contact';
 import { CommService } from './comm.service';
 import { AuthonticationService } from './authontication.service';
-import { Observable, Subject } from 'rxjs';
-import { map } from 'rxjs/operators';
+import { Observable } from 'rxjs';
 import { AddContactResponse } from '../DTO/Responses/add-contact-response';
 import { ContactRequest } from '../DTO/Requests/contact-request';
 import { UpdateContactResponse } from '../DTO/Responses/update-contact-response';
@@ -16,10 +15,10 @@ import { DeleteContactRequest } from '../DTO/Requests/delete-contact-request';
 })
 export class ContactsService {
   contacts: Array<Contact> = []
-  valueForId:number
+  valueForId: number
   constructor(private commService: CommService, private authonticationService: AuthonticationService, private groupService: GroupService) {
-    this.contacts=this.authonticationService.getContacts()
-    this.valueForId=Math.max.apply(Math, this.contacts.map(contact=>contact.contact_id))+1
+    this.contacts = this.authonticationService.getContacts()
+    this.valueForId = Math.max.apply(Math, this.contacts.map(contact => contact.contact_id)) + 1
   }
   getContacts(): Contact[] {
     return this.contacts
@@ -31,11 +30,11 @@ export class ContactsService {
     return this.contacts.findIndex(contact => contact.contact_id == id)
   }
   addContact(request: ContactRequest): Observable<AddContactResponse> {
-    
+
     return this.commService.addContact(request)
   }
-  
-  deleteContact(request:DeleteContactRequest):Observable<DeleteContactResponse>{
+
+  deleteContact(request: DeleteContactRequest): Observable<DeleteContactResponse> {
     return this.commService.deleteContact(request)
   }
 

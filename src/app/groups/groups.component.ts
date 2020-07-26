@@ -7,7 +7,6 @@ import { HeaderService } from '../Services/header.service';
 import { AuthonticationService } from '../Services/authontication.service';
 import { AddGroupResponseOK } from '../DTO/Responses/add-group-response-ok';
 import { DeleteGroupResponse } from '../DTO/Responses/delete-group-response';
-import { Contact } from '../DTO/contact';
 import { DeleteGroupFromContactResponseOk } from '../DTO/Responses/delete-group-from-contact-response-ok';
 import { UpdateGroupResponseOk } from '../DTO/Responses/update-group-response-ok';
 
