@@ -23,7 +23,6 @@ input[type=text] {
     margin: auto;
     width: 60%;
     padding: 10px;
-
 }
 .add-btn{
     margin: auto;
@@ -37,14 +36,12 @@ input[type=text] {
     text-transform: uppercase;
     transition: transform 80ms ease-in;
     background-color: purple;
- 
 }
 .btn-dark{
     color: purple;
     background-color: black;
 }
 #mean{
-  
     padding: 10px;
     border-radius: 10px;
     border: 2px solid purple;
@@ -69,15 +66,12 @@ input[type=text] {
     font-size: medium;
     font-weight: bold;
   }
-
   h4{
     font-weight: bold;
   }
   .delete{
-
     letter-spacing: 1px;
     text-transform: uppercase;
     transition: transform 80ms ease-in;
     transform: translate(2500%, 60%);
-  
   }

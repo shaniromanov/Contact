@@ -8,34 +8,34 @@ import { FormGroup } from '@angular/forms';
 })
 export class ImageComponent implements OnInit {
   url: string;
-  @Input() currentFormGroup:FormGroup
+  @Input() currentFormGroup: FormGroup
   constructor() { }
 
   ngOnInit(): void {
-    const img=this.currentFormGroup.get('img').value
-   if(img){
-    this.url=img
-   }
+    const img = this.currentFormGroup.get('img').value
+    if (img) {
+      this.url = img
+    }
   }
-  onSelectFile(event) { // called each time file input changes
-   
+  onSelectFile(event) {
+
     if (event.target.files && event.target.files[0]) {
       let formData = new FormData();
-      formData.append('file',event.target.files[0]);
+      formData.append('file', event.target.files[0]);
       var reader = new FileReader();
 
-      reader.readAsDataURL(event.target.files[0]); // read file as data url
+      reader.readAsDataURL(event.target.files[0]);
 
-      reader.onload = (event) => { // called once readAsDataURL is completed
+      reader.onload = (event) => {
         this.url = event.target.result as string;
-    
-      
+
+
         this.currentFormGroup.get('img').setValue(this.url)
-        
+
       }
     }
-}
-onURLinserted() {
-    
-}
+  }
+  onURLinserted() {
+
+  }
 }

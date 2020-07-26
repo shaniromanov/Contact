@@ -1,6 +1,5 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { UserLoginComponent } from './user-login/user-login.component';
@@ -13,7 +12,6 @@ import { ContactUpdateComponent } from './contact-update/contact-update.componen
 import { AddContactComponent } from './add-contact/add-contact.component';
 import { AddMeanOfContactComponent } from './add-mean-of-contact/add-mean-of-contact.component';
 import { ReactiveFormsModule } from '@angular/forms';
-
 import { GroupsComponent } from './groups/groups.component';
 import { AddGroupsComponent } from './add-groups/add-groups.component';
 import { SignInComponent } from './sign-in/sign-in.component';
@@ -43,14 +41,14 @@ import { GroupDetailsComponent } from './group-details/group-details.component';
     FilterByGroupComponent,
     SearchContactComponent,
     GroupDetailsComponent,
-   
+
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     ReactiveFormsModule
   ],
-  providers: [{provide:CommService,useClass:LocalCommService}],
+  providers: [{ provide: CommService, useClass: LocalCommService }],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

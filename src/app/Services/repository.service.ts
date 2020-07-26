@@ -211,7 +211,6 @@ export class RepositoryService {
     if (user) {
       const group = user.groups.find(grp => grp.group_id == request.group_id)
       delete group.contacts[request.Contact_id]
-      // this.deleteGroupFromContact(user,group.groupName)
       return new DeleteContactFromGroupResponseOk()
     }
   }

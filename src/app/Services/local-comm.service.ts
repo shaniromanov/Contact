@@ -29,16 +29,6 @@ export class LocalCommService implements CommService {
 
   constructor(private repositoryService: RepositoryService) { }
 
-  // getContacts(user: User): Observable<Contact[]> {
-  //   return new Observable<Contact[]>(
-  //     subscriber => {
-  //       let userContacts = this.repositoryService.getContacts(user)
-
-  //       return subscriber.next(userContacts)
-  //     }
-
-  //   )
-  // }
   updateContact(request: ContactRequest): Observable<UpdateContactResponse> {
     return new Observable<UpdateContactResponse>(
       subscriber => {
@@ -102,7 +92,7 @@ export class LocalCommService implements CommService {
     )
   }
 
-  deleteContact(request:DeleteContactRequest):Observable<DeleteContactResponse>{
+  deleteContact(request: DeleteContactRequest): Observable<DeleteContactResponse> {
     return new Observable<DeleteContactResponse>(
       subscriber => {
         subscriber.next(this.repositoryService.deleteContact(request))
@@ -110,7 +100,7 @@ export class LocalCommService implements CommService {
   }
 
 
-  deleteContactFromGroup(request:DeleteContactFromGroupRequest):Observable<DeleteContactFromGroupResponse>{
+  deleteContactFromGroup(request: DeleteContactFromGroupRequest): Observable<DeleteContactFromGroupResponse> {
     return new Observable<DeleteContactFromGroupResponse>(
       subscriber => {
         subscriber.next(this.repositoryService.deleteContactFromGroup(request))
@@ -122,7 +112,7 @@ export class LocalCommService implements CommService {
         subscriber.next(this.repositoryService.deleteGroupFromContact(request))
       })
   }
-  updateGroup(request:UpdateGroupRequest):Observable<UpdateGroupResponse>{
+  updateGroup(request: UpdateGroupRequest): Observable<UpdateGroupResponse> {
     return new Observable<UpdateGroupResponse>(
       subscriber => {
         subscriber.next(this.repositoryService.updateGroup(request))

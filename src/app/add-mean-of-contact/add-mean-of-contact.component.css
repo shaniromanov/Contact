@@ -4,7 +4,6 @@ input{
   width:70%;
   padding: 10px 15px;
   margin: 2px;
-
 }
   select{
     background: #eee;
@@ -24,7 +23,6 @@ input{
     margin: auto;
     width: 70%;
     padding: 10px;
-
 }
 .add-btn{
     margin: auto;
@@ -38,13 +36,11 @@ input{
     text-transform: uppercase;
     transition: transform 80ms ease-in;
     background-color: purple;
- 
 }
 .btn-dark{
   color:rgb(197, 129, 197);
     background-color: black;
 }
-
 .dropdown-menu li {
     width: auto;
     min-width: 300px; 
@@ -68,7 +64,6 @@ input{
   h4{
     font-weight: bold;
   }
-
   .validation-msg{
     color:purple;
     height: 5px;
